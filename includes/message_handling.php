@@ -27,3 +27,4 @@ function throw_msg($message, $redirect, $loc="N/A", $line=0)
 	tools_redirect($redirect);
 	exit;
 }
+?>

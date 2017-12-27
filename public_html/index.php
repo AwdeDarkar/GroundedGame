@@ -1,6 +1,7 @@
 <?php
 define(PERMISSION_LEVEL, -1);
-include("../includes/common.php")
+include("../includes/common.php");
+throw_msg(1, "register.php");	
 ?>
 
 <h1>Hello world</h1>
