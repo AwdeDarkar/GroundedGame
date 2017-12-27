@@ -1,5 +1,5 @@
 <?php
-//define(PERMISSION_LEVEL, -1);
+define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
 
 if (isset($_GET['u'], $_GET['e'], $_GET['v']))
