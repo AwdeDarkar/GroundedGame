@@ -2,6 +2,27 @@
 # date created: 12/26/2017
 # date edited: 12/26/2017
 
+drop table if exists Users;
+drop table if exists Worlds;
+drop table if exists Factions;
+drop table if exists Bunkers;
+drop table if exists Entities;
+drop table if exists Resources;
+drop table if exists ResourceCollections;
+drop table if exists Soldiers;
+drop table if exists Traps;
+drop table if exists Rooms;
+drop table if exists SurfaceUnits;
+drop table if exists News;
+drop table if exists ProductionJobs;
+drop table if exists MovementJobs;
+drop table if exists Orders;
+drop table if exists Transactions;
+drop table if exists MessageGroups;
+drop table if exists MessageGroupParticipants;
+drop table if exists Messages;
+
+
 create table Users (
 	ID int unsigned primary key auto_increment,
 	Name char(30),
@@ -35,7 +56,7 @@ create table Bunkers (
 
 create table Entities (
 	ID int unsigned primary key auto_increment,
-	FactionID int unsigned,
+	FactionID int unsigned
 );
 
 create table Resources (
@@ -49,7 +70,7 @@ create table ResourceCollections (
 	EntityID int unsigned,
 	BunkerID int unsigned,
 	FactionID int unsigned,
-	ResourceID int unsigned,
+	ResourceID int unsigned
 );
 
 create table Soldiers (
@@ -57,12 +78,12 @@ create table Soldiers (
 	Hitpoints int unsigned,
 	Type int unsigned,
 
-	pimary key(RCID, Hitpoints, Type)
+	primary key(RCID, Hitpoints, Type)
 );
 
 create table Traps (
 	RCID int unsigned,
-	pimary key(RCID)
+	primary key(RCID)
 );
 
 create table Rooms (
@@ -76,7 +97,7 @@ create table Rooms (
 	ConnUp bool,
 	ConnDown bool,
 	ConnRight bool,
-	ConnLeft bool,
+	ConnLeft bool
 );
 
 create table SurfaceUnits (
