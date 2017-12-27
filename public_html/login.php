@@ -1,6 +1,6 @@
 <?php
 define(PERMISSION_LEVEL, -1);
-include("../includes/common.php")
+include("../includes/common.php");
 ?>
 
 <h1>Login</h1>
