@@ -4,7 +4,7 @@ include("../includes/common.php");
 //throw_msg(1, "register.php", "thing", 5);	
 ?>
 
-<h1>Hello world</h1>
+<h1>Hello worlds page!</h1>
 
 <?php
 	$WorldList = "";
@@ -15,11 +15,14 @@ include("../includes/common.php");
 		$stmt->store_result();
 		$stmt->bind_result($WorldList);
 		$stmt->fetch();
-
-		foreach($WorldList as $world)
-		{
-			echo var_dump($world) . "<br>";
-		}
 	}
+	
 	else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
+	
+	echo "blah<br>";
+		
+	foreach($WorldList as $world)
+	{
+		echo var_dump($world) . "!<br>";
+	}
 ?>
