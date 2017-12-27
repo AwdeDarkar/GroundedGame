@@ -56,19 +56,45 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 		$result = $stmt->execute();
 		$errorMSG = $stmt->error;
 	}
-	else { throw_msg(300, $errorHttpReferer, "register.php", 86); }
+	else { throw_msg(300, $httpReferer, "worldcreation.php", 86); }
 
 	// world creation stuff
 	
+	$worldid = $mysqli->insert_id;
 	
 
-
+	createBunkers($worldid, 20, $httpReferer);
 
 
 	
 	 
 
 	throw_msg(100, $httpReferer);
+}
+
+function createBunkers($worldid, $count, $httpReferer)
+{
+	$min = 0;
+	$max = 100;
+	
+	for ($i = 0; $i < $count; $i++)
+	{
+		$x = rand($min, $max);
+		$y = rand($min, $max);
+
+		$factionid = 0;
+
+		// insert into database
+		if ($stmt = $mysqli->prepare("INSERT INTO Bunkers(WorldID, FactionID, WorldX, WorldY) VALUES (?, ?, ?, ?)"))
+		{
+			//set variables
+			$stmt->bind_param("ssss", $worldid, $factionid, $x, $y);
+			
+			$result = $stmt->execute();
+			$errorMSG = $stmt->error;
+		}
+		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+	}	
 }
 
 ?>
