@@ -38,7 +38,8 @@ create table Worlds (
 	ID int unsigned primary key auto_increment,
 	Status tinyint,
 	Created date,
-	Name char(30)
+	Name char(30),
+	NameSafe char(30)
 );
 
 create table Factions (
