@@ -34,5 +34,5 @@ function checkLoginForm()
 <form id="form_login" action="handle_user.php" onsubmit="return checkLoginForm();" method="post">
 	<input type="text" placeholder="Username" name="log_username" id="log_username" /></br></br>
 	<input type="password" placeholder="Password" name="log_pass" id="log_pass" /></br></br>
-	<input type="submit" value="Log in">&nbsp;&nbsp;<a href='reset_password.php'>forgot password</a>
+	<input type="submit" value="Log in" name='button_login'>&nbsp;&nbsp;<a href='reset_password.php'>forgot password</a>
 </form>
