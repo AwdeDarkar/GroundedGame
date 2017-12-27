@@ -24,7 +24,7 @@ if (isset($_GET['u'], $_GET['e'], $_GET['v']))
 	else { throw_msg(300, "index.php", "verify.php", 33); }
 
 	//update user permissions
-	if ($stmt = $mysqli->prepare("UPDATE Users Set Level = 1 WHERE afe = ? AND Email = ? AND Verification = ? LIMIT 1"))
+	if ($stmt = $mysqli->prepare("UPDATE Users Set Level = 1 WHERE NameSafe = ? AND Email = ? AND Verification = ? LIMIT 1"))
 	{
 		$stmt->bind_param('sss', $username, $email, $verification);
 		$stmt->execute();
