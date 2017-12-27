@@ -1,31 +1,19 @@
 <?php
 define(PERMISSION_LEVEL, 2);
-include("../includes/common.php")
+include("../includes/common.php");
 ?>
 <h1>Admin page</h1>
 
 <h3>Create world</h3>
 
 <script type="text/javascript">
-
-
 function checkCreateWorldForm()
 {
-	var inp_username = document.getElementById("log_username");
-	var inp_pass = document.getElementById("log_pass");
+	var inp_world = document.getElementById("cw_worldname");
 
 	//check to make sure both fields are filled
-	if (inp_username.value == "" || inp_pass.value == "") { displayMessage(301); return false; }
+	if (inp_world.value == "") { displayMessage(301); return false; }
 
-	//create hidden input field to hold hashed password then reset visible password (prevent man in the middle)
-	var hashed = document.createElement("input");
-	hashed.name = "log_hashed";
-	hashed.type = "hidden";
-	hashed.value = hex_sha512(inp_pass.value);
-	document.getElementById("form_login").appendChild(hashed);
-
-	inp_pass.value = "";
-	
 	return true;
 }
 </script>

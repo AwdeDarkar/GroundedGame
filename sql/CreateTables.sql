@@ -36,6 +36,8 @@ create table Users (
 
 create table Worlds (
 	ID int unsigned primary key auto_increment,
+	Status tinyint,
+	Created date,
 	Name char(30)
 );
 
