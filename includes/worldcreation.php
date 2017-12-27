@@ -74,6 +74,8 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 
 function createBunkers($worldid, $count, $httpReferer)
 {
+	global $mysqli;
+		
 	$min = 0;
 	$max = 100;
 	
