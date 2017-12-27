@@ -26,7 +26,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 30); }
 
 // get world name
 $worldname = "";
-if ($stmt = $mysqli->prepare("SELECT Name FROM Worlds WHERE WorldID = ? LIMIT 1"))
+if ($stmt = $mysqli->prepare("SELECT Name FROM Worlds WHERE ID = ? LIMIT 1"))
 {
 	$stmt->bind_param('s', $worldid);
 	$stmt->execute();
