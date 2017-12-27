@@ -1,3 +1,8 @@
+<?php
+define(PERMISSION_LEVEL, -1);
+include("../includes/common.php")
+?>
+
 <script type='text/javascript' src='scripts/sha512.js'></script>
 <script type="text/javascript">
 
