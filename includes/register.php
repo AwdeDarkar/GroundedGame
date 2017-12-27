@@ -71,11 +71,12 @@ if (isset($_POST['button_register'], $_POST['reg_username'], $_POST['reg_email']
 	$hashedPassword = hash('sha512', $password);
 	$validationHash = hash('sha512', mt_rand(0,10000000000)); //validation hash is a random number between 1 and ten billion
 	$regDate = date("Y-m-d");
+	$level = 0;
 
 	if ($stmt = $mysqli->prepare("INSERT INTO Users(Name, Hash, Verification, Email, DateJoined, NameSafe, Level) VALUES (?, ?, ?, ?, ?, ?, ?)"))
 	{
 		//set variables
-		$stmt->bind_param("sssssss", $username, $hashedPassword, $validationHash, $email, $regDate, $webName, 0);
+		$stmt->bind_param("sssssss", $username, $hashedPassword, $validationHash, $email, $regDate, $webName, $level);
 		
 		$result = $stmt->execute();
 		$errorMSG = $stmt->error;
