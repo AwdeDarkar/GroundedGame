@@ -68,6 +68,49 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	throw_msg(100, $httpReferer);
 }
 
+
+function startingResourceCollections($worldid, $httpReferer)
+{
+
+	// get list of bunker ids
+	if ($stmt = $mysqli->prepare("SELECT ID FROM Bunkers WHERE WorldID = ?"))
+	{
+		$stmt->bind_param('s', $worldid);
+		$stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($bunkerid);
+		while ($stmt->fetch())
+		{
+			
+			//miner and smelter
+			$minerid = 6;
+			$smelterid = 5;
+			$facid = 0;
+			$amount = 1;
+
+			if ($stmt = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
+			{
+				//set variables
+				$stmt->bind_param("ssss", $minerid, $factionid, $facid, $amount);
+				$stmt->execute();
+			}
+			else { throw_msg(300, $httpReferer, "admin.php", 86); }
+			if ($stmt = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
+			{
+				//set variables
+				$stmt->bind_param("ssss", $smelterid, $factionid, $facid, $amount);
+				$stmt->execute();
+			}
+			else { throw_msg(300, $httpReferer, "admin.php", 86); }
+			
+		}
+	}
+	else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+
+
+	
+}
+
 function createBunkers($worldid, $count, $httpReferer)
 {
 	global $mysqli;
@@ -126,7 +169,8 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 	
 	for($i = 0; $i < $numDeposits; $i++)
 	{
-		$bunker = rand(0, $numBunkers);
+		//$bunker = rand(0, $numBunkers);
+		$bunker = $i % $numBunkers
 		$index = array_rand($depositTypes);
 		$type = $depositTypes[$index];
 		$amount = rand($min, $max);

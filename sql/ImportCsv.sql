@@ -12,7 +12,7 @@ LOAD DATA LOCAL INFILE 'process_components.csv'
 	INTO TABLE ProcessComponents
 	FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '"'
 	LINES TERMINATED BY '\n'
-	(PID,RID,Amount,Type);
+	(ID,PID,RID,Amount,Type);
 
 LOAD DATA LOCAL INFILE 'processes.csv'
 	INTO TABLE Processes
