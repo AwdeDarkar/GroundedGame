@@ -134,7 +134,7 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 		if ($stmt = $mysqli->prepare("INSERT INTO ResourceDeposits(BunkerID, ResourceID, Amount, ReplenishRate, Maximum) VALUES (?, ?, ?, ?, ?)"))
 		{
 			//set variables
-			$stmt->bind_param("sssss", $bunker, $type, $amount, 0, $max);
+			$stmt->bind_param("sssss", $bunker, $type, $amount, 0, $amount);
 			
 			$result = $stmt->execute();
 			$errorMSG = $stmt->error;
