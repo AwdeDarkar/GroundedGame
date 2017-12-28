@@ -5,6 +5,9 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	$worldname = tools_sanitize_data($_POST['cw_worldname']);
 	$status = 0;
 	$date = date("Y-m-d");
+	
+	$numBunkers = 20;
+	$numDeposits = $numBunkers * 10;
 
 	$httpReferer = tools_get_referer("index.php");
 
@@ -55,7 +58,8 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	else { throw_msg(300, $errorHttpReferer, "register.php", 86); }
 
 
-	createBunkers($worldid, 20, $httpReferer);
+	createBunkers($worldid, $numBunkers, $httpReferer);
+	generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer);
 
 
 	
@@ -89,6 +93,54 @@ function createBunkers($worldid, $count, $httpReferer)
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
 	}	
+}
+
+function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
+{
+	global $mysqli;
+	
+	$depositTypes = array();
+	$depositType;
+	$depositFreq;
+	
+	if ($stmt = $mysqli->prepare("
+	SELECT Resources.ID, Resources.Frequency FROM Resources
+	WHERE Resources.Type = 1 " /* 1 means depositable */ . "
+	"))
+	{
+		$tempResult = $stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($depositType, $depositFreq);
+		
+		while($stmt->fetch())
+		{
+			for($i = 0l $i < $depositFreq; $i++)
+			{
+				array_push($depositTypes, $depositType);
+			}
+		}
+	}
+	
+	$min = 1;
+	$max = 1000;
+	
+	for($i = 0; $i < $numDeposits; $i++)
+	{
+		$bunker = rand(0, $numBunkers);
+		$type = array_rand($depositTypes);
+		$amount = rand($min, $max);
+		
+		// insert into database
+		if ($stmt = $mysqli->prepare("INSERT INTO ResourceDeposit(BunkerID, ResourceID, Amount, ReplenishRate, Maximum) VALUES (?, ?, ?, ?, ?)"))
+		{
+			//set variables
+			$stmt->bind_param("sssss", $bunker, $type, $amount, 0, $max);
+			
+			$result = $stmt->execute();
+			$errorMSG = $stmt->error;
+		}
+		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+	}
 }
 
 ?>
