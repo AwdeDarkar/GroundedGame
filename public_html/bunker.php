@@ -22,7 +22,8 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 
 # if this bunker doesn't belong to this user, reject
-if ($stmt = $mysqli->prepare("SELECT FactionID FROM Bunkers WHERE Bunker.ID = ?"))
+# also get pertinent data here
+if ($stmt = $mysqli->prepare("SELECT FactionID FROM Bunkers WHERE ID = ?"))
 {
 	$stmt->bind_param('s', $bunkerID);
 	$stmt->execute();
