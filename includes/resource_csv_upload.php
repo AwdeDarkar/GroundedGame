@@ -16,7 +16,8 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']
 
 	if ($stmt = $mysqli->prepare("LOAD DATA INFILE ? INTO TABLE Resources FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' (Name, NameSafe, Type, Frequency, Description)"))
 	{
-		$stmt->bind_param('s', $_FILES['rc_csv']['tmp_name']);
+		$filename = $_FILES['rc_csv']['tmp_name'];
+		$stmt->bind_param('s', $filename);
 		$stmt->execute();
 	}
 	else { echo("<p>".$mysqli->error."</p>"); exit; } 
