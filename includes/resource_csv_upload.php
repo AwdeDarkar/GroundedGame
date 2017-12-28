@@ -4,6 +4,9 @@ echo("<p>Hello?</p>");
 if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']['tmp_name']))
 {
 
+	echo("<p>hi there</p>");
+	$httpReferer = tools_get_referer("index.php");
+	
     /*LOAD DATA INFILE '$fileName'
      INTO TABLE tableName
      FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"'
