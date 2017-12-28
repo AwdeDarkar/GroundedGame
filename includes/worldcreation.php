@@ -108,9 +108,6 @@ function startingResourceCollections($worldid, $httpReferer)
 		}
 	}
 	else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
-
-
-	
 }
 
 function createBunkers($worldid, $count, $httpReferer)
@@ -147,6 +144,17 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 	$depositTypes = array();
 	$depositType;
 	$depositFreq;
+
+	$bunkerids = array();
+	
+	if ($stmt = $mysqli->prepare("SELECT ID FROM Bunkers WHERE WorldID = ? "))
+	{
+		$stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($bunkerID);
+		
+		while($stmt->fetch()) { array_push($bunkerids, $bunkerID); }
+	}
 	
 	if ($stmt = $mysqli->prepare("
 	SELECT Resources.ID, Resources.Frequency FROM Resources
@@ -172,7 +180,10 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 	for($i = 0; $i < $numDeposits; $i++)
 	{
 		//$bunker = rand(0, $numBunkers);
-		$bunker = $i % $numBunkers;
+		//$bunker = $i % $numBunkers;
+		// TODO - needs to be the ids, not the number of bunkers
+		$bunkerListIndex = $i % count($bunkerids);
+		$bunker = $bunkerids[$bunkerListIndex];
 		$index = array_rand($depositTypes);
 		$type = $depositTypes[$index];
 		$amount = rand($min, $max);
