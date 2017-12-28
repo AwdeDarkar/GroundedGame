@@ -2,6 +2,7 @@
 
 if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['filename']['tmp_name']))
 {
+	echo("<p>hi there</p>");
 	readfile($_FILES['filename']['tmp_name']);	
 	
 	$httpReferer = tools_get_referer("index.php");
@@ -29,6 +30,6 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['filename
 
 
 	
-	throw_msg(100, $httpReferer);
+	//throw_msg(100, $httpReferer);
 }
 ?>
