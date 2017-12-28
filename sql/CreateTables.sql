@@ -171,16 +171,6 @@ create table ProcessComponents (
 	Type int unsigned
 );
 
-create table MovementJobs (
-	ID int unsigned primary key auto_increment,
-	EntityID int unsigned,
-	SourceBunkerID int unsigned,
-	DestinationBunkerID int unsigned,
-	FactionID int unsigned,
-	StartDate datetime,
-	EndDate datetime
-);
-
 create table Orders (
 	ID int unsigned primary key auto_increment,
 	RCID int unsigned,
