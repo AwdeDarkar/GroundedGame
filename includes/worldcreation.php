@@ -151,9 +151,6 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer, $bu
 	$depositFreq;
 
 	
-	var_dump($bunkerids);
-	exit;
-	
 	if ($stmt = $mysqli->prepare("
 	SELECT Resources.ID, Resources.Frequency FROM Resources
 	WHERE Resources.Type = 1 " /* 1 means depositable */ . "
