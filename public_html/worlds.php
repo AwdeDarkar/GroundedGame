@@ -11,7 +11,7 @@ include("../includes/common.php");
 	$WorldIDs = "";
 	$WorldStatuses = "";
 	$NumUsers = "";
-	$Members = ""
+	$Members = "";
 	$MemberOf = array();
 	
 	if ($stmt = $mysqli->prepare("
@@ -19,7 +19,8 @@ include("../includes/common.php");
 	WHERE Worlds.ID = Factions.WorldID AND Factions.UserID = ?
 	"))
 	{
-		$stmt->bind_param('s', LOGGED_USER_ID);
+		$uid = LOGGED_USER_ID;
+		$stmt->bind_param('s', $uid);
 		$tempResult = $stmt->execute();
 		$stmt->store_result();
 		$stmt->bind_result($Members);
@@ -56,5 +57,5 @@ include("../includes/common.php");
 		}
 	}
 	
-	else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
+	//else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
 ?>
