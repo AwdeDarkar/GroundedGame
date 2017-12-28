@@ -28,3 +28,25 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 ?>
 
 <h1><?php echo("$worldname"); ?> World Map </h1>
+
+
+<div id='demo'/>
+
+<script type="text/javascript">
+
+function getFactionList()
+{
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById("demo").innerHTML = this.responseText;
+		}
+	};
+	xhttp.open("GET", "ajax_faction_list.php?w=<?php echo("$world")?>", true);
+	xhttp.send();	
+
+	setTimeout(getFactionList, 1000);
+}
+
+getFactionList();
+</script>
