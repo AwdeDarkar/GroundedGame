@@ -121,23 +121,22 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 		}
 	}
 
-	var_dump($depositTypes);
-	exit;
-	
 	$min = 1;
 	$max = 1000;
 	
 	for($i = 0; $i < $numDeposits; $i++)
 	{
 		$bunker = rand(0, $numBunkers);
-		$type = array_rand($depositTypes);
+		$index = array_rand($depositTypes);
+		$type = $depositTypes[$index];
 		$amount = rand($min, $max);
+		$rate = 0;
 		
 		// insert into database
 		if ($stmt = $mysqli->prepare("INSERT INTO ResourceDeposits(BunkerID, ResourceID, Amount, ReplenishRate, Maximum) VALUES (?, ?, ?, ?, ?)"))
 		{
 			//set variables
-			$stmt->bind_param("sssss", $bunker, $type, $amount, $rate = 0, $amount);
+			$stmt->bind_param("sssss", $bunker, $type, $amount, $rate, $amount);
 			
 			$result = $stmt->execute();
 			$errorMSG = $stmt->error;
