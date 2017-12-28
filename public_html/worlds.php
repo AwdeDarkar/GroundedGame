@@ -19,7 +19,8 @@ include("../includes/common.php");
 	WHERE Worlds.ID = Factions.WorldID AND Factions.UserID = ?
 	"))
 	{
-		$stmt->bind_param('s', LOGGED_USER_ID);
+		$uid = LOGGED_USER_ID;
+		$stmt->bind_param('s', $uid);
 		$tempResult = $stmt->execute();
 		$stmt->store_result();
 		$stmt->bind_result($Members);
