@@ -28,4 +28,5 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 ?>
 
 <h1><?php echo("$worldname"); ?> World Map </h1>
+<?php echo("$world"); ?>
 
