@@ -55,7 +55,7 @@ if (isset($_POST['button_nf'], $_POST['nf_name'], $_POST['nf_wid']))
 	{
 		$userid = LOGGED_USER_ID;
 		//set variables
-		$stmt->bind_param("sssss", $userid, $worlid, $facname, $webName, $regDate);
+		$stmt->bind_param("sssss", $userid, $worldid, $facname, $webName, $regDate);
 		
 		$result = $stmt->execute();
 		$errorMSG = $stmt->error;
