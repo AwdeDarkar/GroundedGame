@@ -121,7 +121,7 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 		}
 	}
 
-	var_dump($depsitTypes);
+	var_dump($depositTypes);
 	exit;
 	
 	$min = 1;
