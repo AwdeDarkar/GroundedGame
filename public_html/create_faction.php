@@ -19,7 +19,7 @@ if ($stmt = $mysqli->prepare("SELECT COUNT(*) FROM Factions WHERE UserID = ? AND
 	$stmt->bind_result($UserCount);
 	$stmt->fetch();
 
-	if ($UserCount > 0) { throw_msg(402, $HttpReferer); }
+	if ($UserCount > 0) { throw_msg(402, $httpReferer); }
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 30); }
 
@@ -41,3 +41,33 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 ?>
 
 <h1>Create new faction in <?php print("$worldname"); ?> </h1>
+
+
+<script type="text/javascript">
+
+function checkFactionName()
+{
+	var inp_username = document.getElementById("log_username");
+	var inp_pass = document.getElementById("log_pass");
+
+	//check to make sure both fields are filled
+	if (inp_username.value == "" || inp_pass.value == "") { displayMessage(301); return false; }
+
+	//create hidden input field to hold hashed password then reset visible password (prevent man in the middle)
+	var hashed = document.createElement("input");
+	hashed.name = "log_hashed";
+	hashed.type = "hidden";
+	hashed.value = hex_sha512(inp_pass.value);
+	document.getElementById("form_login").appendChild(hashed);
+
+	inp_pass.value = "";
+	
+	return true;
+}
+</script>
+
+<form id="form_newfaction" action="handle_faction.php" onsubmit="return checkFactionName();" method="post">
+	<input type="text" placeholder="Faction Name" name="nf_name" id="nf_name" /></br></br>
+	<input type="hidden" name="nf_wid" id='nf_wid' value=<?php print("'$worldid'");?> />
+	<input type="submit" value="New Faction" name='button_nf'>
+</form>
