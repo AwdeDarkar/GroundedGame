@@ -16,3 +16,4 @@ if ($stmt = $mysqli->prepare("SELECT Factions.Name FROM Factions, Worlds WHERE F
 		echo("<p>$Name</p>");
 	}
 }
+?>
