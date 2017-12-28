@@ -37,18 +37,20 @@ if ($bunkerFacID != $facID) { throw_msg(200, "worlds.php?w=$world"); }
 
 # query all resource deposits
 $rd_ids = array();
+$rd_names = array();
 $rd_rates = array();
 $rd_amts = array();
 $rd_maxes = array();
-if ($stmt = $mysqli->prepare("SELECT ResourceID, ReplenishRate, Amount, Maximum FROM ResourceDeposits WHERE BunkerID = ?"))
+if ($stmt = $mysqli->prepare("SELECT ResourceDeposits.ResourceID, Resources.Name, ResourceDeposits.ReplenishRate, ResourceDeposits.Amount, ResourceDeposits.Maximum FROM Resources, ResourceDeposits WHERE Resources.ID = ResourceDeposits.ResourceID AND ResourceDeposits.BunkerID = ?"))
 {
 	$stmt->bind_param('s', $bunkerID);
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($resID, $rate, $amt, $max);
+	$stmt->bind_result($resID, $name, $rate, $amt, $max);
 	while ($stmt->fetch())
 	{
 		array_push($rd_ids, $resID);
+		array_push($rd_names, $name);
 		array_push($rd_rates, $rate);
 		array_push($rd_amts, $amt);
 		array_push($rd_maxes, $max);
@@ -92,6 +94,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 <h3>Resource Deposits</h3>
 <table>
 	<tr>
+		<th>Deposit</th>
 		<th>Replenish Rate</th>
 		<th>Amount</th>
 		<th>Capacity</th>
@@ -101,6 +104,7 @@ for ($i = 0; $i < count($rd_ids); $i++)
 {
 	echo("
 		<tr>
+			<td>".$rd_names[$i]."</td>
 			<td>".$rd_rates[$i]."</td>
 			<td>".$rd_amts[$i]."</td>
 			<td>".$rd_maxes[$i]."</td>
