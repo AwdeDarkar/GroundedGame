@@ -22,9 +22,8 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['filename
 			$stmt->bind_param('sssss', $data[0], $websafe, $data[1], $data[2], $data[3]);
 			$stmt->execute();
 		}
-		else
+		else { throw_msg(300, $httpReferer, "admin.php", 23); }
 	}
-	else { throw_msg(300, $httpReferer, "admin.php", 23); }
 
 	fclose($handle);	
 
