@@ -1,7 +1,7 @@
 <?php
 echo("<p>Hello?</p>");
 
-if (isset($_POST['button_uploadresource'])/* && is_uploaded_file($_FILES['rc_csv']['tmp_name'])*/)
+if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']['tmp_name']))
 {
 	echo("<p>hi there</p>");
 	readfile($_FILES['rc_csv']['tmp_name']);
