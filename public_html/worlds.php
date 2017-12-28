@@ -58,5 +58,5 @@ include("../includes/common.php");
 		}
 	}
 	
-	//else { throw_msg(300, $errorHttpReferer, "register.php", 105); } 
+	//else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
 ?>
