@@ -31,8 +31,6 @@ include("../includes/common.php");
 			array_push($MemberOf, $Members);
 		}
 	}
-	
-	echo "here" . var_dump($MemberOf);
 
 	if ($stmt = $mysqli->prepare("
 	SELECT Worlds.Name, Worlds.ID, Worlds.Status, COUNT(*)-1 FROM Worlds, Factions 
@@ -50,15 +48,15 @@ include("../includes/common.php");
 			echo $WorldNames . " " . $WorldStatuses . " " . $NumUsers . " ";
 			if(in_array($WorldIDs, $MemberOf))
 			{
-				echo "[GOTO]";
+				echo "<a href=faction_index.php?uid=" . LOGGED_USER_ID . ">GOTO</a>";
 			}
 			else
 			{
-				echo "[JOIN]";
+				echo "<a href=create_faction.php?wid=" . $WorldIDs . ">JOIN</a>";
 			}
 			echo "<br>";
 		}
 	}
 	
-	//else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
+	//else { throw_msg(300, $errorHttpReferer, "register.php", 105); } 
 ?>
