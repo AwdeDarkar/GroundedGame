@@ -1,0 +1,6 @@
+1,Water,water,1,100,A consumable liquid for quenching thirst
+2,Coal,coal,1,100,A carbon substance that can be burned as fuel
+3,Iron Ore,iron_ore,1,100,A hard material ore
+4,Iron,iron,0,100,A hard material component
+5,Smelter,2,0,Can turn ores into things
+6,Miner,2,0,Can mine ores
