@@ -43,7 +43,7 @@ function getFactionList()
 			document.getElementById("demo").innerHTML = this.responseText;
 		}
 	};
-	xhttp.open("GET", "ajax_faction_list.php?w=<?php echo("$world")?>", false);
+	xhttp.open("GET", "ajax_faction_list.php?w=<?php echo("$world")?>", true);
 	xhttp.send();	
 
 	//setTimeout(getFactionList, 1000);
@@ -57,12 +57,12 @@ function getBunkerList()
 			document.getElementById("bunkerlist").innerHTML = this.responseText;
 		}
 	};
-	xhttp2.open("GET", "ajax_bunker_list.php?w=<?php echo("$world")?>", false);
+	xhttp2.open("GET", "ajax_bunker_list.php?w=<?php echo("$world")?>", true);
 	xhttp2.send();	
 
 	//setTimeout(getFactionList, 1000);
 }
 
-getFactionList();
+//getFactionList();
 getBunkerList();
 </script>
