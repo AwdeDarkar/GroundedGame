@@ -4,22 +4,29 @@ include("../includes/common.php");
 //throw_msg(1, "register.php", "thing", 5);	
 ?>
 
-<h1>Hello world</h1>
+<h1>Hello worlds page!</h1>
 
 <?php
-	$WorldList = "";
+	$WorldNames = "";
+	$WorldStatuses = "";
+	$NumUsers = "";
 	
-	if ($stmt = $mysqli->prepare("SELECT Worlds.Name, Worlds.Status FROM Worlds"))
+	if ($stmt = $mysqli->prepare("
+	SELECT Worlds.Name, Worlds.Status, COUNT(*) FROM Worlds, Factions 
+	WHERE Worlds.ID = Factions.WorldID 
+	GROUP BY Worlds.ID
+	ORDER BY Worlds.Name
+	"))
 	{
 		$tempResult = $stmt->execute();
 		$stmt->store_result();
-		$stmt->bind_result($WorldList);
-		$stmt->fetch();
-
-		foreach($WorldList as $world)
+		$stmt->bind_result($WorldNames, $WorldStatuses, $NumUsers);
+		
+		while($stmt->fetch())
 		{
-			echo var_dump($world) . "<br>";
+			echo $WorldNames . " " . $WorldStatuses . " " . $NumUsers . "<br>";
 		}
 	}
+	
 	else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
 ?>
