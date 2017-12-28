@@ -10,7 +10,12 @@ include("../includes/common.php");
 	$WorldNames = "";
 	$WorldStatuses = "";
 	
-	if ($stmt = $mysqli->prepare("SELECT Worlds.Name, Worlds.Status FROM Worlds"))
+	if ($stmt = $mysqli->prepare("
+	SELECT Worlds.Name, Worlds.Status, COUNT(*) FROM Worlds, Factions 
+	WHERE Worlds.ID = Factions.WorldID 
+	GROUP BY Worlds.ID
+	ORDER BY Worlds.Name
+	"))
 	{
 		$tempResult = $stmt->execute();
 		$stmt->store_result();
