@@ -39,7 +39,7 @@ include("../includes/common.php");
 	ORDER BY COUNT(*) DESC, Worlds.Name
 	"))
 	{
-		$tempResult = $stmt->execute();
+		$tempResult = $stmt->execute();  
 		$stmt->store_result();
 		$stmt->bind_result($WorldNames, $WorldIDs, $WorldStatuses, $NumUsers);
 		
