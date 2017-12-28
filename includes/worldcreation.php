@@ -48,7 +48,7 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	{
 		$userid = LOGGED_USER_ID;
 		//set variables
-		$stmt->bind_param("sssss", $userid, $worldid, $facname, $webName, $regDate);
+		$stmt->bind_param("sssss", $userid, $worldid, $name, $webName, $regDate);
 		
 		$result = $stmt->execute();
 		$errorMSG = $stmt->error;

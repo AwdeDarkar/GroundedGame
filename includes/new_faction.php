@@ -25,7 +25,7 @@ if (isset($_POST['button_nf'], $_POST['nf_name'], $_POST['nf_wid']))
 	//get an unused websafe name
 	$foundFreeSafeName = false;
 	$nameIndex = 1; //the number added onto the end
-	$webName = tools_web_safe($username);
+	$webName = tools_web_safe($facname);
 	$analysisName = $webName;
 	while(!$foundFreeSafeName)
 	{
