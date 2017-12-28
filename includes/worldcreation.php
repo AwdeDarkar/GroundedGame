@@ -58,8 +58,8 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	else { throw_msg(300, $errorHttpReferer, "register.php", 86); }
 
 
-	createBunkers($worldid, $numBunkers, $httpReferer);
-	generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer);
+	$bunkerids = createBunkers($worldid, $numBunkers, $httpReferer);
+	generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer, $bunkerids);
 
 	startingResourceCollections($worldid, $httpReferer);
 
@@ -116,6 +116,8 @@ function createBunkers($worldid, $count, $httpReferer)
 		
 	$min = 0;
 	$max = 100;
+
+	$bunkerids = array();
 	
 	for ($i = 0; $i < $count; $i++)
 	{
@@ -134,10 +136,13 @@ function createBunkers($worldid, $count, $httpReferer)
 			$errorMSG = $stmt->error;
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+
+		array_push($bunkerids, $mysqli->insert_id);
 	}	
+	return $bunkerids;
 }
 
-function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
+function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer, $bunkerids)
 {
 	global $mysqli;
 	
@@ -145,17 +150,7 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 	$depositType;
 	$depositFreq;
 
-	$bunkerids = array();
 	
-	if ($stmt = $mysqli->prepare("SELECT ID FROM Bunkers WHERE WorldID = ? "))
-	{
-		$stmt->execute();
-		$stmt->store_result();
-		$stmt->bind_result($bunkerID);
-		
-		while($stmt->fetch()) { array_push($bunkerids, $bunkerID); }
-	}
-
 	var_dump($bunkerids);
 	exit;
 	
