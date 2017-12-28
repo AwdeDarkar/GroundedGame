@@ -28,29 +28,7 @@ if (isset($_POST['button_register'], $_POST['reg_username'], $_POST['reg_email']
 	else { throw_msg(300, $errorHttpReferer, "register.php", 30); }
 
 	//get an unused websafe name
-	$foundFreeSafeName = false;
-	$nameIndex = 1; //the number added onto the end
-	$webName = tools_web_safe($username);
-	$analysisName = $webName;
-	while(!$foundFreeSafeName)
-	{
-		//check current iteration
-		if ($stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE NameSafe = ? LIMIT 1"))
-		{
-			$stmt->bind_param('s', $analysisName);
-			$stmt->execute();
-			$stmt->store_result();
-			$stmt->bind_result($UserSafeCount);
-			$stmt->fetch();
-
-			if ($UserSafeCount > 0) { $nameIndex++; $analysisName = $webName . $nameIndex; continue; } //haven't found one yet
-		}
-		else { throw_msg(300, $errorHttpReferer, "register.php", 50); }
-		$foundFreeSafeName = true;
-	}
-
-	//assign safe websafe name to official websafe name variable
-	$webName = $analysisName;
+	$webName = tools_iterative_web_safe($username, "Users", $errorHttpReferer);
 
 	//check if user with that email already exists
 	if ($stmt = $mysqli->prepare("SELECT COUNT(*) FROM Users WHERE Email = ? LIMIT 1"))

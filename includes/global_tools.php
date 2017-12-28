@@ -14,6 +14,34 @@ function tools_sanitize_data($data, $allowTags="")
 	return $data;
 }
 
+function tools_iterative_web_safe($name, $table, $referer)
+{
+	//get an unused websafe name
+	$foundFreeSafeName = false;
+	$nameIndex = 1; //the number added onto the end
+	$webName = tools_web_safe($name);
+	$analysisName = $webName;
+	while(!$foundFreeSafeName)
+	{
+		//check current iteration
+		if ($stmt = $mysqli->prepare("SELECT COUNT(*) FROM $table WHERE NameSafe = ? LIMIT 1"))
+		{
+			$stmt->bind_param('s', $analysisName);
+			$stmt->execute();
+			$stmt->store_result();
+			$stmt->bind_result($SafeCount);
+			$stmt->fetch();
+
+			if ($SafeCount > 0) { $nameIndex++; $analysisName = $webName . $nameIndex; continue; } //haven't found one yet
+		}
+		else { throw_msg(300, $referer, "tools.php", 50); }
+		$foundFreeSafeName = true;
+	}
+
+	return $webName;
+}
+	
+
 function tools_web_safe($name)
 {
 	//TODO: add all symbols

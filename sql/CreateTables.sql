@@ -46,7 +46,9 @@ create table Factions (
 	ID int unsigned primary key auto_increment,
 	UserID int unsigned,
 	WorldID int unsigned,
-	Name char(30)
+	Joined date,
+	Name char(30), 
+	NameSafe char(30)
 );
 
 create table Bunkers (
@@ -65,6 +67,7 @@ create table Entities (
 create table Resources (
 	ID int unsigned primary key auto_increment,
 	Name char(30),
+	NameSafe char(30),
 	Description text
 );
 
@@ -93,6 +96,7 @@ create table Rooms (
 	EntityID int unsigned primary key,
 	BunkerID int unsigned,
 	Name char(30),
+	NameSafe char(30),
 	GridX int,
 	GridY int,
 	Width int,
