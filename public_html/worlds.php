@@ -9,20 +9,18 @@ include("../includes/common.php");
 <?php
 	$WorldList = "";
 	
-	if ($stmt = $mysqli->prepare("SELECT Worlds.Name, Worlds.Status FROM Worlds"))
+	if ($stmt = $mysqli->prepare("SELECT Worlds.Name FROM Worlds"))
 	{
 		$tempResult = $stmt->execute();
 		$stmt->store_result();
 		$stmt->bind_result($WorldList);
 		$stmt->fetch();
+		
+		while($stmt->fetch())
+		{
+			echo $WorldList . "<br>";
+		}
 	}
 	
 	else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
-	
-	echo "blah<br>" . var_dump($WorldList);
-		
-	foreach($WorldList as $world)
-	{
-		echo var_dump($world) . "!<br>";
-	}
 ?>
