@@ -16,10 +16,15 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['filename
 	while (($data = fgetcsv($handle, 1000, ",")) !== false) 
 	{
 		$websafe = tools_iterative_web_safe($data[0], "Resources", $httpReferer);
-		$import="INSERT INTO Resources (Name, NameSafe, Type, Frequency, Description) VALUES ('$data[0]','$websafe','$data[1]', '$data[2]', '$data[3]')";
-
-		$mysqli->query($import);
+		
+		if ($stmt = $mysqli->prepare("INSERT INTO Resources (Name, NameSafe, Type, Frequency, Description) VALUES (?,?,?,?,?)"))
+		{
+			$stmt->bind_param('sssss', $data[0], $websafe, $data[1], $data[2], $data[3]);
+			$stmt->execute();
+		}
+		else
 	}
+	else { throw_msg(300, $httpReferer, "admin.php", 23); }
 
 	fclose($handle);	
 
