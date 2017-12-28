@@ -85,6 +85,19 @@ if (isset($_POST['button_nf'], $_POST['nf_name'], $_POST['nf_wid']))
 	}
 	else { throw_msg(300, $httpReferer, "create_faction.php", 30); }
 	
-	throw_msg(100, "index.php");
+
+	
+	// get world safe and go to thta map
+	if ($stmt = $mysqli->prepare("SELECT NameSafe FROM Worlds WHERE ID = ?"))
+	{
+		$stmt->bind_param('s', $worldid);
+		$stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($webSafe);
+		$stmt->fetch();
+	}
+	else { throw_msg(300, $httpReferer, "create_faction.php", 30); }
+
+	throw_msg(100, "world.php?w=$webSafe");
 }
 ?>
