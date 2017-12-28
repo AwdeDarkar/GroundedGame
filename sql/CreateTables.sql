@@ -1,6 +1,6 @@
 # copyright 2017 AWDE
 # date created: 12/26/2017
-# date edited: 12/26/2017
+# date edited: 12/27/2017
 
 drop table if exists Users;
 drop table if exists Worlds;
@@ -9,18 +9,21 @@ drop table if exists Bunkers;
 drop table if exists Entities;
 drop table if exists Resources;
 drop table if exists ResourceCollections;
-drop table if exists Soldiers;
-drop table if exists Traps;
+drop table if exists ResourceDeposits;
+drop table if exists Actors;
+drop table if exists Equipment;
 drop table if exists Rooms;
-drop table if exists SurfaceUnits;
+drop table if exists SurfaceEntities;
 drop table if exists News;
 drop table if exists ProductionJobs;
-drop table if exists MovementJobs;
+drop table if exists ProductionJobComponents;
 drop table if exists Orders;
 drop table if exists Transactions;
 drop table if exists MessageGroups;
 drop table if exists MessageGroupParticipants;
 drop table if exists Messages;
+drop table if exists Processes;
+drop table if exists ProcessComponents;
 
 
 create table Users (
@@ -68,6 +71,8 @@ create table Resources (
 	ID int unsigned primary key auto_increment,
 	Name char(30),
 	NameSafe char(30),
+	Type char(30),
+	Frequency int,
 	Description text
 );
 
@@ -76,20 +81,32 @@ create table ResourceCollections (
 	EntityID int unsigned,
 	BunkerID int unsigned,
 	FactionID int unsigned,
-	ResourceID int unsigned
+	ResourceID int unsigned,
+	Amount int unsigned
 );
 
-create table Soldiers (
+create table ResourceDeposit (
+	ID int unsigned primary key auto_increment,
+	BunkerID int unsigned,
+	ResourceID int unsigned,
+	Amount int unsigned,
+	ReplenishRate int unsigned,
+	Maximum int unsigned
+);
+
+create table Actors (
+	ID int unsigned primary key auto_increment,
+	ResourceID int unsigned,
 	RCID int unsigned,
 	Hitpoints int unsigned,
-	Type int unsigned,
-
-	primary key(RCID, Hitpoints, Type)
+	Experience int unsigned,
+	Type int unsigned
 );
 
-create table Traps (
+create table Equipment (
+	ID int unsigned primary key auto_increment,
 	RCID int unsigned,
-	primary key(RCID)
+	ResourceID int unsigned
 );
 
 create table Rooms (
@@ -107,11 +124,13 @@ create table Rooms (
 	ConnLeft bool
 );
 
-create table SurfaceUnits (
+create table SurfaceEntities (
 	EntityID int unsigned primary key,
-	FactionID int unsigned,
 	WorldX int,
-	WorldY int
+	WorldY int,
+	WorldXDest int,
+	WorldYDest int,
+	StartTime datetime
 );
 
 create table News (
@@ -125,12 +144,31 @@ create table News (
 create table ProductionJobs (
 	ID int unsigned primary key auto_increment,
 	FactionID int unsigned,
-	RCID1 int unsigned,
-	RCID2 int unsigned,
-	ResultResourceID int unsigned,
-	ResultAmount int unsigned,
 	StartDate datetime,
-	EndDate datetime
+	ProcessID int unsigned
+);
+
+create table ProductionJobComponents (
+	ID int unsigned,
+	PJID int unsigned,
+	PCID int unsigned,
+	RCID int unsigned,
+	AID int unsigned,
+	EID int unsigned,
+	Amount int unsigned
+);
+
+create table Processes (
+	ID int unsigned primary key auto_increment,
+	BaseTime int unsigned,
+);
+
+create table ProcessComponents (
+	ID int unsigned,
+	PID int unsigned,
+	RID int unsigned,
+	Amount int unsigned,
+	Type int unsigned
 );
 
 create table MovementJobs (
