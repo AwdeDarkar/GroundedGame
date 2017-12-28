@@ -38,7 +38,23 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	// world creation stuff
 	
 	$worldid = $mysqli->insert_id;
+	$userid = 0;
+	$name = "Raiders";
+	$webName = "raiders";
+	$regDate = date("Y-m-d");
 	
+	// create raider faction
+	if ($stmt = $mysqli->prepare("INSERT INTO Factions(UserID, WorldID, Name, NameSafe, Joined) VALUES (?, ?, ?, ?, ?)"))
+	{
+		$userid = LOGGED_USER_ID;
+		//set variables
+		$stmt->bind_param("sssss", $userid, $worldid, $facname, $webName, $regDate);
+		
+		$result = $stmt->execute();
+		$errorMSG = $stmt->error;
+	}
+	else { throw_msg(300, $errorHttpReferer, "register.php", 86); }
+
 
 	createBunkers($worldid, 20, $httpReferer);
 
