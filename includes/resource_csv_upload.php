@@ -2,6 +2,7 @@
 
 if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['filename']['tmp_name']))
 {
+	readfile($_FILES['filename']['tmp_name']);	
 	
 	$httpReferer = tools_get_referer("index.php");
 	
