@@ -11,7 +11,7 @@ include("../includes/common.php");
 	$WorldIDs = "";
 	$WorldStatuses = "";
 	$NumUsers = "";
-	$Members = ""
+	$Members = "";
 	$MemberOf = array();
 	
 	if ($stmt = $mysqli->prepare("
