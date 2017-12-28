@@ -22,3 +22,5 @@ function checkCreateWorldForm()
 	<input type='text' placeholder='World Name' name='cw_worldname' id='cw_worldname' /></br></br>
 	<input type='submit' value='Create' name='button_createworld'>
 </form>
+
+<p><a href='admin_resource_builder.php'>Resource Builder</a></p>
