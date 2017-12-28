@@ -131,7 +131,7 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 		$amount = rand($min, $max);
 		
 		// insert into database
-		if ($stmt = $mysqli->prepare("INSERT INTO ResourceDeposit(BunkerID, ResourceID, Amount, ReplenishRate, Maximum) VALUES (?, ?, ?, ?, ?)"))
+		if ($stmt = $mysqli->prepare("INSERT INTO ResourceDeposits(BunkerID, ResourceID, Amount, ReplenishRate, Maximum) VALUES (?, ?, ?, ?, ?)"))
 		{
 			//set variables
 			$stmt->bind_param("sssss", $bunker, $type, $amount, 0, $max);
