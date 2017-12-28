@@ -31,6 +31,8 @@ include("../includes/common.php");
 		}
 	}
 	
+	echo "here" . var_dump($MemberOf);
+	
 	if ($stmt = $mysqli->prepare("
 	SELECT Worlds.Name, Worlds.Status, COUNT(*)-1, FROM Worlds, Factions 
 	WHERE Worlds.ID = Factions.WorldID 
