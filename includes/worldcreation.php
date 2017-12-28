@@ -72,6 +72,7 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 
 function startingResourceCollections($worldid, $httpReferer)
 {
+	global $mysqli;
 
 	// get list of bunker ids
 	if ($stmt = $mysqli->prepare("SELECT ID FROM Bunkers WHERE WorldID = ?"))
