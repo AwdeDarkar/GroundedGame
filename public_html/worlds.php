@@ -33,7 +33,7 @@ include("../includes/common.php");
 	}
 
 	if ($stmt = $mysqli->prepare("
-	SELECT Worlds.Name, Worlds.ID, Worlds.Status, COUNT(*)-1 FROM Worlds, Factions 
+	SELECT Worlds.NameSafe, Worlds.Name, Worlds.ID, Worlds.Status, COUNT(*)-1 FROM Worlds, Factions 
 	WHERE Worlds.ID = Factions.WorldID 
 	GROUP BY Worlds.ID
 	ORDER BY COUNT(*) DESC, Worlds.Name
@@ -41,14 +41,14 @@ include("../includes/common.php");
 	{
 		$tempResult = $stmt->execute();  
 		$stmt->store_result();
-		$stmt->bind_result($WorldNames, $WorldIDs, $WorldStatuses, $NumUsers);
+		$stmt->bind_result($NameSafe, $WorldNames, $WorldIDs, $WorldStatuses, $NumUsers);
 		
 		while($stmt->fetch())
 		{
 			echo $WorldNames . " " . $WorldStatuses . " " . $NumUsers . " ";
 			if(in_array($WorldIDs, $MemberOf))
 			{
-				echo "<a href=faction_index.php?uid=" . LOGGED_USER_ID . ">GOTO</a>";
+				echo "<a href=world.php?w=" . $NameSafe . ">GOTO</a>";
 			}
 			else
 			{
