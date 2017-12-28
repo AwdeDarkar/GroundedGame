@@ -34,7 +34,7 @@ if ($stmt = $mysqli->prepare("SELECT Name FROM Worlds WHERE ID = ? LIMIT 1"))
 	$stmt->bind_result($worldname);
 	$stmt->fetch();
 
-	if ($UserCount > 0) { throw_msg(402, $HttpReferer); }
+	if ($UserCount > 0) { throw_msg(402, $httpReferer); }
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
