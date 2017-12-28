@@ -61,6 +61,7 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	createBunkers($worldid, $numBunkers, $httpReferer);
 	generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer);
 
+	startingResourceCollections($worldid, $httpReferer);
 
 	
 	 
