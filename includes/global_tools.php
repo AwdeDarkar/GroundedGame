@@ -16,7 +16,7 @@ function tools_sanitize_data($data, $allowTags="")
 
 function tools_iterative_web_safe($name, $table, $referer)
 {
-	global $mysqli
+	global $mysqli;
 	//get an unused websafe name
 	$foundFreeSafeName = false;
 	$nameIndex = 1; //the number added onto the end
