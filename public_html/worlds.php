@@ -7,18 +7,18 @@ include("../includes/common.php");
 <h1>Hello worlds page!</h1>
 
 <?php
-	$WorldList = "";
+	$WorldNames = "";
+	$WorldStatuses = "";
 	
-	if ($stmt = $mysqli->prepare("SELECT Worlds.Name FROM Worlds"))
+	if ($stmt = $mysqli->prepare("SELECT Worlds.Name, Worlds.Status FROM Worlds"))
 	{
 		$tempResult = $stmt->execute();
 		$stmt->store_result();
-		$stmt->bind_result($WorldList);
-		$stmt->fetch();
+		$stmt->bind_result($WorldNames, $WorldStatuses);
 		
 		while($stmt->fetch())
 		{
-			echo $WorldList . "<br>";
+			echo $WorldNames . " " . $WorldStatuses . "<br>";
 		}
 	}
 	
