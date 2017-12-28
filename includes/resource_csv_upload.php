@@ -19,7 +19,7 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']
 		$stmt->bind_param('s', $_FILES['rc_csv']['tmp_name']);
 		$stmt->execute();
 	}
-	else { echo("<p>".$mysqli->error."</p>"); } /*throw_msg(300, $httpReferer, "admin.php", 23);*/ exit; }
+	else { echo("<p>".$mysqli->error."</p>"); exit; } 
 
 	
 	/*
