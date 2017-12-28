@@ -170,7 +170,7 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 	for($i = 0; $i < $numDeposits; $i++)
 	{
 		//$bunker = rand(0, $numBunkers);
-		$bunker = $i % $numBunkers
+		$bunker = $i % $numBunkers;
 		$index = array_rand($depositTypes);
 		$type = $depositTypes[$index];
 		$amount = rand($min, $max);
