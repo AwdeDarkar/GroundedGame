@@ -3,6 +3,22 @@ echo("<p>Hello?</p>");
 
 if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']['tmp_name']))
 {
+
+    /*LOAD DATA INFILE '$fileName'
+     INTO TABLE tableName
+     FIELDS TERMINATED BY '|' OPTIONALLY ENCLOSED BY '"'
+     LINES TERMINATED BY '\n'
+	 (field1,field2,field3,etc)*/
+
+	if ($stmt = $mysqli->prepare("LOAD DATA INFILE ? INTO TABLE Resources FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' (Name, NameSafe, Type, Frequency, Description)"))
+	{
+		$stmt->bind_param('s', $_FILES['rc_csv']['tmp_name']);
+		$stmt->execute();
+	}
+	else { throw_msg(300, $httpReferer, "admin.php", 23); }
+
+	
+	/*
 	echo("<p>hi there</p>");
 	readfile($_FILES['rc_csv']['tmp_name']);
 	
@@ -29,8 +45,9 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']
 
 	fclose($handle);	
 
+	*/
 
 	
-	//throw_msg(100, $httpReferer);
+	throw_msg(100, $httpReferer);
 }
 ?>
