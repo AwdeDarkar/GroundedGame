@@ -61,6 +61,29 @@ if (isset($_POST['button_nf'], $_POST['nf_name'], $_POST['nf_wid']))
 		$errorMSG = $stmt->error;
 	}
 	else { throw_msg(300, $errorHttpReferer, "register.php", 86); }
+
+
+	// choose a random unoccupied bunker for user
+
+	// get next unoccupied bunker id
+	if ($stmt = $mysqli->prepare("SELECT ID FROM Bunkers WHERE FactionID = 0 AND WorldID = ?"))
+	{
+		$stmt->bind_param('s', $worldid);
+		$stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($BunkerID);
+		$stmt->fetch();
+	}
+	else { throw_msg(300, $httpReferer, "create_faction.php", 30); }
+
+	// set it to owned by this faction
+	$facid = $mysqli->insert_id;
+	if ($stmt = $mysqli->prepare("UPDATE Bunkers SET FactionID = ? where ID = ?"))
+	{
+		$stmt->bind_param('ss', $facid, $BunkerID);
+		$stmt->execute();
+	}
+	else { throw_msg(300, $httpReferer, "create_faction.php", 30); }
 	
 	throw_msg(100, "index.php");
 }
