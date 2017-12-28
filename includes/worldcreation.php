@@ -114,7 +114,7 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 		
 		while($stmt->fetch())
 		{
-			for($i = 0l $i < $depositFreq; $i++)
+			for($i = 0; $i < $depositFreq; $i++)
 			{
 				array_push($depositTypes, $depositType);
 			}
