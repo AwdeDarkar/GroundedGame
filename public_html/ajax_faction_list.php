@@ -1,5 +1,5 @@
 <?php
-define(PERMISSION_LEVEL, -1);
+define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
 $world = $_GET['w'];
