@@ -51,14 +51,14 @@ function getFactionList()
 
 function getBunkerList()
 {
-	var xhttp = new XMLHttpRequest();
-	xhttp.onreadystatechange = function() {
+	var xhttp2 = new XMLHttpRequest();
+	xhttp2.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			document.getElementById("bunkerlist").innerHTML = this.responseText;
 		}
 	};
-	xhttp.open("GET", "ajax_bunker_list.php?w=<?php echo("$world")?>", true);
-	xhttp.send();	
+	xhttp2.open("GET", "ajax_bunker_list.php?w=<?php echo("$world")?>", true);
+	xhttp2.send();	
 
 	//setTimeout(getFactionList, 1000);
 }
