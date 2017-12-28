@@ -12,10 +12,10 @@ include("../includes/common.php");
 	$NumUsers = "";
 	
 	if ($stmt = $mysqli->prepare("
-	SELECT Worlds.Name, Worlds.Status, COUNT(*) FROM Worlds, Factions 
+	SELECT Worlds.Name, Worlds.Status, COUNT(*)-1 FROM Worlds, Factions 
 	WHERE Worlds.ID = Factions.WorldID 
 	GROUP BY Worlds.ID
-	ORDER BY Worlds.Name
+	ORDER BY COUNT(*) DESC, Worlds.Name
 	"))
 	{
 		$tempResult = $stmt->execute();
