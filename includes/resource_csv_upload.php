@@ -6,6 +6,7 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']
 
 	echo("<p>hi there</p>");
 	$httpReferer = tools_get_referer("index.php");
+	readfile($_FILES['rc_csv']['tmp_name']);
 	
     /*LOAD DATA INFILE '$fileName'
      INTO TABLE tableName
@@ -18,7 +19,7 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']
 		$stmt->bind_param('s', $_FILES['rc_csv']['tmp_name']);
 		$stmt->execute();
 	}
-	else { throw_msg(300, $httpReferer, "admin.php", 23); }
+	else { /*throw_msg(300, $httpReferer, "admin.php", 23);*/ exit; }
 
 	
 	/*
