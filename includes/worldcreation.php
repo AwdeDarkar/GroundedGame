@@ -86,14 +86,14 @@ function startingResourceCollections($worldid, $httpReferer, $bunkerids)
 		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
 		{
 			//set variables
-			$stmt2->bind_param("ssss", $minerid, $facid, $facid, $amount);
+			$stmt2->bind_param("ssss", $minerid, $bunkerid, $facid, $amount);
 			$stmt2->execute();
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
 		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
 		{
 			//set variables
-			$stmt2->bind_param("ssss", $smelterid, $facid, $facid, $amount);
+			$stmt2->bind_param("ssss", $smelterid, $bunkerid, $facid, $amount);
 			$stmt2->execute();
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
