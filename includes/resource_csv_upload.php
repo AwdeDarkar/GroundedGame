@@ -17,7 +17,7 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['filename
 		$websafe = tools_iterative_web_safe($data[0], "Resources", $httpReferer);
 		$import="INSERT INTO Resources (Name, NameSafe, Type, Frequency, Description)values('$data[0]','$websafe','$data[1]', '$data[2]', '$data[3]')";
 
-		mysqli_query($import) 
+		mysqli_query($import);
 	}
 
 	fclose($handle);	
