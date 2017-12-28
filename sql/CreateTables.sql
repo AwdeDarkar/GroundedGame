@@ -85,7 +85,7 @@ create table ResourceCollections (
 	Amount int unsigned
 );
 
-create table ResourceDeposit (
+create table ResourceDeposits (
 	ID int unsigned primary key auto_increment,
 	BunkerID int unsigned,
 	ResourceID int unsigned,
@@ -160,7 +160,7 @@ create table ProductionJobComponents (
 
 create table Processes (
 	ID int unsigned primary key auto_increment,
-	BaseTime int unsigned,
+	BaseTime int unsigned
 );
 
 create table ProcessComponents (
