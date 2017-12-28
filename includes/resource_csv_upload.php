@@ -19,9 +19,11 @@ if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']
 		$filename = $_FILES['rc_csv']['tmp_name'];
 		$stmt->bind_param('s', $filename);
 		$stmt->execute();
+		echo("<p>Executed</p>");
 	}
 	else { echo("<p>".$mysqli->error."</p>"); exit; } 
 
+	echo("<p>Done</p>");
 	
 	/*
 	echo("<p>hi there</p>");
