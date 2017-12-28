@@ -8,11 +8,30 @@ include("../includes/common.php");
 
 <?php
 	$WorldNames = "";
+	$WorldIDs = "";
 	$WorldStatuses = "";
 	$NumUsers = "";
+	$Members = ""
+	$MemberOf = array();
 	
 	if ($stmt = $mysqli->prepare("
-	SELECT Worlds.Name, Worlds.Status, COUNT(*)-1 FROM Worlds, Factions 
+	SELECT Worlds.ID FROM Worlds, Factions
+	WHERE Worlds.ID = Factions.WorldID AND Factions.UserID = ?
+	"))
+	{
+		$stmt->bind_param('s', LOGGED_USER_ID);
+		$tempResult = $stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($Members);
+		
+		while($stmt->fetch())
+		{
+			array_push($MemberOf, $Members);
+		}
+	}
+	
+	if ($stmt = $mysqli->prepare("
+	SELECT Worlds.Name, Worlds.Status, COUNT(*)-1, FROM Worlds, Factions 
 	WHERE Worlds.ID = Factions.WorldID 
 	GROUP BY Worlds.ID
 	ORDER BY COUNT(*) DESC, Worlds.Name
@@ -20,11 +39,20 @@ include("../includes/common.php");
 	{
 		$tempResult = $stmt->execute();
 		$stmt->store_result();
-		$stmt->bind_result($WorldNames, $WorldStatuses, $NumUsers);
+		$stmt->bind_result($WorldNames, $WorldIDs, $WorldStatuses, $NumUsers);
 		
 		while($stmt->fetch())
 		{
-			echo $WorldNames . " " . $WorldStatuses . " " . $NumUsers . "<br>";
+			echo $WorldNames . " " . $WorldStatuses . " " . $NumUsers . " ";
+			if(in_array($WorldIDs, $MemberOf))
+			{
+				echo "[GOTO]";
+			}
+			else
+			{
+				echo "[JOIN]";
+			}
+			echo "<br>";
 		}
 	}
 	
