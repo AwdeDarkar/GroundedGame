@@ -120,6 +120,9 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 			}
 		}
 	}
+
+	var_dump($depsitTypes);
+	exit;
 	
 	$min = 1;
 	$max = 1000;
