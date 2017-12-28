@@ -46,7 +46,6 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	// create raider faction
 	if ($stmt = $mysqli->prepare("INSERT INTO Factions(UserID, WorldID, Name, NameSafe, Joined) VALUES (?, ?, ?, ?, ?)"))
 	{
-		$userid = LOGGED_USER_ID;
 		//set variables
 		$stmt->bind_param("sssss", $userid, $worldid, $name, $webName, $regDate);
 		
