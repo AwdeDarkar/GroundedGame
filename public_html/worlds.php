@@ -13,6 +13,7 @@ include("../includes/common.php");
 	$NumUsers = "";
 	$Members = "";
 	$MemberOf = array();
+
 	
 	if ($stmt = $mysqli->prepare("
 	SELECT Worlds.ID FROM Worlds, Factions
@@ -32,9 +33,9 @@ include("../includes/common.php");
 	}
 	
 	echo "here" . var_dump($MemberOf);
-	
+
 	if ($stmt = $mysqli->prepare("
-	SELECT Worlds.Name, Worlds.Status, COUNT(*)-1, FROM Worlds, Factions 
+	SELECT Worlds.Name, Worlds.ID, Worlds.Status, COUNT(*)-1, FROM Worlds, Factions 
 	WHERE Worlds.ID = Factions.WorldID 
 	GROUP BY Worlds.ID
 	ORDER BY COUNT(*) DESC, Worlds.Name
