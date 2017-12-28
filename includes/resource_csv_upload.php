@@ -1,10 +1,10 @@
 <?php
 echo("<p>Hello?</p>");
 
-if (isset($_POST['button_uploadresource'])/* && is_uploaded_file($_FILES['filename']['tmp_name'])*/)
+if (isset($_POST['button_uploadresource'])/* && is_uploaded_file($_FILES['rc_csv']['tmp_name'])*/)
 {
 	echo("<p>hi there</p>");
-	readfile($_FILES['filename']['tmp_name']);
+	readfile($_FILES['rc_csv']['tmp_name']);
 	
 	$httpReferer = tools_get_referer("index.php");
 	
@@ -13,7 +13,7 @@ if (isset($_POST['button_uploadresource'])/* && is_uploaded_file($_FILES['filena
 	else { throw_msg(300, $httpReferer, "admin.php", 23); }
 
 
-	$handle = fopen($_FILES['filename']['tmp_name'], "r");
+	$handle = fopen($_FILES['rc_csv']['tmp_name'], "r");
 
 	while (($data = fgetcsv($handle, 1000, ",")) !== false) 
 	{

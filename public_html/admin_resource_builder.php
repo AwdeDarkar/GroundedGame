@@ -9,7 +9,7 @@ include("../includes/common.php");
 
 <h3>Resources CSV Upload</h3>
 
-<form id='form_resourcecsv' action='admin_action.php' onsubmit='return checkNewResourceForm();' method='post'>
+<form id='form_resourcecsv' action='admin_action.php' method='post' enctype="multipart/form-data">
 	<input type='file' name='rc_csv'>
 	<input type='submit' value='Upload' name='button_uploadresource'>
 </form>
