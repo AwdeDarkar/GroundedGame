@@ -9,6 +9,7 @@ include("../includes/common.php");
 <?php
 	$WorldNames = "";
 	$WorldStatuses = "";
+	$NumUsers = "";
 	
 	if ($stmt = $mysqli->prepare("
 	SELECT Worlds.Name, Worlds.Status, COUNT(*) FROM Worlds, Factions 
@@ -19,11 +20,11 @@ include("../includes/common.php");
 	{
 		$tempResult = $stmt->execute();
 		$stmt->store_result();
-		$stmt->bind_result($WorldNames, $WorldStatuses);
+		$stmt->bind_result($WorldNames, $WorldStatuses, $NumUsers);
 		
 		while($stmt->fetch())
 		{
-			echo $WorldNames . " " . $WorldStatuses . "<br>";
+			echo $WorldNames . " " . $WorldStatuses . " " . $NumUsers . "<br>";
 		}
 	}
 	
