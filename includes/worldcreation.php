@@ -155,6 +155,9 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer)
 		
 		while($stmt->fetch()) { array_push($bunkerids, $bunkerID); }
 	}
+
+	var_dump($bunkerids);
+	exit;
 	
 	if ($stmt = $mysqli->prepare("
 	SELECT Resources.ID, Resources.Frequency FROM Resources
