@@ -61,7 +61,7 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	$bunkerids = createBunkers($worldid, $numBunkers, $httpReferer);
 	generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer, $bunkerids);
 
-	startingResourceCollections($worldid, $httpReferer);
+	startingResourceCollections($worldid, $httpReferer, $bunkerids);
 
 	
 	 
@@ -70,12 +70,38 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 }
 
 
-function startingResourceCollections($worldid, $httpReferer)
+function startingResourceCollections($worldid, $httpReferer, $bunkerids)
 {
 	global $mysqli;
 
+	for ($i = 0; $i < count($bunkerids); $i++)
+	{
+		$bunkerid = $bunkerids[$i];
+		//miner and smelter
+		$minerid = 6;
+		$smelterid = 5;
+		$facid = 0;
+		$amount = 1;
+
+		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
+		{
+			//set variables
+			$stmt2->bind_param("ssss", $minerid, $facid, $facid, $amount);
+			$stmt2->execute();
+		}
+		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
+		{
+			//set variables
+			$stmt2->bind_param("ssss", $smelterid, $facid, $facid, $amount);
+			$stmt2->execute();
+		}
+		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+			
+	}
+
 	// get list of bunker ids
-	if ($stmt = $mysqli->prepare("SELECT ID FROM Bunkers WHERE WorldID = ?"))
+	/*if ($stmt = $mysqli->prepare("SELECT ID FROM Bunkers WHERE WorldID = ?"))
 	{
 		$stmt->bind_param('s', $worldid);
 		$stmt->execute();
@@ -107,7 +133,7 @@ function startingResourceCollections($worldid, $httpReferer)
 			
 		}
 	}
-	else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }*/
 }
 
 function createBunkers($worldid, $count, $httpReferer)

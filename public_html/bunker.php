@@ -58,9 +58,25 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 
 # query all resource collections
-
-
-
+$rd_ids = array();
+$rd_rates = array();
+$rd_amts = array();
+$rd_maxes = array();
+if ($stmt = $mysqli->prepare("SELECT ResourceID, ReplenishRate, Amount, Maximum FROM ResourceDeposits WHERE BunkerID = ?"))
+{
+	$stmt->bind_param('s', $bunkerID);
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($resID, $rate, $amt, $max);
+	while ($stmt->fetch())
+	{
+		array_push($rd_ids, $resID);
+		array_push($rd_rates, $rate);
+		array_push($rd_amts, $amt);
+		array_push($rd_maxes, $max);
+	}
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 
 # query all actors
