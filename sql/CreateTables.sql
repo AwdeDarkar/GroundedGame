@@ -160,6 +160,8 @@ create table ProductionJobComponents (
 
 create table Processes (
 	ID int unsigned primary key auto_increment,
+	Name char(30),
+	NameSafe char(30),
 	BaseTime int unsigned
 );
 

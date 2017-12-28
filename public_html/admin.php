@@ -24,3 +24,4 @@ function checkCreateWorldForm()
 </form>
 
 <p><a href='admin_resource_builder.php'>Resource Builder</a></p>
+<p><a href='admin_process_builder.php'>Resource Builder</a></p>
