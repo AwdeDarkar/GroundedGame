@@ -92,7 +92,7 @@ if ($stmt = $mysqli->prepare("
 	WHERE 
 		Processes.ID = ProcessComponents.PID AND 
 		Resources.ID = ProcessComponents.RID AND 
-		Processes.ID in (?)")
+		Processes.ID in (?)"))
 {
 	#$stmt->bind_param('s', $bunkerID);
 
