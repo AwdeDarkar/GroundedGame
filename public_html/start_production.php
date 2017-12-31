@@ -158,11 +158,11 @@ function useResource(pid, rid, amt, pcid)
 	subtract = false;
 	var rids = elem.value.split(','); 
 	console.log(rids);
-	if (rid in rids)
+	if (rid.toString() in rids)
 	{
 		console.log("Already there!");
 		subtract = true;
-		var index = rids.indexOf(rid);
+		var index = rids.indexOf(rid.toString());
 		rids.splice(index, 1);
 	}
 
