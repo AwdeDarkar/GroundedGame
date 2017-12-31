@@ -159,6 +159,8 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 	# print all input and equipment components
 	for ($j = 0; $j < count($pcIDs); $j++)
 	{
+		echo("<script>console.log('".$pcIDs[$j]."');</script>");
+		
 		# check for process components of this process id
 		if ($pcIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] != 1)
 		{
