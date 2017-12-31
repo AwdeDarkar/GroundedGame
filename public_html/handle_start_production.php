@@ -41,5 +41,7 @@ var_dump($_POST);
 
 
 
-$processID = (int)tools_sanitize_data($_POST['start_button']);
+$processID = tools_sanitize_data($_POST['start_button']);
+echo($processID);
+$processID = (int)$processID;
 echo($processID);
