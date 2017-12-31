@@ -2,8 +2,8 @@
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
-$world = tools_sanitize_data($_POST['w']);
-$bunkerID = tools_sanitize_data($_POST['b']);
+$world = tools_sanitize_data($_POST['p_w']);
+$bunkerID = tools_sanitize_data($_POST['p_b']);
 
 $httpReferer = tools_get_referer("index.php");
 
