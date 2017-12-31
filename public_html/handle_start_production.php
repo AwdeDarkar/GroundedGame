@@ -42,13 +42,14 @@ var_dump($_POST);
 
 
 $processID = (int)(tools_sanitize_data($_POST['start_button']));
-echo($processID);
+echo("<p>$processID</p>");
 
 
 foreach ($_POST as $key => $value)
 {
-	if (preg_match("^p".$processID."[\w]*", $str))
+	echo("<p>$key</p>");
+	if (preg_match("^p".$processID."[\w]*", $key))
 	{
-		echo($key);
+		echo("<p>MATCH! $key</p>");
 	}
 }
