@@ -35,6 +35,13 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 if ($bunkerFacID != $facID) { throw_msg(200, "worlds.php?w=$world"); }
 
+
+
+
+
+
+
+
 # query all resource deposits
 $rd_ids = array();
 $rd_names = array();
@@ -132,3 +139,5 @@ for ($i = 0; $i < count($rc_ids); $i++)
 }
 ?>
 </table>
+
+<p><a href='start_production.php?w=<?php echo("$world"); ?>&b=<?php echo("$bunkerID"); ?>'>Start Production Job</a></p>
