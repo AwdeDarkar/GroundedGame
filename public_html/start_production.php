@@ -157,8 +157,10 @@ function useResource(pid, rid, amt, pcid)
 	// check if this rid is already there (if so, toggle it)
 	subtract = false;
 	var rids = elem.value.split(','); 
+	console.log(rids);
 	if (rid in rids)
 	{
+		console.log("Already there!");
 		subtract = true;
 		var index = rids.indexOf(rid);
 		rids.splice(index, 1);
