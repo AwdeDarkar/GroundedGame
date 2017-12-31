@@ -80,8 +80,11 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 $preparedStatementIDs = array();
 $typesString = "";
 for ($i = 0; $i < count($processIDs); $i++) { $typesString .= "s"; }
-array_push($preparedStatementIDs, $typesString);
-for ($i = 0; $i < count($processIDs); $i++) { array_push($preparedStatementIDs, &$processIDs[$i]); }
+#array_push($preparedStatementIDs, $typesString);
+#for ($i = 0; $i < count($processIDs); $i++) { array_push($preparedStatementIDs, &$processIDs[$i]); }
+
+$preparedStatementIDs[] = &$typesString;
+for ($i = 0; $i < count($processIDs); $i++) { $preparedStatementIDs[] = &$processIDs[$i]; }
 
 
 $pcIDs = array();
