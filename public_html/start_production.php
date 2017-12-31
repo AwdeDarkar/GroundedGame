@@ -42,6 +42,7 @@ $processNames = array();
 $processComponentAmts = array();
 $processComponentIDs = array();
 $processResources = array();
+$processResourceIDs = array();
 $processAmts = array();
 
 # get list of all processes user can do
@@ -52,6 +53,7 @@ if ($stmt = $mysqli->prepare("
 		ProcessComponents.Amount,
 		ProcessComponents.ID,
 		Resources.Name, 
+		ResourceCollections.ID,
 		ResourceCollections.Amount 
 	FROM Processes, ProcessComponents, Resources, ResourceCollections 
 	WHERE 
@@ -63,7 +65,7 @@ if ($stmt = $mysqli->prepare("
 	$stmt->bind_param('s', $bunkerID);
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($id, $name, $cmpamt, $pcID, $resName, $amt);
+	$stmt->bind_result($id, $name, $cmpamt, $pcID, $resName, $resID, $amt);
 	while ($stmt->fetch())
 	{
 		array_push($processIDs, $id);
@@ -71,6 +73,7 @@ if ($stmt = $mysqli->prepare("
 		array_push($processComponentAmts, $cmpamt);
 		array_push($processComponentIDs, $pcID);
 		array_push($processResources, $resName);
+		array_push($processResourceIDs, $resID);
 		array_push($processAmts, $amt);
 	}
 }
@@ -177,7 +180,8 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 				if ($processComponentIDs[$k] == $pcIDs[$j]) 
 				{ 
 					$foundRes = true;
-					$ownedString .= $processAmts[$k].","; 
+					#$ownedString .= $processAmts[$k].","; 
+					$ownedString .= "<button onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].");'>".$$processAmts[$k]."</button>";
 				}
 			}
 			# remove trailing comma
