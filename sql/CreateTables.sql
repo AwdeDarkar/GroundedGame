@@ -149,7 +149,7 @@ create table ProductionJobs (
 );
 
 create table ProductionJobComponents (
-	ID int unsigned,
+	ID int unsigned primary key auto_increment,
 	PJID int unsigned,
 	PCID int unsigned,
 	RCID int unsigned,

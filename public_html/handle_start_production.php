@@ -224,4 +224,4 @@ foreach ($processComponents as $key => $value)
 	}
 }
 
-echo("<p>Done!</p>");
+throw_msg(101, "bunker.php?w=$world&b=$bunkerID");
