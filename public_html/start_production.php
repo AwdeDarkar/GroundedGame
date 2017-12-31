@@ -198,6 +198,8 @@ function useResource(pid, rid, amt, pcid)
 
 
 <form id='form_production' action='handle_start_production.php' method='post'>
+<input type='hidden' name='p_w' id='p_w' value=<?php echo("'$world'"); ?> />
+<input type='hidden' name='p_b' id='p_b' value=<?php echo("'$bunkerID'"); ?> />
 
 <table border='1'>
 	<tr>
