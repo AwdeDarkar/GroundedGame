@@ -81,7 +81,7 @@ $preparedStatementIDs = array();
 $typesString = "";
 for ($i = 0; $i < count($processIDs); $i++) { $typesString .= "s"; }
 array_push($preparedStatementIDs, $typesString);
-for ($i = 0; $i < count($processIDs); $i++) { array_push($preparedStatementIDs, $processIDs[$i]); }
+for ($i = 0; $i < count($processIDs); $i++) { array_push($preparedStatementIDs, &$processIDs[$i]); }
 
 
 $pcIDs = array();
