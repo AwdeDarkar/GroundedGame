@@ -187,7 +187,7 @@ foreach ($processComponents as $key => $value)
 $startdate = date("Y-m-d H:i:s");
 if ($stmt = $mysqli->prepare("INSERT INTO ProductionJobs(FactionID, StartDate, ProcessID) VALUES (?, ?, ?)"))
 {
-	$stmt->bind_param("sss", $facID, $startdate, $processID)
+	$stmt->bind_param("sss", $facID, $startdate, $processID);
 	$result = $stmt->execute();
 }
 else { throw_msg(300, $httpReferer, "register.php", 86); }
@@ -217,7 +217,7 @@ foreach ($processComponents as $key => $value)
 
 		if ($stmt = $mysqli->prepare("INSERT INTO ProductionJobComponents(PJID, PCID, RCID, AID, EID, Amount) VALUES (?, ?, ?, ?, ?, ?)"))
 		{
-			$stmt->bind_param("ssssss", $pjid, $pcid, $rcid, $aid, $eid, $amt)
+			$stmt->bind_param("ssssss", $pjid, $pcid, $rcid, $aid, $eid, $amt);
 			$result = $stmt->execute();
 		}
 		else { throw_msg(300, $httpReferer, "register.php", 86); }
