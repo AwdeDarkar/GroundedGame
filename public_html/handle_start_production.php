@@ -210,7 +210,7 @@ foreach ($processComponents as $key => $value)
 		if ($rcResourceIDs[$rcIndex] != $resID) { throw_msg(203, $httpReferer); }
 
 		$pcid = $pcIDs[$pcIndex];
-		$rcid = $rcIDs[$rcIDs];
+		$rcid = $rcIDs[$rcIndex];
 		$aid = 0;
 		$eid = 0;
 		$amt = 0;
