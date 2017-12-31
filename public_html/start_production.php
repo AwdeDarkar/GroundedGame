@@ -89,8 +89,6 @@ for ($i = 0; $i < count($processIDs); $i++) { $typesString .= "s"; }
 $preparedStatementIDs[] = &$typesString;
 for ($i = 0; $i < count($processIDs); $i++) { $preparedStatementIDs[] = &$processIDs[$i]; }
 
-var_dump($preparedStatementIDs);
-
 
 $query = "
 	SELECT 
@@ -145,22 +143,53 @@ $uniqueProcessNames = array_unique($processNames);
 
 
 ?>
+
+
+
+
+<script type="text/javascript">
+
+function useResource(pid, rid, amt, pcid)
+{
+	var elem = document.getElementById("p" + pid + "_pc" + pcid);
+	if (elem.value != "") { elem.value += ","; }
+	elem.value += rid;
+
+	var display = document.getElementById("disp" + pid + "_" + pcid);
+	var count = parseInt(display.innerHTML);
+	count += amt;
+	display.innerHTML = count;
+}
+
+</script>
+
+
+
+
+
 <h1>Processes</h1>
 
-<table>
+
+<form id='form_production' action='handle_start_production.php' method='post'>
+
+<table border='1'>
 	<tr>
 		<th>Process</th>
 		<th>Component Name</th>
 		<th>Base Requirement</th>
 		<th>Amount Available</th>
 		<th>Base Yield</th>
+		<th>Staging</th>
 	</tr>
 
 <?php
 
+
+
+
 for ($i = 0; $i < count($uniqueProcessNames); $i++)
 {
-	echo("<tr><td>".$uniqueProcessNames[$i]."</td></tr>");
+	echo("<tr><td>".$uniqueProcessNames[$i]."</td><td/><td/><td/><td/><input type='submit' value='process".$uniqueProcessIDs[$i]."' name='button_start'>Start</tr>");
 
 	# print all input and equipment components
 	for ($j = 0; $j < count($pcIDs); $j++)
@@ -170,7 +199,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 		# check for process components of this process id
 		if ($pcProcessIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] != 1)
 		{
-			echo("<tr><td/><td>".$pcNames[$j]."</td><td>".$pcReq[$j]."</td><td>");
+			echo("<tr><input type='hidden' id='p".$uniqueProcessIDs[$i]."_pc".$pcIDs[$j]."' name='p".$uniqueProcessIDs[$i]."_pc".$pcIDs[$j]."' value=''><td/><td>".$pcNames[$j]."</td><td>".$pcReq[$j]."</td><td>");
 			
 			$foundRes = false;
 			$ownedString = "";
@@ -181,13 +210,13 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 				{ 
 					$foundRes = true;
 					#$ownedString .= $processAmts[$k].","; 
-					$ownedString .= "<button onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].");'>".$processAmts[$k]."</button>";
+					$ownedString .= "<button onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",".$processAmts[$k].",".$pcIDs[$j].");'>".$processAmts[$k]."</button>";
 				}
 			}
 			# remove trailing comma
 			if ($foundRes) { $ownedString = rtrim($ownedString, ","); }
 
-			echo ($ownedString."</td></tr>");
+			echo ($ownedString."</td><td id='disp".$pcProcessIDs[$j]."_".$pcIDs[$j]."'>0</td></tr>");
 		}
 	}
 
@@ -208,3 +237,4 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 
 ?>
 </table>
+</form>
