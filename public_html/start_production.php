@@ -189,7 +189,7 @@ function useResource(pid, rid, amt, pcid)
 
 for ($i = 0; $i < count($uniqueProcessNames); $i++)
 {
-	echo("<tr><td>".$uniqueProcessNames[$i]."</td><td/><td/><td/><td/><input type='submit' value='process".$uniqueProcessIDs[$i]."' name='button_start'>Start</tr>");
+	echo("<tr><td>".$uniqueProcessNames[$i]."</td><td/><td/><td/><td/></td><td><input type='submit' value='Start' name='button_start_".$uniqueProcessIDs[$i]."'></td></tr>");
 
 	# print all input and equipment components
 	for ($j = 0; $j < count($pcIDs); $j++)
@@ -210,13 +210,13 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 				{ 
 					$foundRes = true;
 					#$ownedString .= $processAmts[$k].","; 
-					$ownedString .= "<button onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",".$processAmts[$k].",".$pcIDs[$j].");'>".$processAmts[$k]."</button>";
+					$ownedString .= "<button type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",".$processAmts[$k].",".$pcIDs[$j].");'>".$processAmts[$k]."</button>";
 				}
 			}
 			# remove trailing comma
 			if ($foundRes) { $ownedString = rtrim($ownedString, ","); }
 
-			echo ($ownedString."</td><td id='disp".$pcProcessIDs[$j]."_".$pcIDs[$j]."'>0</td></tr>");
+			echo ($ownedString."</td><td/><td id='disp".$pcProcessIDs[$j]."_".$pcIDs[$j]."'>0</td></tr>");
 		}
 	}
 
