@@ -37,7 +37,7 @@ if ($bunkerFacID != $facID || $bunkerFacID == null) { throw_msg(200, "worlds.php
 
 
 
-var_dump($_POST);
+//var_dump($_POST);
 
 
 
@@ -46,7 +46,10 @@ echo("<p>$processID</p>");
 
 $processComponents = array();
 
+$allRCIDs = array();
 
+
+# get all passed resource collection ids associated with pertinent component ids
 foreach ($_POST as $key => $value)
 {
 	echo("<p>$key</p>");
@@ -58,7 +61,138 @@ foreach ($_POST as $key => $value)
 		$pcid = $matches[0];
 		$values = explode(',', $value);
 		$processComponents[$pcid] = $values;
+
+		for ($i = 0; $i < count($values); $i++) { array_push($allRCIDs, $values[$i]); }
 	}
 }
 
-var_dump($processComponents);
+//var_dump($processComponents);
+
+// get details on process components
+$pcIDs = array();
+$pcTypes = array();
+$pcRIDs = array();
+$pcAmts = array();
+
+# get list of all processes user can do
+if ($stmt = $mysqli->prepare("
+	SELECT 
+		ProcessComponents.Amount,
+		ProcessComponents.Type,
+		ProcessComponents.RID,
+		ProcessComponents.ID
+	FROM Processes, ProcessComponents
+	WHERE 
+		Processes.ID = ProcessComponents.PID AND 
+		Processes.ID = ?"))
+{
+	$stmt->bind_param('s', $processID);
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($amt, $type, $rid, $id);
+	while ($stmt->fetch())
+	{
+		array_push($pcIDs, $id);
+		array_push($pcTypes, $type);
+		array_push($pcRIDs, $rid);
+		array_push($pcAmts, $name);
+	}
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+
+
+// check that all input and equipment component ids exist as keys in process
+// components
+for ($i = 0; $i < count($pcTypes); $i++)
+{
+	if ($pcTypes[$i] != 1)
+	{
+		if (!array_key_exists($pcIDs[$i], $processComponents)) { throw_msg(200, $httpReferer, "handle_start_production.php", 109); }
+	}
+}
+
+// get details on all specified resource collections
+$preparedStatementIDs = array();
+$typesString = "";
+for ($i = 0; $i < count($allRCIDs); $i++) { $typesString .= "s"; }
+
+$preparedStatementIDs[] = &$typesString;
+for ($i = 0; $i < count($allRCIDs); $i++) { $preparedStatementIDs[] = &$allRCIDs[$i]; }
+
+$query = "SELECT ID, BunkerID, FactionID, ResourceID, Amount FROM ResourceCollections WHERE ID in (";
+
+$questionString = "";
+for ($i = 0; $i < count($allRCIDs); $i++) { $questionString .= "?,"; }
+$questionString = rtrim($questionString,',');
+
+$query .= $questionString.")";
+
+$rcIDs = array();
+$rcBunkerIDs = array();
+$rcFactionIDs = array();
+$rcResourceIDs = array();
+$rcAmts = array();
+# get list of all process components user can do
+if ($stmt = $mysqli->prepare($query))
+{
+	call_user_func_array(array($stmt, 'bind_param'), $preparedStatementIDs);
+	
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($id, $rcBunkerID, $rcFacID, $rcResourceID, $rcAmt);
+	while ($stmt->fetch())
+	{
+		// make sure owned by faction 
+		if ($rcFacID != $facID) { throw_msg(201, $httpReferer); }
+
+		// make sure in correct bunker
+		if ($rcBunkerID != $bunkerID) { throw_msg(202, $httpReferer); }
+		
+		array_push($rcIDs, $id);
+		array_push($rcBunkerIDs, $rcBunkerID);
+		array_push($rcFactionIDs, $rcFactionID);
+		array_push($rcResourceIDs, $rcResourceID);
+		array_push($rcAmts, $rcAmt);
+	}
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+
+
+// check to make sure all purported resource collections are what they say they
+// are for that associated process component
+
+foreach ($processComponents as $key => $value)
+{
+	// find resource id of that process component 
+	$pcIndex = tools_find($pcIDs, (int)$key);
+	$resID = $pcRIDs[$pcIndex];
+	
+	//$resID = -1;
+	/*for ($i = 0; $i < count($pcRIDs); $i++)
+	{
+		if ($pcIDs[$i] == (int)$key) { $resID = $pcRIDs[$i]; break; }
+	}*/
+
+	// check each resource collection resource id
+	$totalAmt = 0;
+	for ($i = 0; $i < count($value); $i++)
+	{
+		// find in rcids
+		$rcIndex = tools_find($rcIDs, $value[$i]);
+		if ($rcResourceIDs[$rcIndex] != $resID) { throw_msg(203, $httpReferer); }
+		$totalAmt += $rcAmts[$rcIndex];
+		
+		/*for ($j = 0; $j < count($rcIDs); $j++)
+		{
+			if ($rcIDs[$j] == $value[$i])
+			{
+				if ($rcResourceIDs[$j] != $resID) { throw_msg(203, $httpReferer); }
+				break;
+			}
+		}*/
+	}
+
+	// make sure there is a sufficient amount of everything
+	if ($totalAmt < $pcAmts[$pcIndex]) { throw_msg(204, $httpReferer); }
+
+}

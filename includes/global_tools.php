@@ -1,4 +1,15 @@
 <?php
+
+// returns index
+function tools_find($array, $item)
+{
+	for ($i = 0; $i < count($array); $i++)
+	{
+		if ($array[$i] == $item) { return $i; }
+	}
+	return -1;
+}
+
 function tools_redirect($location)
 {
 	if (!headers_sent()) { header("Location: " . $location); }
