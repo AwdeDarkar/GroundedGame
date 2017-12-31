@@ -33,8 +33,13 @@ if ($stmt = $mysqli->prepare("SELECT FactionID, WorldX, WorldY FROM Bunkers WHER
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
-if ($bunkerFacID != $facID) { throw_msg(200, "worlds.php?w=$world"); }
+if ($bunkerFacID != $facID || $bunkerFacID == null) { throw_msg(200, "worlds.php?w=$world"); }
 
 
 
 var_dump($_POST);
+
+
+
+$processID = (int)tools_sanitize_data($_POST['start_button']);
+echo($processID);
