@@ -89,12 +89,7 @@ for ($i = 0; $i < count($processIDs); $i++) { $preparedStatementIDs[] = &$proces
 var_dump($preparedStatementIDs);
 
 
-$pcIDs = array();
-$pcNames = array();
-$pcTypes = array();
-$pcReq = array(); # required amount of the stuff
-# get list of all process components user can do
-if ($stmt = $mysqli->prepare("
+$query = "
 	SELECT 
 		ProcessComponents.ID,
 		ProcessComponents.Amount,
@@ -104,7 +99,21 @@ if ($stmt = $mysqli->prepare("
 	WHERE 
 		Processes.ID = ProcessComponents.PID AND 
 		Resources.ID = ProcessComponents.RID AND 
-		Processes.ID in (?)"))
+		Processes.ID in (";
+
+$questionString = "";
+for ($i = 0; $i < count($processIDs); $i++) { $questionString .= "?,"; }
+$questionString = rtrim($questionString,',');
+
+$query .= $questionString.")";
+
+
+$pcIDs = array();
+$pcNames = array();
+$pcTypes = array();
+$pcReq = array(); # required amount of the stuff
+# get list of all process components user can do
+if ($stmt = $mysqli->prepare($query))
 {
 	#$stmt->bind_param('s', $bunkerID);
 
