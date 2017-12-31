@@ -66,7 +66,7 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 	
 	 
 
-	throw_msg(100, $httpReferer);
+	throw_msg(100, "worlds.php");
 }
 
 
