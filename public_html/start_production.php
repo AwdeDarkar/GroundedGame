@@ -77,6 +77,13 @@ if ($stmt = $mysqli->prepare("
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 
+$preparedStatementIDs = array();
+$typesString = "";
+for ($i = 0; $i < count($processIDs); $i++) { $typesString .= "s"; }
+array_push($preparedStatementIDs, $typesString);
+for ($i = 0; $i < count($processIDs); $i++) { array_push($preparedStatementIDs, $processIDs[$i]); }
+
+
 $pcIDs = array();
 $pcNames = array();
 $pcTypes = array();
@@ -96,7 +103,8 @@ if ($stmt = $mysqli->prepare("
 {
 	#$stmt->bind_param('s', $bunkerID);
 
-	call_user_func_array(array($stmt, 'bind_param'), $processIDs);
+	#call_user_func_array(array($stmt, 'bind_param'), $processIDs);
+	call_user_func_array(array($stmt, 'bind_param'), $preparedStatementIDs);
 	
 	$stmt->execute();
 	$stmt->store_result();
