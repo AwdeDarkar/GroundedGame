@@ -44,6 +44,8 @@ var_dump($_POST);
 $processID = (int)(tools_sanitize_data($_POST['start_button']));
 echo("<p>$processID</p>");
 
+$processComponents = array();
+
 
 foreach ($_POST as $key => $value)
 {
@@ -53,6 +55,10 @@ foreach ($_POST as $key => $value)
 		echo("<p>MATCH! $key</p>");
 
 		preg_match('/(\d)*$/', $key, $matches);
-		var_dump($matches);
+		$pcid = $matches[0];
+		$values = explode(',', $value);
+		$processComponents[$pcid] = $values;
 	}
 }
+
+var_dump($processComponents);
