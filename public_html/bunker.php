@@ -94,6 +94,10 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 # query all equipment
 
+
+# query all production jobs
+
+
 ?>
 <h1>Bunker <?php echo("$bunkerID"); ?></h1>
 <p>World Coordinates: (<?php echo("$x,$y");?>)</p>
