@@ -85,6 +85,14 @@ if (isset($_POST['button_nf'], $_POST['nf_name'], $_POST['nf_wid']))
 	}
 	else { throw_msg(300, $httpReferer, "create_faction.php", 30); }
 	
+	// bestow all resource collections of that bunker to that faction
+	if ($stmt = $mysqli->prepare("UPDATE ResourceCollections SET FactionID = ? where BunkerID = ?"))
+	{
+		$stmt->bind_param('ss', $facid, $BunkerID);
+		$stmt->execute();
+	}
+	else { throw_msg(300, $httpReferer, "create_faction.php", 30); }
+	
 
 	
 	// get world safe and go to thta map
