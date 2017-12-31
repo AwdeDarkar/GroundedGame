@@ -152,12 +152,36 @@ $uniqueProcessNames = array_unique($processNames);
 function useResource(pid, rid, amt, pcid)
 {
 	var elem = document.getElementById("p" + pid + "_pc" + pcid);
-	if (elem.value != "") { elem.value += ","; }
-	elem.value += rid;
+
+	// check if this rid is already there (if so, toggle it)
+	subtract = false;
+	var rids = elem.value.split(','); 
+	if (rid in rids)
+	{
+		subtract = true;
+		var index = rids.indexOf(rid);
+		rids.splice(index, 1);
+	}
+
+	if (subtract) 
+	{ 
+		elem.style = '';
+		elem.value = rids.join(','); 
+	}
+	else
+	{
+		elem.style = 'color: red;';
+		if (elem.value != "") { elem.value += ","; }
+		elem.value += rid;
+	}
 
 	var display = document.getElementById("disp" + pid + "_" + pcid);
 	var count = parseInt(display.innerHTML);
-	count += amt;
+
+	
+	if (subtract) { count -= amt; }
+	else { count += amt; }
+	
 	display.innerHTML = count;
 }
 
