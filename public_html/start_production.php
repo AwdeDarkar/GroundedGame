@@ -152,6 +152,7 @@ $uniqueProcessNames = array_unique($processNames);
 function useResource(pid, rid, amt, pcid)
 {
 	var elem = document.getElementById("p" + pid + "_pc" + pcid);
+	var btn = document.getElementById("btn" + pid + "_" + rid);
 
 	// check if this rid is already there (if so, toggle it)
 	subtract = false;
@@ -165,12 +166,12 @@ function useResource(pid, rid, amt, pcid)
 
 	if (subtract) 
 	{ 
-		elem.style = '';
+		btn.style = '';
 		elem.value = rids.join(','); 
 	}
 	else
 	{
-		elem.style = 'color: red;';
+		btn.style = 'color: red;';
 		if (elem.value != "") { elem.value += ","; }
 		elem.value += rid;
 	}
@@ -234,7 +235,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 				{ 
 					$foundRes = true;
 					#$ownedString .= $processAmts[$k].","; 
-					$ownedString .= "<button type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",".$processAmts[$k].",".$pcIDs[$j].");'>".$processAmts[$k]."</button>";
+					$ownedString .= "<button id='btn".$pcProcessIDs[$j]."_".$processResourceIDs[$k]".' type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",".$processAmts[$k].",".$pcIDs[$j].");'>".$processAmts[$k]."</button>";
 				}
 			}
 			# remove trailing comma
