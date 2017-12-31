@@ -218,7 +218,7 @@ function useResource(pid, rid, amt, pcid)
 
 for ($i = 0; $i < count($uniqueProcessNames); $i++)
 {
-	echo("<tr><td>".$uniqueProcessNames[$i]."</td><td/><td/><td/><td/></td><td><input type='submit' value='Start' name='button_start_".$uniqueProcessIDs[$i]."'></td></tr>");
+	echo("<tr><td>".$uniqueProcessNames[$i]."</td><td/><td/><td/><td/></td><td><button type='submit' value='btn_start_".$uniqueProcessIDs[$i]."' name='start_button'>Start</button></td></tr>");
 
 	# print all input and equipment components
 	for ($j = 0; $j < count($pcIDs); $j++)
