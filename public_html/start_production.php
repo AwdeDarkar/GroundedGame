@@ -191,7 +191,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 	for ($j = 0; $j < count($pcIDs); $j++)
 	{
 		# check for process components of this process id
-		if ($pcProcessIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] == 1) { echo("<tr><td/><td/><td/><td/><td>".$pcAmts[$j]." ".$pcNames."</td></tr>"); }
+		if ($pcProcessIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] == 1) { echo("<tr><td/><td/><td/><td/><td>".$pcReq[$j]." ".$pcNames[$j]."</td></tr>"); }
 	}
 }
 
