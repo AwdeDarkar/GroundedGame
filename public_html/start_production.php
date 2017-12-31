@@ -181,7 +181,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 				{ 
 					$foundRes = true;
 					#$ownedString .= $processAmts[$k].","; 
-					$ownedString .= "<button onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].");'>".$$processAmts[$k]."</button>";
+					$ownedString .= "<button onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].");'>".$processAmts[$k]."</button>";
 				}
 			}
 			# remove trailing comma
