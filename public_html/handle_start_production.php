@@ -48,7 +48,7 @@ echo("<p>$processID</p>");
 foreach ($_POST as $key => $value)
 {
 	echo("<p>$key</p>");
-	if (preg_match("^p".$processID."[\w]*", $key))
+	if (strpos($key, "p".$processID) !== false)
 	{
 		echo("<p>MATCH! $key</p>");
 	}
