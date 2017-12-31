@@ -86,6 +86,8 @@ for ($i = 0; $i < count($processIDs); $i++) { $typesString .= "s"; }
 $preparedStatementIDs[] = &$typesString;
 for ($i = 0; $i < count($processIDs); $i++) { $preparedStatementIDs[] = &$processIDs[$i]; }
 
+var_dump($preparedStatementIDs);
+
 
 $pcIDs = array();
 $pcNames = array();
