@@ -91,6 +91,7 @@ var_dump($preparedStatementIDs);
 
 $query = "
 	SELECT 
+		Processes.ID,
 		ProcessComponents.ID,
 		ProcessComponents.Amount,
 		ProcessComponents.Type,
@@ -108,6 +109,7 @@ $questionString = rtrim($questionString,',');
 $query .= $questionString.")";
 
 
+$pcProcessIDs = array();
 $pcIDs = array();
 $pcNames = array();
 $pcTypes = array();
@@ -122,9 +124,10 @@ if ($stmt = $mysqli->prepare($query))
 	
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($id,$amt,$type,$name);
+	$stmt->bind_result($pid,$id,$amt,$type,$name);
 	while ($stmt->fetch())
 	{
+		array_push($pcProcessIDs, $pid);
 		array_push($pcIDs, $id);
 		array_push($pcNames, $name);
 		array_push($pcTypes, $type);
@@ -159,10 +162,10 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 	# print all input and equipment components
 	for ($j = 0; $j < count($pcIDs); $j++)
 	{
-		echo("<script>console.log('".$pcIDs[$j]."');</script>");
+		#echo("<script>console.log('".$pcIDs[$j]."');</script>");
 		
 		# check for process components of this process id
-		if ($pcIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] != 1)
+		if ($pcProcessIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] != 1)
 		{
 			echo("<tr><td/><td>".$pcNames[$j]."</td><td>".$pcReq[$j]."</td><td>");
 			
