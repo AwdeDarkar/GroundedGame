@@ -235,7 +235,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 				{ 
 					$foundRes = true;
 					#$ownedString .= $processAmts[$k].","; 
-					$ownedString .= "<button id='btn".$pcProcessIDs[$j]."_".$processResourceIDs[$k]".' type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",".$processAmts[$k].",".$pcIDs[$j].");'>".$processAmts[$k]."</button>";
+					$ownedString .= "<button id='btn".$pcProcessIDs[$j]."_".$processResourceIDs[$k]."' type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",".$processAmts[$k].",".$pcIDs[$j].");'>".$processAmts[$k]."</button>";
 				}
 			}
 			# remove trailing comma
