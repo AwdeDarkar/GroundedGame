@@ -174,7 +174,11 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 			# check for resource collections of this requirement
 			for ($k = 0; $k < count($processAmts); $k++)
 			{
-				if ($processComponentIDs[$k] == $pcIDs[$j]) { $ownedString .= $processAmts[$k].","; }
+				if ($processComponentIDs[$k] == $pcIDs[$j]) 
+				{ 
+					$foundRes = true;
+					$ownedString .= $processAmts[$k].","; 
+				}
 			}
 			# remove trailing comma
 			if ($foundRes) { $ownedString = rtrim($ownedString, ","); }
@@ -184,11 +188,11 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 	}
 
 	# print all output components
-	/*for ($j = 0; $j < count($pcIDs); $j++)
+	for ($j = 0; $j < count($pcIDs); $j++)
 	{
 		# check for process components of this process id
-		if ($pcIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] == 1) { echo("<tr><td/><td/><td/><td/><td>".$pcAmts[$j]." ".$pcNames."</td></tr>"); }
-	}*/
+		if ($pcProcessIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] == 1) { echo("<tr><td/><td/><td/><td/><td>".$pcAmts[$j]." ".$pcNames."</td></tr>"); }
+	}
 }
 
 /*for ($i = 0; $i < count($processNames); $i++)
