@@ -37,7 +37,56 @@ if ($bunkerFacID != $facID) { throw_msg(200, "worlds.php?w=$world"); }
 
 
 
+$processNames = array();
+$processComponentAmts = array();
+$processResources = array();
+$processAmts = array();
 
+# get list of all processes user can do
+if ($stmt = $mysqli->prepare("
+	SELECT 
+		Processes.Name, 
+		ProcessComponents.Amount, 
+		Resources.Name, 
+		ResourceCollections.Amount 
+	FROM Processes, ProcessComponents, Resources, ResourceCollections 
+	WHERE 
+		ResourceCollections.ResourceID = ProcessComponents.RID AND 
+		Processes.ID = ProcessComponents.PID AND 
+		Resources.ID = ResourceCollections.ResourceID AND 
+		ResourceCollections.BunkerID = ?"))
+{
+	$stmt->bind_param('s', $bunkerID);
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($name, $cmpamt, $resName, $amt);
+	while ($stmt->fetch())
+	{
+		array_push($processNames, $name);
+		array_push($processComponentAmts, $cmpamt);
+		array_push($processResources, $resName);
+		array_push($processAmts, $amt);
+	}
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
+?>
+<h1>Processes</h1>
 
+<table>
+	<tr>
+		<th>Process</th>
+		<th>Component Name</th>
+		<th>Base Component Amount</th>
+		<th>Amount Available</th>
+	</tr>
 
+<?php
+for ($i = 0; $i < count($processNames); $i++)
+{
+	echo("<tr>");
+	echo("<td>".$processNames[$i]."</td><td>".$processResources[$i]."</td><td>".$processComponentAmts[$i]."</td><td>".$processAmts[$i]."</td>");
+	echo("</tr>");
+}
+?>
+</table>
