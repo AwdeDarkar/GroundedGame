@@ -167,12 +167,6 @@ foreach ($processComponents as $key => $value)
 	$pcIndex = tools_find($pcIDs, (int)$key);
 	$resID = $pcRIDs[$pcIndex];
 	
-	//$resID = -1;
-	/*for ($i = 0; $i < count($pcRIDs); $i++)
-	{
-		if ($pcIDs[$i] == (int)$key) { $resID = $pcRIDs[$i]; break; }
-	}*/
-
 	// check each resource collection resource id
 	$totalAmt = 0;
 	for ($i = 0; $i < count($value); $i++)
@@ -182,17 +176,52 @@ foreach ($processComponents as $key => $value)
 		if ($rcResourceIDs[$rcIndex] != $resID) { throw_msg(203, $httpReferer); }
 		$totalAmt += $rcAmts[$rcIndex];
 		
-		/*for ($j = 0; $j < count($rcIDs); $j++)
-		{
-			if ($rcIDs[$j] == $value[$i])
-			{
-				if ($rcResourceIDs[$j] != $resID) { throw_msg(203, $httpReferer); }
-				break;
-			}
-		}*/
 	}
 
 	// make sure there is a sufficient amount of everything
 	if ($totalAmt < $pcAmts[$pcIndex]) { throw_msg(204, $httpReferer); }
-
 }
+
+
+// create the production job
+$startdate = date("Y-m-d H:i:s");
+if ($stmt = $mysqli->prepare("INSERT INTO ProductionJobs(FactionID, StartDate, ProcessID) VALUES (?, ?, ?)"))
+{
+	$stmt->bind_param("sss", $facID, $startdate, $processID)
+	$result = $stmt->execute();
+}
+else { throw_msg(300, $httpReferer, "register.php", 86); }
+
+$pjid = $mysqli->insert_id;
+
+// add all components
+foreach ($processComponents as $key => $value)
+{
+	// find resource id of that process component 
+	$pcIndex = tools_find($pcIDs, (int)$key);
+	$resID = $pcRIDs[$pcIndex];
+
+	// check each resource collection resource id
+	//$totalAmt = 0;
+	for ($i = 0; $i < count($value); $i++)
+	{
+		// find in rcids
+		$rcIndex = tools_find($rcIDs, $value[$i]);
+		if ($rcResourceIDs[$rcIndex] != $resID) { throw_msg(203, $httpReferer); }
+
+		$pcid = $pcIDs[$pcIndex];
+		$rcid = $rcIDs[$rcIDs];
+		$aid = 0;
+		$eid = 0;
+		$amt = 0;
+
+		if ($stmt = $mysqli->prepare("INSERT INTO ProductionJobComponents(PJID, PCID, RCID, AID, EID, Amount) VALUES (?, ?, ?, ?, ?, ?)"))
+		{
+			$stmt->bind_param("ssssss", $pjid, $pcid, $rcid, $aid, $eid, $amt)
+			$result = $stmt->execute();
+		}
+		else { throw_msg(300, $httpReferer, "register.php", 86); }
+	}
+}
+
+echo("<p>Done!</p>");

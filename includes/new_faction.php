@@ -60,7 +60,7 @@ if (isset($_POST['button_nf'], $_POST['nf_name'], $_POST['nf_wid']))
 		$result = $stmt->execute();
 		$errorMSG = $stmt->error;
 	}
-	else { throw_msg(300, $errorHttpReferer, "register.php", 86); }
+	else { throw_msg(300, $httpReferer, "register.php", 86); }
 
 
 	// choose a random unoccupied bunker for user
