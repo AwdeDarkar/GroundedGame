@@ -11,7 +11,7 @@ if (isset($_POST['button_login'], $_POST['log_username'], $_POST['log_hashed']))
 	$httpReferer = tools_remove_get_variable($httpReferer, "w");
 	$errorHttpReferer = tools_add_get_variable($httpReferer, "w=log");
 	
-	if (login($username, $password) == true) { throw_msg(101, $httpReferer); }
+	if (login($username, $password) == true) { throw_msg(101, "index.php"); }
 	else { throw_msg(405, $errorHttpReferer); }
 }
 
