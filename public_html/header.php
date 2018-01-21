@@ -11,7 +11,7 @@ echo "<head>
 	<script src='https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js'></script>
 	
 	<!-- Fonts from Google -->
-	<link href='https://fonts.googleapis.com/css?family=David+Libre|Inconsolata|Work+Sans' rel='stylesheet'>
+	<link href='https://fonts.googleapis.com/css?family=Comfortaa|Nova+Mono|VT323' rel='stylesheet'>
 	
 	<!-- Css Crush Stylesheet -->
 	" . csscrush_tag('resources/styles/styles.css') . "

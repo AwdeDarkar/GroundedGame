@@ -22,9 +22,46 @@
 	dark-gray: #666666;
 	darker-gray: #3D3D3D;
 	darkest-gray: #1E1E1E;
+	
+	black-char: #0F1416;
+	black-onyx: #353839;
+	white-smoke: #F5F5F5;
+	white-powder: #FEFEFA;
+	
+	/* FONTS */
+	vt323: 'VT323', monospace;
+	nova: 'Nova Mono', monospace;
+	comfortaa: 'Comfortaa', cursive;
+	palatino: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
 }
 
-h1
+/* Utility Classes */
+
+.noselect 
 {
-	color: $(light-green);
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none;   /* Chrome/Safari/Opera */
+  -khtml-user-select: none;    /* Konqueror */
+  -moz-user-select: none;      /* Firefox */
+  -ms-user-select: none;       /* Internet Explorer/Edge */
+  user-select: none;           /* Non-prefixed version, currently
+                                  not supported by any browser */
+}
+
+/* Styling */
+
+body
+{
+	background-color: $(black-char);
+}
+
+.content
+{
+	background-color: $(darker-gray);
+	color: $(green);
+	
+	h1
+	{
+		font-family: $(comfortaa);
+	}
 }
