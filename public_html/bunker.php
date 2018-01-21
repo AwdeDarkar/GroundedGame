@@ -97,6 +97,21 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 # query all production jobs
 
+$pj_dates = array();
+$pj_names = array();
+if ($stmt = $mysqli->prepare("SELECT ProductionJobs.StartDate, Processes.Name FROM ProductionJobs, Processes WHERE ProductionJobs.ProcessID = Processes.ID AND ProductionJobs.BunkerID = ?"))
+{
+	$stmt->bind_param('s', $bunkerID);
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($date, $name);
+	while ($stmt->fetch())
+	{
+		array_push($pj_names, $name);
+		array_push($pj_dates, $date);
+	}
+}
+else { throw_msg(300, $httpReferer, "bunker.php", 39); }
 
 ?>
 <h1>Bunker <?php echo("$bunkerID"); ?></h1>
@@ -145,3 +160,22 @@ for ($i = 0; $i < count($rc_ids); $i++)
 </table>
 
 <p><a href='start_production.php?w=<?php echo("$world"); ?>&b=<?php echo("$bunkerID"); ?>'>Start Production Job</a></p>
+
+
+<h3>Ongoing Production Jobs</h3>
+<table>
+	<tr>
+		<th>Job Name</th>
+		<th>Started</th>
+	</tr>
+<?php
+for ($i = 0; $i < count($pj_names); $i++)
+{
+	echo("
+		<tr>
+			<td>".$pj_names[$i]."</td>
+			<td>".$pj_dates[$i]."</td>
+		</tr>");
+}
+?>
+</table>
