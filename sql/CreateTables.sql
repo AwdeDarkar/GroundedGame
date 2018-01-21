@@ -145,6 +145,7 @@ create table ProductionJobs (
 	ID int unsigned primary key auto_increment,
 	FactionID int unsigned,
 	StartDate datetime,
+	LastYieldDate datetime,
 	BunkerID int unsigned,
 	ProcessID int unsigned
 );
