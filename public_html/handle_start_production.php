@@ -185,9 +185,9 @@ foreach ($processComponents as $key => $value)
 
 // create the production job
 $startdate = date("Y-m-d H:i:s");
-if ($stmt = $mysqli->prepare("INSERT INTO ProductionJobs(FactionID, StartDate, ProcessID) VALUES (?, ?, ?)"))
+if ($stmt = $mysqli->prepare("INSERT INTO ProductionJobs(FactionID, StartDate, ProcessID, BunkerID) VALUES (?, ?, ?, ?)"))
 {
-	$stmt->bind_param("sss", $facID, $startdate, $processID);
+	$stmt->bind_param("ssss", $facID, $startdate, $processID, $bunkerID);
 	$result = $stmt->execute();
 }
 else { throw_msg(300, $httpReferer, "register.php", 86); }
