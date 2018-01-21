@@ -1,0 +1,6 @@
+/* Defining variables */
+@set {
+  dark: #333;
+  light: #F4F2E2;
+  smaller-screen: screen and (max-width: 800px);
+}

@@ -1,7 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
-//throw_msg(1, "register.php", "thing", 5);	
+//throw_msg(1, "register.php", "thing", 5);
+echo csscrush_tag('css/styles.css');
 ?>
 
 <h1>Hello world</h1>
