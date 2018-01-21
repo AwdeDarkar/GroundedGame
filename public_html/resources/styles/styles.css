@@ -52,12 +52,12 @@
 
 body
 {
-	background-color: $(black-char);
+	background-color: $(dark-gray);
 }
 
 .content
 {
-	background-color: $(darker-gray);
+	background-color: $(black-char);
 	color: $(green);
 	
 	h1
