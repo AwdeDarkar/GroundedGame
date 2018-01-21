@@ -183,11 +183,15 @@ foreach ($processComponents as $key => $value)
 }
 
 
+
+// TODO TODO TODO TODO TODO - deplete initial resource collections upon inserting this
+
+
 // create the production job
 $startdate = date("Y-m-d H:i:s");
-if ($stmt = $mysqli->prepare("INSERT INTO ProductionJobs(FactionID, StartDate, ProcessID, BunkerID) VALUES (?, ?, ?, ?)"))
+if ($stmt = $mysqli->prepare("INSERT INTO ProductionJobs(FactionID, StartDate, LastYieldDate, ProcessID, BunkerID) VALUES (?, ?, ?, ?, ?)"))
 {
-	$stmt->bind_param("ssss", $facID, $startdate, $processID, $bunkerID);
+	$stmt->bind_param("sssss", $facID, $startdate, $startdate, $processID, $bunkerID);
 	$result = $stmt->execute();
 }
 else { throw_msg(300, $httpReferer, "register.php", 86); }
