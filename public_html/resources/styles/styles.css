@@ -1,6 +1,30 @@
 /* Defining variables */
-@set {
-  dark: #333;
-  light: #F4F2E2;
-  smaller-screen: screen and (max-width: 800px);
+
+@set 
+{
+	/* COLORS */
+	lightest-green: #0BBE01;
+	light-green: #109709;
+	green: #0C7A07;
+	dark-green: #045500;
+	darkest-green: #033200;
+	
+	lightest-red: #E80207;
+	light-red: #B80B10;
+	red: #95080C;
+	dark-red: #68003;
+	darker-red: #3E0002;
+	
+	lightest-gray: #EFEFEF;
+	lighter-gray: #E5E5E5;
+	light-gray: #B7B7B7;
+	gray: #939393;
+	dark-gray: #666666;
+	darker-gray: #3D3D3D;
+	darkest-gray: #1E1E1E;
+}
+
+h1
+{
+	color: $(light-green);
 }
