@@ -40,7 +40,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 
 	$now = new DateTime("now");
 	
-	$difference = floor(abs($now - $date) / 60, 2);
+	$difference = floor(abs($now - $date) / 60);
 	
 	echo("\n".$difference." minutes");
 }
