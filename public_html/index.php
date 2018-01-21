@@ -1,7 +1,7 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
-//throw_msg(1, "register.php", "thing", 5);
+require_once "../includes/external/crush/css-crush/CssCrush.php";
 echo csscrush_tag('css/styles.css');
 ?>
 
