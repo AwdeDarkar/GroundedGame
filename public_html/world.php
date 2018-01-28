@@ -28,6 +28,10 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 ?>
 
 <body>
+<div id='topbar'></div>
+<div id='leftbar'></div>
+<div id='rightbar'></div>
+<div id='bottombar'></div>
 <div class="content">
 <h1><?php echo("$worldname"); ?> World Map </h1>
 

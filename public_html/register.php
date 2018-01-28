@@ -2,6 +2,12 @@
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php")
 ?>
+<div id='topbar'></div>
+<div id='leftbar'></div>
+<div id='rightbar'></div>
+<div id='bottombar'></div>
+<div class="content">
+<h1>Admin page</h1>
 
 <script type='text/javascript' src='scripts/sha512.js'></script>
 <script type="text/javascript">
@@ -48,3 +54,4 @@ function checkRegisterForm()
 	<input type="password" placeholder="Re-type password" name="reg_passagain" id="reg_passagain" /></br></br>
 	<input type="submit" name="button_register" id="button_register" value="Register">
 </form>
+</div>

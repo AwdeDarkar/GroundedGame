@@ -65,7 +65,7 @@
 
 #topbar, #leftbar, #rightbar, #bottombar
 {
-	background-color: $(dark-gray);
+	background-color: $(darker-gray);
 	position: fixed;
 	z-index: 5;
 }

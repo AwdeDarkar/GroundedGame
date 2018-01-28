@@ -40,6 +40,13 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 ?>
 
+<body>
+<div id='topbar'></div>
+<div id='leftbar'></div>
+<div id='rightbar'></div>
+<div id='bottombar'></div>
+<div class="content">
+
 <h1>Create new faction in <?php print("$worldname"); ?> </h1>
 
 
@@ -71,3 +78,5 @@ function checkFactionName()
 	<input type="hidden" name="nf_wid" id='nf_wid' value=<?php print("'$worldid'");?> />
 	<input type="submit" value="New Faction" name='button_nf'>
 </form>
+
+</div>

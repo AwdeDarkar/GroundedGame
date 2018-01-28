@@ -120,6 +120,11 @@ else { throw_msg(300, $httpReferer, "bunker.php", 39); }
 ?>
 <body>
 
+<div id='topbar'></div>
+<div id='leftbar'></div>
+<div id='rightbar'></div>
+<div id='bottombar'></div>
+
 <div class="content">
 <h1>Bunker <?php echo("$bunkerID"); ?></h1>
 <p>World Coordinates: (<?php echo("$x,$y");?>)</p>

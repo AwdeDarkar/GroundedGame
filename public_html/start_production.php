@@ -144,6 +144,12 @@ $uniqueProcessNames = array_unique($processNames);
 
 ?>
 
+<body>
+<div id='topbar'></div>
+<div id='leftbar'></div>
+<div id='rightbar'></div>
+<div id='bottombar'></div>
+<div class="content">
 
 
 
@@ -267,3 +273,4 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 ?>
 </table>
 </form>
+</div>

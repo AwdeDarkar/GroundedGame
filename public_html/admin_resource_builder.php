@@ -68,6 +68,10 @@ fclose($handle);
 ?>
 
 <body>
+<div id='topbar'></div>
+<div id='leftbar'></div>
+<div id='rightbar'></div>
+<div id='bottombar'></div>
 <div class="content">
 <h1>Resource Builder</h1>
 
