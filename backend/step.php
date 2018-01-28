@@ -39,9 +39,8 @@ for ($i = 0; $i < count($pj_ids); $i++)
 	$date = $pj_last[$i];
 	$now = new DateTime("now");
 
-	$time1 = $date->format('Y-m-d H:i:s');
 	$time2 = $now->format('Y-m-d H:i:s');
-	echo($time1."\n");
+	echo($date."\n");
 	echo($time2."\n");
 	
 	$difference = floor(abs($now - $date) / 60);
