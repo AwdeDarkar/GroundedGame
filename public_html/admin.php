@@ -5,6 +5,10 @@ include("./template/header.php");
 include("./template/sidebar.php");
 ?>
 <body>
+<div id='topbar'></div>
+<div id='leftbar'></div>
+<div id='rightbar'></div>
+<div id='bottombar'></div>
 <div class="content">
 <h1>Admin page</h1>
 

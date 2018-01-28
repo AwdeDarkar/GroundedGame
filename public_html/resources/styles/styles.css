@@ -63,9 +63,47 @@
 	}
 }
 
+#topbar
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	z-index: 5;
+}
+#leftbar
+{
+	position: fixed;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	width: 50px;
+	z-index: 5;
+}
+#rightbar
+{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 50px;
+	z-index: 5;
+}
+#bottombar
+{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 50px;
+	z-index: 5;
+}
+
 body
 {
-	background-color: $(dark-gray);
+	/*background-color: $(dark-gray);*/
+	background-color: $(black-char);
 }
 
 table
@@ -80,9 +118,11 @@ table, th, td
 
 .content
 {
-	background-color: $(black-char);
+	/*background-color: $(black-char);*/
 	color: $(green);
-	margin: 3%;
+	text-shadow: 0 0 10px $(light-green)77;
+	/*margin: 3%;*/
+	margin: 50px;
 	padding: 20px;
 	
 	h1, h2, h3
