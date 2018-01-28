@@ -37,13 +37,12 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 // prepare a csv backup file for download
 // thanks to: https://stackoverflow.com/questions/356578/how-to-output-mysql-query-results-in-csv-format 
 // 
-if ($stmt = $mysqli->prepare("SELECT order_id,product_name,qty
-FROM orders
-WHERE foo = 'bar'
-INTO OUTFILE '~/CSV_EXPORT/resources.csv'
-FIELDS TERMINATED BY ','
-ENCLOSED BY '\"'
-LINES TERMINATED BY '\n';"))
+if ($stmt = $mysqli->prepare("SELECT *
+	FROM Resources
+	INTO OUTFILE '~/CSV_EXPORT/resources.csv'
+	FIELDS TERMINATED BY ','
+	ENCLOSED BY '\"'
+	LINES TERMINATED BY '\n';"))
 {
 	$stmt->execute();
 }
