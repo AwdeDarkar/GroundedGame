@@ -1,6 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 
 $_SESSION = array();
 $params = session_get_cookie_params();

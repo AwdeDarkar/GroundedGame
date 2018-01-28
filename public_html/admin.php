@@ -1,6 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, 2);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 ?>
 <h1>Admin page</h1>
 

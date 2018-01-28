@@ -1,11 +1,17 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 
 $world = $_GET['w'];
 $fac = -1;
 if (isset($_GET['f'])) { $fac = $_GET['f']; }
 ?>
+
+<body>
+
+<div class="content">
 
 <h1>Messages Page</h1>
 <h2>Inbox</h2>
@@ -41,3 +47,5 @@ if ($stmt = $mysqli->prepare("
   <input type="text" name="content" value="Text Here"><br><br>
   <input type="submit" value="Send">
 </form>
+</body>
+</div>

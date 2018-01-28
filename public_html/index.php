@@ -1,8 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
-include("./header.php");
-include("./sidebar.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 ?>
 
 <body>

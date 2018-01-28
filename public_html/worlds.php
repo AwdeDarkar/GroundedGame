@@ -1,9 +1,13 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 //throw_msg(1, "register.php", "thing", 5);	
 ?>
+<body>
 
+<div class="content">
 <h1>Hello worlds page!</h1>
 
 <?php
@@ -60,3 +64,5 @@ include("../includes/common.php");
 	
 	//else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
 ?>
+</div>
+</body>
