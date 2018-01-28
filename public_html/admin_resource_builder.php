@@ -64,25 +64,34 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 for ($i = 0; $i < count($ids); $i++)
 {
 	echo("<tr>
-			<td>".$names[$i]."</td>
-			<td>".$namesafes[$i]."</td>
-			<td>".$types[$i]."</td>
-			<td>".$frequencies[$i]."</td>
-			<td>".$descriptions[$i]."</td>
+			<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
+			<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
+			<td><input type='text' name='type_".$ids[$i]."' value='".$types[$i]."'></td>
+
+			<td>
+				<select name='type_".$ids[$i]."'>");
+
+	if ($types[$i] == 0) { echo("<option value='0' selected>Regular</option>"); }
+	echo("<option value='0'>Regular</option>");
+	if ($types[$i] == 1) { echo("<option value='1' selected>Natural</option>"); }
+	echo("<option value='1'>Natural</option>");
+	if ($types[$i] == 2) { echo("<option value='2' selected>Equipment</option>"); }
+	echo("<option value='2'>Equipment</option>");
+
+
+	echo("
+				</select>
+			</td>
+
+			<td><input type='text' name='frequency_".$ids[$i]."' value='".$frequencies[$i]."'></td>
+			<td><input type='text' name='description_".$ids[$i]."' value='".$descriptions[$i]."'></td>
+			<td><button type='submit' value='".$ids[$i]."' name='update_button'>Update</button></td>
 		</tr>");
 }
 
 ?>
 
-
-
-
 </table>
-
-
-
-
-
 
 
 </form>
