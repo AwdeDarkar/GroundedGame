@@ -75,7 +75,7 @@ table
 
 table, th, td
 {
-	border: 1px solid $(white-smoke);
+	border: 1px solid $(light-grey);
 }
 
 .content
@@ -94,5 +94,11 @@ table, th, td
 	p, td, th
 	{
 		color: $(white-smoke);
+		text-shadow: 0 0 5px $(light-grey);
+	}
+
+	td,th
+	{
+		padding: 3px;
 	}
 }
