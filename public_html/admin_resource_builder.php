@@ -34,6 +34,7 @@ if ($stmt = $mysqli->prepare("SELECT ID, Name, NameSafe, Type, Frequency, Descri
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
+// TODO: prepare a csv backup file for download
 
 
 ?>
@@ -66,17 +67,16 @@ for ($i = 0; $i < count($ids); $i++)
 	echo("<tr>
 			<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 			<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
-			<td><input type='text' name='type_".$ids[$i]."' value='".$types[$i]."'></td>
 
 			<td>
 				<select name='type_".$ids[$i]."'>");
 
 	if ($types[$i] == 0) { echo("<option value='0' selected>Regular</option>"); }
-	echo("<option value='0'>Regular</option>");
+	else { echo("<option value='0'>Regular</option>"); }
 	if ($types[$i] == 1) { echo("<option value='1' selected>Natural</option>"); }
-	echo("<option value='1'>Natural</option>");
+	else { echo("<option value='1'>Natural</option>"); }
 	if ($types[$i] == 2) { echo("<option value='2' selected>Equipment</option>"); }
-	echo("<option value='2'>Equipment</option>");
+	else { echo("<option value='2'>Equipment</option>"); }
 
 
 	echo("
@@ -90,6 +90,22 @@ for ($i = 0; $i < count($ids); $i++)
 }
 
 ?>
+	<tr>
+		<td><input type='text' name='name_new'></td>
+		<td><input type='text' name='namesafe_new'></td>
+
+		<td>
+			<select name='type_new'>"
+				<option value='0' selected>Regular</option>
+				<option value='1'>Natural</option>
+				<option value='2'>Equipment</option>
+			</select>
+		</td>
+
+		<td><input type='text' name='frequency_new' value='".$frequencies[$i]."'></td>
+		<td><input type='text' name='description_new' value='".$descriptions[$i]."'></td>
+		<td><button type='submit' value='new' name='new_button'>Insert</button></td>
+	</tr>
 
 </table>
 
