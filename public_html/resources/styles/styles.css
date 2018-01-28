@@ -65,6 +65,8 @@
 	a
 	{
 		color: $(red);
+		font-family: $(vt323);
+		font-size: 18px;
 	}
 }
 
@@ -139,6 +141,7 @@ table, th, td
 		color: $(white-smoke);
 		text-shadow: 0 0 10px $(light-gray)77;
 		font-family: $(vt323);
+		font-size: 18px;
 	}
 
 	td,th
