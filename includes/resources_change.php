@@ -27,7 +27,18 @@ if ($_POST['update_button'])
 }
 elseif ($_POST['new_button'])
 {
+	$name = tools_sanitize_data($_POST["name_new"]);
+	$namesafe = tools_sanitize_data($_POST["namesafe_new"]);
+	$type = tools_sanitize_data($_POST["type_new"]);
+	$frequency = tools_sanitize_data($_POST["frequency_new"]);
+	$description = tools_sanitize_data($_POST["description_new"]);
 	
+	if ($stmt = $mysqli->prepare("INSERT INTO Resources (Name, NameSafe, Type, Frequency, Description) VALUES (?,?,?,?,?)"))
+	{
+		$stmt->bind_param('sssss', $name, $namesafe, $type, $frequency, $description);
+		$stmt->execute();
+	}
+	throw_msg(100, 'admin_resource_builder.php');
 }
 
 ?>
