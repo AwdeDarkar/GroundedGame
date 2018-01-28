@@ -23,6 +23,7 @@ if ($_POST['update_button'])
 		$stmt->bind_param('ssssss', $name, $namesafe, $type, $frequency, $description, $id);
 		$stmt->execute();
 	}
+	else { throw_msg(300, "admin_resource_builder.php"); }
 	throw_msg(100, 'admin_resource_builder.php');
 }
 elseif ($_POST['new_button'])
@@ -38,6 +39,18 @@ elseif ($_POST['new_button'])
 		$stmt->bind_param('sssss', $name, $namesafe, $type, $frequency, $description);
 		$stmt->execute();
 	}
+	else { throw_msg(300, "admin_resource_builder.php"); }
+	throw_msg(100, 'admin_resource_builder.php');
+}
+elseif ($_POST['delete_button'])
+{
+	$id = tools_sanitize_data($_POST['update_button']);
+	if ($stmt = $mysqli->prepare("DELETE FROM Resources WHERE ID = ?"))
+	{
+		$stmt->bind_param('s', $id);
+		$stmt->execute();
+	}
+	else { throw_msg(300, "admin_resource_builder.php"); }
 	throw_msg(100, 'admin_resource_builder.php');
 }
 

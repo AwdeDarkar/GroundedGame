@@ -223,7 +223,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 		// remove production job and production job components
 		for ($j = 0; $j < count($p_pid); $j++)
 		{
-			if ($stmt = $mysqli->prepare("DELETE FROM ProductionJobComponents Where ID = ?"))
+			if ($stmt = $mysqli->prepare("DELETE FROM ProductionJobComponents WHERE ID = ?"))
 			{
 				echo("Removing production job component\n");
 				//set variables
@@ -232,7 +232,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 			}
 			else { echo("ERROR"); }
 		}
-		if ($stmt = $mysqli->prepare("DELETE FROM ProductionJobs Where ID = ?"))
+		if ($stmt = $mysqli->prepare("DELETE FROM ProductionJobs WHERE ID = ?"))
 		{
 			echo("Removing production job\n");
 			//set variables

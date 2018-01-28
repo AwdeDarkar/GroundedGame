@@ -116,6 +116,7 @@ for ($i = 0; $i < count($ids); $i++)
 			<td><input type='text' name='frequency_".$ids[$i]."' value='".$frequencies[$i]."'></td>
 			<td><input type='text' name='description_".$ids[$i]."' value='".$descriptions[$i]."' size='100'></td>
 			<td><button type='submit' value='".$ids[$i]."' name='update_button'>Update</button></td>
+			<td><button type='submit' value='".$ids[$i]."' name='delete_button'>DELETE</button></td>
 		</tr>");
 }
 
