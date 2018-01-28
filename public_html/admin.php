@@ -4,6 +4,8 @@ include("../includes/common.php");
 include("./template/header.php");
 include("./template/sidebar.php");
 ?>
+<body>
+<div class="content">
 <h1>Admin page</h1>
 
 <h3>Create world</h3>
@@ -27,3 +29,4 @@ function checkCreateWorldForm()
 
 <p><a href='admin_resource_builder.php'>Resource Builder</a></p>
 <p><a href='admin_process_builder.php'>Process Builder</a></p>
+</div>

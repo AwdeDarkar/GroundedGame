@@ -66,8 +66,9 @@ fclose($handle);
 
 
 ?>
+
 <body>
-</div class="content">
+<div class="content">
 <h1>Resource Builder</h1>
 
 <!--<h3>Resources CSV Upload</h3>
@@ -146,5 +147,6 @@ for ($i = 0; $i < count($ids); $i++)
 
 
 </form>
+
 </div>
 </body>
