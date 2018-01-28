@@ -141,7 +141,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 			{
 				if ($stmt2 = $mysqli->prepare("UPDATE ResourceCollections SET Amount = Amount + ? WHERE ID = ?"))
 				{
-					echo("Updating resource collection amount");
+					echo("Updating resource collection amount\n");
 					//set variables
 					$stmt2->bind_param("ss", $amountYielded, $p_rcid[$j]);
 					$stmt2->execute();
