@@ -50,6 +50,12 @@
 
 /* Styling */
 
+.sidebar
+{
+	background-color: $(black-char);
+	float: right;
+}
+
 body
 {
 	background-color: $(dark-gray);
