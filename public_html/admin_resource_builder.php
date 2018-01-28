@@ -37,7 +37,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 // prepare a csv backup file for download
 // thanks to: https://stackoverflow.com/questions/356578/how-to-output-mysql-query-results-in-csv-format 
 // 
-if ($stmt = $mysqli->prepare("SELECT *
+/*if ($stmt = $mysqli->prepare("SELECT *
 	FROM Resources
 	INTO OUTFILE '/home/awdefy/CSV_EXPORT/resources.csv'
 	FIELDS TERMINATED BY ','
@@ -46,7 +46,22 @@ if ($stmt = $mysqli->prepare("SELECT *
 {
 	$stmt->execute();
 }
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }*/
+
+$resourceFile = "bak/resources.csv";
+$handle = fopen($resourceFile, 'w');
+
+$data = "";
+
+for ($i = 0; $i < count($ids); $i++)
+{
+	if ($i != 0) { $data .= "\n"; }
+	$data .= $ids[$i].",".$names[$i].",".$namesafes[$i].",".$types[$i].",".$frequencies[$i].",".$descriptions[$i];
+}
+fwrite($handle, $data);
+fclose($handle);
+
+
 
 ?>
 <h1>Resource Builder</h1>
