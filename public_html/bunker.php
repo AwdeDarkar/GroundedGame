@@ -98,17 +98,19 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 # query all production jobs
 
 $pj_dates = array();
+$pj_lastdates = array();
 $pj_names = array();
-if ($stmt = $mysqli->prepare("SELECT ProductionJobs.StartDate, Processes.Name FROM ProductionJobs, Processes WHERE ProductionJobs.ProcessID = Processes.ID AND ProductionJobs.BunkerID = ?"))
+if ($stmt = $mysqli->prepare("SELECT ProductionJobs.LastYieldDate, ProductionJobs.StartDate, Processes.Name FROM ProductionJobs, Processes WHERE ProductionJobs.ProcessID = Processes.ID AND ProductionJobs.BunkerID = ?"))
 {
 	$stmt->bind_param('s', $bunkerID);
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($date, $name);
+	$stmt->bind_result($lastdate, $date, $name);
 	while ($stmt->fetch())
 	{
 		array_push($pj_names, $name);
 		array_push($pj_dates, $date);
+		array_push($pj_lastdates, $lastdate);
 	}
 }
 else { throw_msg(300, $httpReferer, "bunker.php", 39); }
@@ -167,6 +169,7 @@ for ($i = 0; $i < count($rc_ids); $i++)
 	<tr>
 		<th>Job Name</th>
 		<th>Started</th>
+		<th>Last Yield</th>
 	</tr>
 <?php
 for ($i = 0; $i < count($pj_names); $i++)
@@ -175,6 +178,7 @@ for ($i = 0; $i < count($pj_names); $i++)
 		<tr>
 			<td>".$pj_names[$i]."</td>
 			<td>".$pj_dates[$i]."</td>
+			<td>".$pj_lastdates[$i]."</td>
 		</tr>");
 }
 ?>
