@@ -1,6 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 
 $world = tools_sanitize_data($_GET['w']);
 #$fac = -1;
@@ -25,6 +27,8 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 ?>
 
+<body>
+<div class="content">
 <h1><?php echo("$worldname"); ?> World Map </h1>
 
 
@@ -66,3 +70,5 @@ function getBunkerList()
 getFactionList();
 getBunkerList();
 </script>
+</div>
+</body>

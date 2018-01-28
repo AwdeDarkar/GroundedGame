@@ -1,6 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 
 $world = tools_sanitize_data($_GET['w']);
 $bunkerID = tools_sanitize_data($_GET['b']);
@@ -116,6 +118,9 @@ if ($stmt = $mysqli->prepare("SELECT ProductionJobs.LastYieldDate, ProductionJob
 else { throw_msg(300, $httpReferer, "bunker.php", 39); }
 
 ?>
+<body>
+
+<div class="content">
 <h1>Bunker <?php echo("$bunkerID"); ?></h1>
 <p>World Coordinates: (<?php echo("$x,$y");?>)</p>
 
@@ -183,3 +188,5 @@ for ($i = 0; $i < count($pj_names); $i++)
 }
 ?>
 </table>
+</div>
+</body>

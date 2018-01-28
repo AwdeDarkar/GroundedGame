@@ -1,8 +1,13 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 ?>
 
+<body>
+
+<div class="content">
 <h1>Login</h1>
 
 <script type='text/javascript' src='scripts/sha512.js'></script>
@@ -36,3 +41,5 @@ function checkLoginForm()
 	<input type="password" placeholder="Password" name="log_pass" id="log_pass" /></br></br>
 	<input type="submit" value="Log in" name='button_login'>&nbsp;&nbsp;<a href='reset_password.php'>forgot password</a>
 </form>
+</div>
+</body>
