@@ -54,7 +54,8 @@
 {
 	background-color: $(black-char);
 	float: right;
-	margin: 20px;
+	margin: 50px;
+	margin-top: 40px;
 	padding: 5px;
 	
 	a
@@ -65,7 +66,7 @@
 
 #topbar, #leftbar, #rightbar, #bottombar
 {
-	background-color: $(darkest-gray);
+	background-color: $(darker-gray);
 	position: fixed;
 	z-index: 5;
 }
