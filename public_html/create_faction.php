@@ -1,6 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 
 
 // assume world id passed in as get var

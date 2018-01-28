@@ -1,6 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php")
+include("./template/header.php");
+include("./template/sidebar.php");
 ?>
 <div id='topbar'></div>
 <div id='leftbar'></div>

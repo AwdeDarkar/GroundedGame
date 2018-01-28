@@ -11,6 +11,10 @@ if (isset($_GET['f'])) { $fac = $_GET['f']; }
 
 <body>
 
+<div id='topbar'></div>
+<div id='leftbar'></div>
+<div id='rightbar'></div>
+<div id='bottombar'></div>
 <div class="content">
 
 <h1>Messages Page</h1>

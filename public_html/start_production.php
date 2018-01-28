@@ -1,6 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 
 $world = tools_sanitize_data($_GET['w']);
 $bunkerID = tools_sanitize_data($_GET['b']);
