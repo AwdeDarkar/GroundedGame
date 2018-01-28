@@ -66,12 +66,12 @@ fclose($handle);
 ?>
 <h1>Resource Builder</h1>
 
-<h3>Resources CSV Upload</h3>
+<!--<h3>Resources CSV Upload</h3>
 
 <form id='form_resourcecsv' action='admin_action.php' method='post' enctype="multipart/form-data">
 	<input type='file' name='rc_csv'>
 	<input type='submit' value='Upload' name='button_uploadresource'>
-</form>
+</form>-->
 
 <h3>Resources CSV Download</h3>
 
@@ -133,7 +133,7 @@ for ($i = 0; $i < count($ids); $i++)
 		</td>
 
 		<td><input type='text' name='frequency_new'></td>
-		<td><input type='text' name='description_new'></td>
+		<td><input type='text' name='description_new' size='100'></td>
 		<td><button type='submit' value='new' name='new_button'>Insert</button></td>
 	</tr>
 

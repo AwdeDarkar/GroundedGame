@@ -4,4 +4,5 @@ include("../includes/common.php");
 
 include("../includes/worldcreation.php");
 include("../includes/resource_csv_upload.php");
+include("../includes/resources_change.php");
 ?>
