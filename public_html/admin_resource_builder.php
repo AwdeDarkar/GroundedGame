@@ -75,7 +75,7 @@ fclose($handle);
 
 <h3>Resources CSV Download</h3>
 
-<p><a href='bak/resources.csv'></a></p>
+<p><a href='bak/resources.csv'>resources.csv</a></p>
 
 <h3>Resources</h3>
 
