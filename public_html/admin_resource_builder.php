@@ -39,7 +39,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 // 
 if ($stmt = $mysqli->prepare("SELECT *
 	FROM Resources
-	INTO OUTFILE '~/CSV_EXPORT/resources.csv'
+	INTO OUTFILE '/home/awdefy/CSV_EXPORT/resources.csv'
 	FIELDS TERMINATED BY ','
 	ENCLOSED BY '\"'
 	LINES TERMINATED BY '\n';"))
