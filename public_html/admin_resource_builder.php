@@ -1,6 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, 2);
 include("../includes/common.php");
+include("./template/header.php");
+include("./template/sidebar.php");
 
 $httpReferer = tools_get_referer("index.php");
 
@@ -64,6 +66,8 @@ fclose($handle);
 
 
 ?>
+<body>
+</div class="content">
 <h1>Resource Builder</h1>
 
 <!--<h3>Resources CSV Upload</h3>
@@ -142,3 +146,5 @@ for ($i = 0; $i < count($ids); $i++)
 
 
 </form>
+</div>
+</body>
