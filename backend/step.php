@@ -40,13 +40,14 @@ for ($i = 0; $i < count($pj_ids); $i++)
 	$now = new DateTime("now");
 	
 	$convertedDate = strtotime($date);
+	$convertedNow = strtotime($now->format('Y-m-d H:i:s'));
 
-	$time1 = $convertedDate->format('Y-m-d H:i:s');
-	$time2 = $now->format('Y-m-d H:i:s');
-	echo($time1."\n");
-	echo($time2."\n");
+	#$time1 = $convertedDate->format('Y-m-d H:i:s');
+	#$time2 = $now->format('Y-m-d H:i:s');
+	#echo($time1."\n");
+	#echo($time2."\n");
 	
-	$difference = floor(abs($now - $date) / 60);
+	$difference = floor(abs($convertedNow - $convertedDate) / 60);
 	
 	echo("\n".$difference." minutes");
 }
