@@ -94,7 +94,7 @@ table, th, td
 	p, td, th
 	{
 		color: $(white-smoke);
-		text-shadow: 0 0 10px $(light-gray)55;
+		text-shadow: 0 0 10px $(light-gray)77;
 	}
 
 	td,th
