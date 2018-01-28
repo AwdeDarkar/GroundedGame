@@ -44,7 +44,7 @@ elseif ($_POST['new_button'])
 }
 elseif ($_POST['delete_button'])
 {
-	$id = tools_sanitize_data($_POST['update_button']);
+	$id = tools_sanitize_data($_POST['delete_button']);
 	if ($stmt = $mysqli->prepare("DELETE FROM Resources WHERE ID = ?"))
 	{
 		$stmt->bind_param('s', $id);
