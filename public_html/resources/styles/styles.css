@@ -53,10 +53,14 @@
 .sidebar
 {
 	background-color: $(black-char);
-	float: right;
+	/*float: right;
 	margin: 50px;
 	margin-top: 40px;
-	padding: 5px;
+	padding: 5px;*/
+
+	position: fixed;
+	top: 60px;
+	right: 50px;
 	
 	a
 	{
