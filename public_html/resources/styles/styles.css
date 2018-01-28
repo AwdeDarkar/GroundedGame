@@ -68,14 +68,31 @@ body
 	background-color: $(dark-gray);
 }
 
+table
+{
+	border-collapse: collapse;
+}
+
+table, th, td
+{
+	border: 1px solid $(white-smoke);
+}
+
 .content
 {
 	background-color: $(black-char);
 	color: $(green);
 	margin: 5%;
+	padding: 20px;
 	
-	h1
+	h1, h2, h3
 	{
 		font-family: $(comfortaa);
+		text-shadow: 0 0 10px $(lightest-green);
+	}
+
+	p, td, th
+	{
+		color: $(white-smoke);
 	}
 }
