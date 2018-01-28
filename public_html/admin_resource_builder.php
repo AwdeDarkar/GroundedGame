@@ -34,8 +34,20 @@ if ($stmt = $mysqli->prepare("SELECT ID, Name, NameSafe, Type, Frequency, Descri
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
-// TODO: prepare a csv backup file for download
-
+// prepare a csv backup file for download
+// thanks to: https://stackoverflow.com/questions/356578/how-to-output-mysql-query-results-in-csv-format 
+// 
+if ($stmt = $mysqli->prepare("SELECT order_id,product_name,qty
+FROM orders
+WHERE foo = 'bar'
+INTO OUTFILE '~/CSV_EXPORT/resources.csv'
+FIELDS TERMINATED BY ','
+ENCLOSED BY '\"'
+LINES TERMINATED BY '\n';"))
+{
+	$stmt->execute();
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 ?>
 <h1>Resource Builder</h1>
@@ -46,6 +58,10 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 	<input type='file' name='rc_csv'>
 	<input type='submit' value='Upload' name='button_uploadresource'>
 </form>
+
+<h3>Resources CSV Download</h3>
+
+<p><a href='#thing'></a></p>
 
 <h3>Resources</h3>
 
@@ -84,7 +100,7 @@ for ($i = 0; $i < count($ids); $i++)
 			</td>
 
 			<td><input type='text' name='frequency_".$ids[$i]."' value='".$frequencies[$i]."'></td>
-			<td><input type='text' name='description_".$ids[$i]."' value='".$descriptions[$i]."'></td>
+			<td><input type='text' name='description_".$ids[$i]."' value='".$descriptions[$i]."' size='100'></td>
 			<td><button type='submit' value='".$ids[$i]."' name='update_button'>Update</button></td>
 		</tr>");
 }
@@ -102,8 +118,8 @@ for ($i = 0; $i < count($ids); $i++)
 			</select>
 		</td>
 
-		<td><input type='text' name='frequency_new' value='".$frequencies[$i]."'></td>
-		<td><input type='text' name='description_new' value='".$descriptions[$i]."'></td>
+		<td><input type='text' name='frequency_new'></td>
+		<td><input type='text' name='description_new'></td>
 		<td><button type='submit' value='new' name='new_button'>Insert</button></td>
 	</tr>
 
