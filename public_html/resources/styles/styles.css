@@ -63,7 +63,7 @@
 	}
 }
 
-#topbar, #leftbar, #rightbar, $bottombar
+#topbar, #leftbar, #rightbar, #bottombar
 {
 	background-color: $(dark-gray);
 	position: fixed;
