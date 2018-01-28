@@ -39,7 +39,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 	$date = $pj_last[$i];
 	$now = new DateTime("now");
 	
-	$convertedDate = sttotime($date);
+	$convertedDate = strtotime($date);
 
 	$time1 = $convertedDate->format('Y-m-d H:i:s');
 	$time2 = $now->format('Y-m-d H:i:s');
