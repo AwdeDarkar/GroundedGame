@@ -60,13 +60,20 @@
 
 	position: fixed;
 	top: 60px;
-	right: 50px;
+	right: 60px;
 	
 	a
 	{
 		color: $(red);
 		font-family: $(vt323);
 		font-size: 18px;
+		text-decoration: none;
+		text-shadow: 0 0 10px $(light-red)77;
+	}
+	a:hover
+	{
+		color: $(lightest-red);
+		text-shadow: 0 0 40px $(light-red)77;
 	}
 }
 
@@ -126,6 +133,8 @@ table, th, td
 	/*background-color: $(black-char);*/
 	color: $(green);
 	text-shadow: 0 0 10px $(light-green)77;
+	font-family: $(vt323);
+	font-size: 20px;
 	/*margin: 3%;*/
 	margin: 50px;
 	padding: 20px;
@@ -141,7 +150,7 @@ table, th, td
 		color: $(white-smoke);
 		text-shadow: 0 0 10px $(light-gray)77;
 		font-family: $(vt323);
-		font-size: 18px;
+		font-size: 20px;
 	}
 
 	td,th
