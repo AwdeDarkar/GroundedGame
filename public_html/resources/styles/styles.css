@@ -54,6 +54,8 @@
 {
 	background-color: $(black-char);
 	float: right;
+	margin: 10px;
+	padding: 5px;
 }
 
 body
