@@ -57,10 +57,13 @@ for ($i = 0; $i < count($pj_ids); $i++)
 	#echo($time2."\n");
 	
 	$difference = floor(abs($convertedNow - $convertedDate) / 60);
-	echo("\n".$difference." minutes");
+	echo($difference." minutes\n");
+
+	if ($difference < $unitOfTime) { continue; }
 
 	// divide difference by time unit, by base time to determine next base yield
-	$baseCount = ($difference / $unitOfTime) / $pj_baseTime[$i];
+	//$baseCount = ($difference / $unitOfTime) / $pj_baseTime[$i];
+	//$baseCount = ($difference / $unitOfTime) / $pj_baseTime[$i];
 
 
 	// find all output process components (if no associated production job
@@ -107,13 +110,15 @@ for ($i = 0; $i < count($pj_ids); $i++)
 	{
 		if ($p_type[$j] == 1) // output
 		{
-			$amountYielded = $baseCount * $p_amt[$j];
+			//$amountYielded = $baseCount * $p_amt[$j];
+			$amountYielded = $p_amt[$j];
 
 			// if resource collection and production job component doesn't exist yet, make it
 			if ($p_cid[$j] == null)
 			{
 				if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
 				{
+					echo("Creating new resource collection\n");
 					//set variables
 					$stmt2->bind_param("ssss", $p_rid[$j], $pj_bunkers[$i], $pj_fids[$i], $amountYielded);
 					$stmt2->execute();
@@ -126,6 +131,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 				
 				if ($stmt2 = $mysqli->prepare("INSERT INTO ProductionJobComponents(PJID, PCID, RCID, AID, EID, Amount) VALUES (?, ?, ?, ?, ?, ?)"))
 				{
+					echo("Creating output production job component\n");
 					$stmt2->bind_param("ssssss", $pj_pids[$i], $p_pid[$j], $rcid, $aid, $eid, $amountYielded);
 					$stmt2->execute();
 				}
@@ -133,8 +139,9 @@ for ($i = 0; $i < count($pj_ids); $i++)
 			}
 			else
 			{
-				if ($stmt2 = $mysqli->prepare("UPDATE ResourceCollections SET Amount = ? WHERE ID = ?"))
+				if ($stmt2 = $mysqli->prepare("UPDATE ResourceCollections SET Amount = Amount + ? WHERE ID = ?"))
 				{
+					echo("Updating resource collection amount");
 					//set variables
 					$stmt2->bind_param("ss", $amountYielded, $p_rcid[$j]);
 					$stmt2->execute();
@@ -159,6 +166,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 	$newYieldDate = $now->format("Y-m-d H:i:s");
 	if ($stmt = $mysqli->prepare("UPDATE ProductionJobs SET LastYieldDate = ? WHERE ID = ?"))
 	{
+		echo("Updating production job yield date\n");
 		//set variables
 		$stmt->bind_param("ss", $newYieldDate, $pj_ids[$i]);
 		$stmt->execute();
@@ -184,6 +192,8 @@ for ($i = 0; $i < count($pj_ids); $i++)
 
 			if ($amount < $p_amt[$j])
 			{
+				echo("Not enough input resources!\n");
+
 				$canContinue = false;
 				break;
 			}
@@ -199,6 +209,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 			{
 				if ($stmt = $mysqli->prepare("UPDATE ResourceCollections SET Amount = Amount - ? WHERE ID = ?"))
 				{
+					echo("Burning up resources...\n");
 					//set variables
 					$stmt->bind_param("ss", $p_amt[$j], $p_rcid[$j]);
 					$stmt->execute();
@@ -214,6 +225,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 		{
 			if ($stmt = $mysqli->prepare("DELETE FROM ProductionJobComponents Where ID = ?"))
 			{
+				echo("Removing production job component\n");
 				//set variables
 				$stmt->bind_param("s", $p_cid[$j]);
 				$stmt->execute();
@@ -222,6 +234,7 @@ for ($i = 0; $i < count($pj_ids); $i++)
 		}
 		if ($stmt = $mysqli->prepare("DELETE FROM ProductionJobs Where ID = ?"))
 		{
+			echo("Removing production job\n");
 			//set variables
 			$stmt->bind_param("s", $pj_ids[$i]);
 			$stmt->execute();
