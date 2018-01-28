@@ -82,19 +82,19 @@ table, th, td
 {
 	background-color: $(black-char);
 	color: $(green);
-	margin: 5%;
+	margin: 3%;
 	padding: 20px;
 	
 	h1, h2, h3
 	{
 		font-family: $(comfortaa);
-		text-shadow: 0 0 10px $(lightest-green);
+		text-shadow: 0 0 30px $(lightest-green)AA;
 	}
 
 	p, td, th
 	{
 		color: $(white-smoke);
-		text-shadow: 0 0 5px $(light-grey);
+		text-shadow: 0 0 10px $(light-grey)55;
 	}
 
 	td,th
