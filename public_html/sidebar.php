@@ -1,6 +1,6 @@
 <?php
 echo "
-<div id='sidebar'>
+<div class='sidebar'>
 <a href='worlds.php'>World List</a><br>
 <a href='world.php'>World</a><br>
 <a href='admin.php'>Admin</a><br>
