@@ -9,6 +9,8 @@ include("./template/sidebar.php");
 $httpReferer = tools_get_referer("index.php");
 
 
+// process component types: 0 = input, 1 = output, 2 = equipment
+
 $ids = array();
 $names = array();
 $namesafes = array();
@@ -101,6 +103,7 @@ function resourceById($id)
 			<th>NameSafe</th>
 			<th>BaseTime</th>
 			<th>Resource</th> <!-- sub -->
+			<th>Type</th> <!-- sub -->
 			<th>Amount</th> <!-- sub -->
 		</tr>
 
@@ -130,6 +133,20 @@ for ($i = 0; $i < count($ids); $i++)
 			}
 
 			echo("</select></td>
+				<td>
+					<select name='type_".$ids[$i]."'>");
+
+			if ($pctypes[$j] == 0) { echo("<option value='0' selected>Input</option>"); }
+			else { echo("<option value='0'>Regular</option>"); }
+			if ($pctypes[$j] == 1) { echo("<option value='1' selected>Output</option>"); }
+			else { echo("<option value='1'>Natural</option>"); }
+			if ($pctypes[$j] == 2) { echo("<option value='2' selected>Equipment</option>"); }
+			else { echo("<option value='2'>Equipment</option>"); }
+
+
+			echo("
+					</select>
+				</td>
 				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."'></td></tr>");
 		}
 	}
