@@ -114,7 +114,7 @@ for ($i = 0; $i < count($ids); $i++)
 	echo("<tr>
 		<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 		<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
-		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."'></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
+		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."' size='5'></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
 
 	for ($j = 0; $j < count($pcids); $j++)
 	{
@@ -147,13 +147,14 @@ for ($i = 0; $i < count($ids); $i++)
 			echo("
 					</select>
 				</td>
-				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."'></td>
+				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."' size='5'></td>
 
 				<td><button type='submit' value='".$pcids[$j]."' name='update_pc_button'>Update</button></td>
 				<td><button type='submit' value='".$pcids[$j]."' name='delete_pc_button'>DELETE</button></td>
 			</tr>");
 		}
 	}
+	if ($i != count($ids) - 1) { echo("<tr></tr>"); }
 
 
 }
