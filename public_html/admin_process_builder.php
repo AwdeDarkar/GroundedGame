@@ -116,7 +116,7 @@ for ($i = 0; $i < count($ids); $i++)
 		<td></td>
 		<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 		<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
-		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."' size='5'></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
+		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."' size='2'></td><td></td><td></td><td></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
 
 	for ($j = 0; $j < count($pcids); $j++)
 	{
@@ -136,7 +136,7 @@ for ($i = 0; $i < count($ids); $i++)
 
 			echo("</select></td>
 				<td>
-					<select name='type_".$ids[$i]."'>");
+					<select name='type_".$pcids[$j]."'>");
 
 			if ($pctypes[$j] == 0) { echo("<option value='0' selected>Input</option>"); }
 			else { echo("<option value='0'>Input</option>"); }
@@ -149,12 +149,36 @@ for ($i = 0; $i < count($ids); $i++)
 			echo("
 					</select>
 				</td>
-				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."' size='5'></td>
+				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."' size='2'></td>
 
 				<td><button type='submit' value='".$pcids[$j]."' name='update_pc_button'>Update</button></td>
 				<td><button type='submit' value='".$pcids[$j]."' name='delete_pc_button'>DELETE</button></td>
 			</tr>");
 		}
+		echo("<tr>
+			<td></td><td></td><td></td><td></td>
+			<td><select name='resource_new_".$ids[$i].">");
+
+		echo("<option value='' selected></option>");
+		for ($k = 0; $k < count($rids); $k++) { echo("<option value='".$rids[$k]."'>".$rnames[$k]."</option>"); }
+
+		echo("</select></td>
+			<td>
+				<select name='type_new_".$ids[$i]."'>");
+
+		echo("<option value='' selected></option>");
+		echo("<option value='0'>Input</option>");
+		echo("<option value='1'>Output</option>");
+		echo("<option value='2'>Equipment</option>");
+
+
+		echo("
+				</select>
+			</td>
+			<td><input type='text' name='amt_new_".$ids[$i]."' value='".$pcamts[$j]."' size='2'></td>
+
+			<td><button type='submit' value='".$ids[$j]."' name='new_pc_button'>Update</button></td>
+		</tr>");
 	}
 	if ($i != count($ids) - 1) { echo("<tr><td>&nbsp;</td></tr>"); }
 
