@@ -34,7 +34,7 @@ $pcpids = array();
 $pcrids = array();
 $pcamts = array();
 $pctypes = array();
-if ($stmt = $mysqli->prepare("SELECT ID, PID, RID, Amount, Type FROM ProcessesComponents"))
+if ($stmt = $mysqli->prepare("SELECT ID, PID, RID, Amount, Type FROM ProcessComponents"))
 {
 	$stmt->execute();
 	$stmt->store_result();
