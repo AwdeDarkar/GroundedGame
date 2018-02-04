@@ -180,7 +180,9 @@ for ($i = 0; $i < count($ids); $i++)
 
 		<td><button type='submit' value='".$ids[$i]."' name='new_pc_button'>Insert</button></td>
 	</tr>");
-	if ($i != count($ids) - 1) { echo("<tr><td>&nbsp;</td></tr>"); }
+
+	// spacing
+	 echo("<tr><td>&nbsp;</td></tr>");
 }
 
 echo("<tr><td></td></tr><tr>
