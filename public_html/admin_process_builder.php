@@ -160,7 +160,7 @@ for ($i = 0; $i < count($ids); $i++)
 		<td></td><td></td><td></td><td></td>
 		<td><select name='resource_new_".$ids[$i].">");
 
-	echo("<option value='' selected>&nbsp;</option>");
+	echo("<option value='' selected>.</option>");
 	for ($k = 0; $k < count($rids); $k++) { echo("<option value='".$rids[$k]."'>".$rnames[$k]."</option>"); }
 
 	echo("</select></td>
