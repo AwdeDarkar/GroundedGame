@@ -111,7 +111,7 @@ for ($i = 0; $i < count($ids); $i++)
 	echo("<tr>
 		<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 		<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
-		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."'></td></tr>");
+		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."'></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>Delete</td></tr>");
 
 	for ($j = 0; $j < count($pcids); $j++)
 	{
@@ -126,7 +126,7 @@ for ($i = 0; $i < count($ids); $i++)
 			{
 				echo("<option value='".$rids[$k]."'");
 				if ($rids[$k] == $selected) { echo(" selected"); }
-				echo(">".$rnames."</option>");
+				echo(">".$rnames[$k]."</option>");
 			}
 
 			echo("</select></td>
