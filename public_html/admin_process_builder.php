@@ -156,7 +156,7 @@ for ($i = 0; $i < count($ids); $i++)
 			</tr>");
 		}
 	}
-	if ($i != count($ids) - 1) { echo("<tr><td></td></tr>"); }
+	if ($i != count($ids) - 1) { echo("<tr><td>&nbsp;</td></tr>"); }
 
 
 }
