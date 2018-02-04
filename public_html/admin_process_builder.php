@@ -114,7 +114,7 @@ for ($i = 0; $i < count($ids); $i++)
 	echo("<tr>
 		<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 		<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
-		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."'></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>Delete</td></tr>");
+		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."'></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
 
 	for ($j = 0; $j < count($pcids); $j++)
 	{
@@ -137,9 +137,9 @@ for ($i = 0; $i < count($ids); $i++)
 					<select name='type_".$ids[$i]."'>");
 
 			if ($pctypes[$j] == 0) { echo("<option value='0' selected>Input</option>"); }
-			else { echo("<option value='0'>Regular</option>"); }
+			else { echo("<option value='0'>Input</option>"); }
 			if ($pctypes[$j] == 1) { echo("<option value='1' selected>Output</option>"); }
-			else { echo("<option value='1'>Natural</option>"); }
+			else { echo("<option value='1'>Output</option>"); }
 			if ($pctypes[$j] == 2) { echo("<option value='2' selected>Equipment</option>"); }
 			else { echo("<option value='2'>Equipment</option>"); }
 
@@ -147,7 +147,11 @@ for ($i = 0; $i < count($ids); $i++)
 			echo("
 					</select>
 				</td>
-				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."'></td></tr>");
+				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."'></td>
+
+				<td><button type='submit' value='".$pcids[$j]."' name='update_pc_button'>Update</button></td>
+				<td><button type='submit' value='".$pcids[$j]."' name='delete_pc_button'>DELETE</button></td>
+			</tr>");
 		}
 	}
 
