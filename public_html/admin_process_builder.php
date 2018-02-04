@@ -181,9 +181,13 @@ for ($i = 0; $i < count($ids); $i++)
 		<td><button type='submit' value='".$ids[$i]."' name='new_pc_button'>Insert</button></td>
 	</tr>");
 	if ($i != count($ids) - 1) { echo("<tr><td>&nbsp;</td></tr>"); }
-
-
 }
+
+echo("<tr>
+	<td></td>
+	<td><input type='text' name='name_new' value=''></td>
+	<td><input type='text' name='namesafe_new' value=''></td>
+	<td><input type='text' name='basetime_new' value='' size='2'></td><td></td><td></td><td></td><td><button type='submit' value='new' name='new_process_button'>Insert</td></tr>");
 
 
 ?>
