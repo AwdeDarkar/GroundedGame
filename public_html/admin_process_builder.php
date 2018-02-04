@@ -183,7 +183,7 @@ for ($i = 0; $i < count($ids); $i++)
 	if ($i != count($ids) - 1) { echo("<tr><td>&nbsp;</td></tr>"); }
 }
 
-echo("<tr>
+echo("<tr><td></td></tr><tr>
 	<td></td>
 	<td><input type='text' name='name_new' value=''></td>
 	<td><input type='text' name='namesafe_new' value=''></td>
