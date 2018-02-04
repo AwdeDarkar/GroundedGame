@@ -157,3 +157,18 @@ table, th, td
 		padding: 3px;
 	}
 }
+
+/* specific to one page */
+
+	/* messages.php */
+		
+		#msgCont
+		{
+			float: left;
+			width: 40%;
+		}
+		
+		#msgGroups
+		{
+			float: right;
+			width: 30%;
