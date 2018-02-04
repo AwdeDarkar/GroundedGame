@@ -48,7 +48,7 @@ if ($stmt = $mysqli->prepare("SELECT ID, PID, RID, Amount, Type FROM ProcessesCo
 		array_push($pctypes, $type);
 	}
 }
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+else { throw_msg(301, $httpReferer, "create_faction.php", 39); }
 
 $rids = array();
 $rnames = array();
@@ -65,7 +65,7 @@ if ($stmt = $mysqli->prepare("SELECT ID, Name, Type FROM Resources"))
 		array_push($rtypes, $type);
 	}
 }
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+else { throw_msg(302, $httpReferer, "create_faction.php", 39); }
 
 function resourceById($id)
 {
