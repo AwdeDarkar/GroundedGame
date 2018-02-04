@@ -111,11 +111,30 @@ for ($i = 0; $i < count($ids); $i++)
 	echo("<tr>
 		<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 		<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
-		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."'></td>");
+		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."'></td></tr>");
+
+	for ($j = 0; $j < count($pcids); $j++)
+	{
+		if ($pcpids[$j] == $ids[$i])
+		{
+			echo("<tr>
+				<td></td><td></td><td></td>
+				<td><select name='resource_".$pcids[$j]."'>");
+
+			$selected = $pcrids[$j];
+			for ($k = 0; $k < count($rids); $k++)
+			{
+				echo("<option value='".$rids[$k]."'");
+				if ($rids[$k] == $selected) { echo(" selected"); }
+				echo(">".$rnames."</option>");
+			}
+
+			echo("</select></td>
+				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."'></td></tr>");
+		}
+	}
 
 
-
-	echo("</tr>");
 }
 
 
