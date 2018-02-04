@@ -99,6 +99,7 @@ function resourceById($id)
 
 	<table border='1'>
 		<tr>
+			<th></th>
 			<th>Name</th>
 			<th>NameSafe</th>
 			<th>BaseTime</th>
@@ -112,6 +113,7 @@ function resourceById($id)
 for ($i = 0; $i < count($ids); $i++)
 {
 	echo("<tr>
+		<td></td>
 		<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 		<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
 		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."' size='5'></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
@@ -121,7 +123,7 @@ for ($i = 0; $i < count($ids); $i++)
 		if ($pcpids[$j] == $ids[$i])
 		{
 			echo("<tr>
-				<td></td><td></td><td></td>
+				<td></td><td></td><td></td><td></td>
 				<td><select name='resource_".$pcids[$j]."'>");
 
 			$selected = $pcrids[$j];
@@ -154,7 +156,7 @@ for ($i = 0; $i < count($ids); $i++)
 			</tr>");
 		}
 	}
-	if ($i != count($ids) - 1) { echo("<tr></tr>"); }
+	if ($i != count($ids) - 1) { echo("<tr><td></td></tr>"); }
 
 
 }
