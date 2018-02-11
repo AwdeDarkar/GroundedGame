@@ -67,7 +67,7 @@ elseif ($_POST['update_pc_button'])
 			Type = ?
 		WHERE ID = ?"))
 	{
-		$stmt->bind_param('ssss', $rid, $type, $amt, $id);
+		$stmt->bind_param('ssss', $rid, $amt, $type, $id);
 		$stmt->execute();
 	}
 	else { throw_msg(300, "admin_process_builder.php"); }
@@ -94,7 +94,7 @@ elseif ($_POST['new_pc_button'])
 	
 	if ($stmt = $mysqli->prepare("INSERT INTO ProcessComponents (PID, RID, Amount, Type) VALUES (?,?,?,?)"))
 	{
-		$stmt->bind_param('ssss', $id, $rid, $type, $amt);
+		$stmt->bind_param('ssss', $id, $rid, $amt, $type);
 		$stmt->execute();
 	}
 	else { throw_msg(300, "admin_process_builder.php"); }
