@@ -113,7 +113,7 @@ function resourceById($id)
 for ($i = 0; $i < count($ids); $i++)
 {
 	echo("<tr>
-		<td></td>
+		<td id='p".$ids[$i]."'></td>
 		<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 		<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
 		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."' size='2'></td><td></td><td></td><td></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
@@ -123,7 +123,7 @@ for ($i = 0; $i < count($ids); $i++)
 		if ($pcpids[$j] == $ids[$i])
 		{
 			echo("<tr>
-				<td></td><td></td><td></td><td></td>
+				<td id='pc".$pcids[$j]."'></td><td></td><td></td><td></td>
 				<td><select name='resource_".$pcids[$j]."'>");
 
 			$selected = $pcrids[$j];
