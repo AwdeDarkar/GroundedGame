@@ -22,7 +22,6 @@ if ($_POST['update_process_button'])
 	}
 	else { throw_msg(300, "admin_process_builder.php"); }
 
-	$id = $mysqli->insert_id;
 	throw_msg(100, 'admin_process_builder.php#p'.$id);
 }
 elseif ($_POST['delete_process_button'])
