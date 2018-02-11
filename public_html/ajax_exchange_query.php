@@ -23,6 +23,7 @@ if ($stmt = $mysqli->prepare("SELECT Worlds.ID FROM Worlds WHERE Worlds.NameSafe
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
+echo($worldID);
 
 
 $o_ids = array();
@@ -51,7 +52,7 @@ if ($stmt = $mysqli->prepare("
 		Factions.ID = Orders.SellingFactionID AND
 		Orders.WID = ?"))
 {
-	$stmt->bind_param('ss', $worldID);
+	$stmt->bind_param('s', $worldID);
 	$stmt->execute();
 	$stmt->store_result();
 	$stmt->bind_result($oid, $rname, $fname, $oamt, $ocost, $ostatus, $odate, $ocomment);
