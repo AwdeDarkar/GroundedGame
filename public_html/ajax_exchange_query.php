@@ -15,7 +15,7 @@ elseif($_SESSION['world']) { $world = $_SESSION['world']; }
 
 if ($stmt = $mysqli->prepare("SELECT Worlds.ID FROM Worlds WHERE Worlds.NameSafe = ?"))
 {
-	$stmt->bind_param('ss', $world);
+	$stmt->bind_param('s', $world);
 	$stmt->execute();
 	$stmt->store_result();
 	$stmt->bind_result($worldID);
