@@ -183,7 +183,8 @@ create table Orders (
 	AmountRemaining int unsigned,
 	Cost int unsigned,
 	Status tinyint,
-	DatePosted datetime
+	DatePosted datetime,
+	Comment varchar(256)
 );
 
 create table Transactions (
