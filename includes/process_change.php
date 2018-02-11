@@ -56,7 +56,7 @@ elseif ($_POST['new_process_button'])
 elseif ($_POST['update_pc_button'])
 {
 	$id = tools_sanitize_data($_POST['update_pc_button']); 
-	$rid = tools_sanitize_data($_POST['process_'.$id]); 
+	$rid = tools_sanitize_data($_POST['resource_'.$id]); 
 	$type = tools_sanitize_data($_POST['type_'.$id]); 
 	$amt = tools_sanitize_data($_POST['amt_'.$id]); 
 	
@@ -88,7 +88,7 @@ elseif ($_POST['delete_pc_button'])
 elseif ($_POST['new_pc_button'])
 {
 	$id = tools_sanitize_data($_POST['new_pc_button']); //process id
-	$rid = tools_sanitize_data($_POST['process_new_'.$id]); 
+	$rid = tools_sanitize_data($_POST['resource_new_'.$id]); 
 	$type = tools_sanitize_data($_POST['type_new_'.$id]); 
 	$amt = tools_sanitize_data($_POST['amt_new_'.$id]); 
 	
