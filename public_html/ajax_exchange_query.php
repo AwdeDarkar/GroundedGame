@@ -11,9 +11,8 @@ if ($_GET['w'])
 elseif($_SESSION['world']) { $world = $_SESSION['world']; }
 
 
-$userid = LOGGED_USER_ID;
-
-if ($stmt = $mysqli->prepare("SELECT Factions.ID FROM Users, Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Factions.UserID = Users.ID AND Worlds.NameSafe = ? AND Users.ID = ?"))
+// query all exchanges by default
+/*if ($stmt = $mysqli->prepare("SELECT Orders.ID, Orders.SellingFactionID, Orders.RCID, Orders.AmountRemaining, .ID FROM Users, Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Factions.UserID = Users.ID AND Worlds.NameSafe = ? AND Users.ID = ?"))
 {
 	$stmt->bind_param('ss', $world, $userid);
 	$stmt->execute();
@@ -58,5 +57,4 @@ if ($stmt = $mysqli->prepare("SELECT Bunkers.ID, Bunkers.WorldX, Bunkers.WorldY,
 	echo("</table>");
 }
 ?>
-
-
+ */

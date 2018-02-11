@@ -177,7 +177,9 @@ create table ProcessComponents (
 
 create table Orders (
 	ID int unsigned primary key auto_increment,
-	RCID int unsigned,
+	WID int unsigned,
+	SellingFactionID int unsigned,
+	RID int unsigned,
 	AmountRemaining int unsigned,
 	Cost int unsigned,
 	Status tinyint,

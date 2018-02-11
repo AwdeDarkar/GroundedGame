@@ -29,6 +29,9 @@ if ($stmt = $mysqli->prepare("SELECT Name FROM Worlds WHERE NameSafe = ? LIMIT 1
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 
+
+
+
 ?>
 
 <body>
@@ -39,6 +42,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 <div class="content">
 <h1><?php echo("$worldname"); ?> Resource Exchange</h1>
 
+<a href='exchange_resource_sell.php'>Post Resource Sell</a>
 
 
 
