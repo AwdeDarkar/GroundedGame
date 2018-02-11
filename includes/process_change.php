@@ -10,7 +10,7 @@ if ($_POST['update_process_button'])
 	$namesafe = tools_sanitize_data($_POST['namesafe_'.$id]); 
 	$basetime = tools_sanitize_data($_POST['basetime_'.$id]); 
 	
-	if ($stmt = $mysqli->prepare("UPDATE Process 
+	if ($stmt = $mysqli->prepare("UPDATE Processes
 		SET
 			Name = ?, 
 			NameSafe = ?, 
@@ -20,22 +20,22 @@ if ($_POST['update_process_button'])
 		$stmt->bind_param('ssss', $name, $namesafe, $basetime, $id);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_resource_builder.php"); }
+	else { throw_msg(300, "admin_process_builder.php"); }
 
 	$id = $mysqli->insert_id;
-	throw_msg(100, 'admin_resource_builder.php#'.$id);
+	throw_msg(100, 'admin_process_builder.php#'.$id);
 }
 elseif ($_POST['delete_process_button'])
 {
 	$id = tools_sanitize_data($_POST['delete_process_button']); 
 	
-	if ($stmt = $mysqli->prepare("DELETE FROM Process WHERE ID = ?"))
+	if ($stmt = $mysqli->prepare("DELETE FROM Processes WHERE ID = ?"))
 	{
 		$stmt->bind_param('s', $id);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_resource_builder.php"); }
-	throw_msg(100, 'admin_resource_builder.php');
+	else { throw_msg(300, "admin_process_builder.php"); }
+	throw_msg(100, 'admin_process_builder.php');
 }
 elseif ($_POST['new_process_button'])
 {
@@ -43,20 +43,20 @@ elseif ($_POST['new_process_button'])
 	$namesafe = tools_sanitize_data($_POST['namesafe_new']); 
 	$basetime = tools_sanitize_data($_POST['basetime_new']); 
 	
-	if ($stmt = $mysqli->prepare("INSERT INTO Process (Name, NameSafe, BaseTime) VALUES (?,?,?)"))
+	if ($stmt = $mysqli->prepare("INSERT INTO Processes (Name, NameSafe, BaseTime) VALUES (?,?,?)"))
 	{
 		$stmt->bind_param('sss', $name, $namesafe, $basetime);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_resource_builder.php"); }
+	else { throw_msg(300, "admin_process_builder.php"); }
 
 	$id = $mysqli->insert_id;
-	throw_msg(100, 'admin_resource_builder.php#'.$id);
+	throw_msg(100, 'admin_process_builder.php#'.$id);
 }
 elseif ($_POST['update_pc_button'])
 {
 	$id = tools_sanitize_data($_POST['update_pc_button']); 
-	$rid = tools_sanitize_data($_POST['resource_'.$id]); 
+	$rid = tools_sanitize_data($_POST['process_'.$id]); 
 	$type = tools_sanitize_data($_POST['type_'.$id]); 
 	$amt = tools_sanitize_data($_POST['amt_'.$id]); 
 	
@@ -70,8 +70,8 @@ elseif ($_POST['update_pc_button'])
 		$stmt->bind_param('ssss', $rid, $type, $amt, $id);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_resource_builder.php"); }
-	throw_msg(100, 'admin_resource_builder.php');
+	else { throw_msg(300, "admin_process_builder.php"); }
+	throw_msg(100, 'admin_process_builder.php');
 }
 elseif ($_POST['delete_pc_button'])
 {
@@ -82,13 +82,13 @@ elseif ($_POST['delete_pc_button'])
 		$stmt->bind_param('s', $id);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_resource_builder.php"); }
-	throw_msg(100, 'admin_resource_builder.php');
+	else { throw_msg(300, "admin_process_builder.php"); }
+	throw_msg(100, 'admin_process_builder.php');
 }
 elseif ($_POST['new_pc_button'])
 {
 	$id = tools_sanitize_data($_POST['new_pc_button']); //process id
-	$rid = tools_sanitize_data($_POST['resource_new_'.$id]); 
+	$rid = tools_sanitize_data($_POST['process_new_'.$id]); 
 	$type = tools_sanitize_data($_POST['type_new_'.$id]); 
 	$amt = tools_sanitize_data($_POST['amt_new_'.$id]); 
 	
@@ -97,6 +97,6 @@ elseif ($_POST['new_pc_button'])
 		$stmt->bind_param('ssss', $id, $rid, $type, $amt);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_resource_builder.php"); }
-	throw_msg(100, 'admin_resource_builder.php#'.$id);
+	else { throw_msg(300, "admin_process_builder.php"); }
+	throw_msg(100, 'admin_process_builder.php#'.$id);
 }
