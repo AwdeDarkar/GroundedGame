@@ -121,16 +121,17 @@ for ($i = 0; $i < count($ownedResourceNames); $i++)
 		}
 	}
 	
-	$totalsum = 0;
+	$totalSum = 0;
 
 	foreach ($bunkers as $id => $rcolls) 
 	{ 
 		$localSum = 0;
 		for ($j = 0; $j < count($rcolls); $j++) { $localSum += $rcolls[$j]; }
 		echo("<tr><td></td><td>Bunker ".$id."</td><td>".join(',',$rcolls)."</td><td>".$localSum."</td></tr>"); 
+		$totalSum += $localSum
 	}
 
-	echo("<tr><td></td><td></td><td></td><td>".$totalsum."</td></tr>");
+	echo("<tr><td></td><td></td><td></td><td>".$totalSum."</td></tr>");
 }
 
 ?>
