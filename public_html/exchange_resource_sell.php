@@ -103,7 +103,7 @@ for ($i = 0; $i < count($ownedResourceNames); $i++)
 		if ($rc_names[$j] == $ownedResourceNames[$i])
 		{
 			if (!array_key_exists((string)$rc_bids[$j], $bunkers)) { $bunkers[(string)$rc_bids[$j]] = array(); }
-			array_push($bunkers[(string)$rc_bids[$j]], $rc_amts[$j])
+			array_push($bunkers[(string)$rc_bids[$j]], $rc_amts[$j]);
 		}
 	}
 
