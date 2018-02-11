@@ -4,7 +4,15 @@ include("../includes/common.php");
 include("./template/header.php");
 include("./template/sidebar.php");
 
-$world = tools_sanitize_data($_GET['w']);
+$world = -1;
+if ($_GET['w']) 
+{ 
+	$world = tools_sanitize_data($_GET['w']); 
+	$_SESSION['worldid'] = $world;
+}
+elseif($_SESSION['worldid']) { $world = $_SESSION['worldid']; }
+
+
 #$fac = -1;
 #if (isset($_GET['f'])) { $fac = $_GET['f']; }
 
