@@ -22,7 +22,7 @@ if ($_POST['update_process_button'])
 	}
 	else { throw_msg(300, "admin_process_builder.php"); }
 
-	throw_msg(100, 'admin_process_builder.php#p'.$id);
+	throw_msg(100, 'admin_process_builder.php');
 }
 elseif ($_POST['delete_process_button'])
 {
@@ -50,7 +50,7 @@ elseif ($_POST['new_process_button'])
 	else { throw_msg(300, "admin_process_builder.php"); }
 
 	$id = $mysqli->insert_id;
-	throw_msg(100, 'admin_process_builder.php#p'.$id);
+	throw_msg(100, 'admin_process_builder.php');
 }
 elseif ($_POST['update_pc_button'])
 {
@@ -70,7 +70,7 @@ elseif ($_POST['update_pc_button'])
 		$stmt->execute();
 	}
 	else { throw_msg(300, "admin_process_builder.php"); }
-	throw_msg(100, 'admin_process_builder.php#pc'.$id);
+	throw_msg(100, 'admin_process_builder.php');
 }
 elseif ($_POST['delete_pc_button'])
 {
@@ -97,5 +97,5 @@ elseif ($_POST['new_pc_button'])
 		$stmt->execute();
 	}
 	else { throw_msg(300, "admin_process_builder.php"); }
-	throw_msg(100, 'admin_process_builder.php#p'.$id);
+	throw_msg(100, 'admin_process_builder.php');
 }
