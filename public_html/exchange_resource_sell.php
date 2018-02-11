@@ -81,6 +81,19 @@ if ($stmt = $mysqli->prepare("SELECT Resources.ID, Resources.Name FROM Resources
 <div class="content">
 <h1>Post Resource Sell</h1>
 
+<form id='form_postsell' action='post_sell.php' method='post'>
+	<select name='resource'>
+		<?php
+			for ($i = 0; $i < count($r_ids); $i++) { echo("<option value='".$r_ids[$i]."'>".$r_names[$i]."</option>"); }
+		?>
+	</select>
+	<input type='text' placeholder='Amount' name='amount' size='5'/>
+	<input type='text' placeholder='Cost' name='cost' size='5' />
+	<input type='text' placeholder='Sale comments' name='comments' size='100' />
+	<button type='submit' value='submit' name='post_submit'>Post Sell</button>
+</form>
+
+<h2>Owned Resources</h2>
 <table>
 	<tr>
 		<th>Resource</th>
@@ -107,7 +120,7 @@ for ($i = 0; $i < count($ownedResourceNames); $i++)
 		}
 	}
 
-	foreach ($bunkers as $id => $rcolls) { echo("<tr><td></td><td>Bunker ".$id."</td><td>".join(',',$rcolls)); }
+	foreach ($bunkers as $id => $rcolls) { echo("<tr><td></td><td>Bunker ".$id."</td><td>".join(',',$rcolls)."</tr>"); }
 }
 
 ?>
