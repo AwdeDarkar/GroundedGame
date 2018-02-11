@@ -30,6 +30,21 @@ if ($stmt = $mysqli->prepare("SELECT ID, Name, NameSafe, BaseTime FROM Processes
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
+// save processes csv table
+$resourceFile = "bak/processes.csv";
+$handle = fopen($resourceFile, 'w');
+
+$data = "";
+
+for ($i = 0; $i < count($ids); $i++)
+{
+	if ($i != 0) { $data .= "\n"; }
+	$data .= $ids[$i].",".$names[$i].",".$namesafes[$i].",".$basetimes[$i];
+}
+fwrite($handle, $data);
+fclose($handle);
+
+
 
 $pcids = array();
 $pcpids = array();
@@ -51,6 +66,22 @@ if ($stmt = $mysqli->prepare("SELECT ID, PID, RID, Amount, Type FROM ProcessComp
 	}
 }
 else { throw_msg(301, $httpReferer, "create_faction.php", 39); }
+
+// save processes components csv table
+$resourceFile = "bak/process_components.csv";
+$handle = fopen($resourceFile, 'w');
+
+$data = "";
+
+for ($i = 0; $i < count($ids); $i++)
+{
+	if ($i != 0) { $data .= "\n"; }
+	$data .= $pcids[$i].",".$pcpids[$i].",".$pcrids[$i].",".$pcamts[$i].",".$pctypes[$i];
+}
+fwrite($handle, $data);
+fclose($handle);
+
+
 
 $rids = array();
 $rnames = array();
@@ -90,8 +121,8 @@ function resourceById($id)
 
 <h3>Processes CSV Download</h3>
 
-<p><a href='bak/process_components.csv'>process_components.csv</a></p>
 <p><a href='bak/processes.csv'>processes.csv</a></p>
+<p><a href='bak/process_components.csv'>process_components.csv</a></p>
 
 <h3>Processes</h3>
 
