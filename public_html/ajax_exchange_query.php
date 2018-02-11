@@ -23,7 +23,6 @@ if ($stmt = $mysqli->prepare("SELECT Worlds.ID FROM Worlds WHERE Worlds.NameSafe
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
-echo($worldID);
 
 
 $o_ids = array();
