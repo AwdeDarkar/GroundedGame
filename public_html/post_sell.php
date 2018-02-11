@@ -30,7 +30,8 @@ $comments = tools_sanitize_data($_POST['comments']);
 $startdate = date("Y-m-d H:i:s");
 if ($stmt = $mysqli->prepare("INSERT INTO Orders(WID, SellingFactionID, RID, AmountRemaining, Cost, DatePosted, Status, Comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))
 {
-	$stmt->bind_param("ssssssss", $worldID, $facID, $resourceID, $amount, $cost, $startdate, 0, $comments);
+	$status = 0;
+	$stmt->bind_param("ssssssss", $worldID, $facID, $resourceID, $amount, $cost, $startdate, $status, $comments);
 	$result = $stmt->execute();
 }
 else { throw_msg(300, $httpReferer, "register.php", 86); }
