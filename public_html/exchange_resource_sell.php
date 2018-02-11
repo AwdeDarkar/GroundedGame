@@ -99,6 +99,7 @@ if ($stmt = $mysqli->prepare("SELECT Resources.ID, Resources.Name FROM Resources
 		<th>Resource</th>
 		<th>Location</th>
 		<th>Collection Amounts</th>
+		<th>Totals</th>
 	</tr>
 
 <?php
@@ -107,7 +108,7 @@ $ownedResourceNames = array_unique($rc_names);
 for ($i = 0; $i < count($ownedResourceNames); $i++)
 {
 	echo("<tr><td>".$ownedResourceNames[$i]."</td></tr>");
-
+	
 	// organize all bunkers with resources of this type, and all associated
 	// resource collections in each
 	$bunkers = array();
@@ -119,8 +120,17 @@ for ($i = 0; $i < count($ownedResourceNames); $i++)
 			array_push($bunkers[(string)$rc_bids[$j]], $rc_amts[$j]);
 		}
 	}
+	
+	$totalsum = 0;
 
-	foreach ($bunkers as $id => $rcolls) { echo("<tr><td></td><td>Bunker ".$id."</td><td>".join(',',$rcolls)."</tr>"); }
+	foreach ($bunkers as $id => $rcolls) 
+	{ 
+		$localSum = 0;
+		for ($j = 0; $j < count($rcolls); $j++) { $localSum += $rcolls[$j]; }
+		echo("<tr><td></td><td>Bunker ".$id."</td><td>".join(',',$rcolls)."</td><td>".$localSum."</td></tr>"); 
+	}
+
+	echo("<tr><td></td><td></td><td></td><td>".$totalsum."</td></tr>");
 }
 
 ?>
