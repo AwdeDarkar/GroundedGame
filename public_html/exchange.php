@@ -49,7 +49,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 </div>
 
 <script type='text/javascript'>
-function getFactionList()
+function getExchange()
 {
 	var xhttp = new XMLHttpRequest();
 	xhttp.onreadystatechange = function() {
@@ -62,6 +62,8 @@ function getFactionList()
 
 	//setTimeout(getFactionList, 1000);
 }
+
+getExchange();
 </script>
 
 
