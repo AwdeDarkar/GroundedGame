@@ -8,9 +8,9 @@ $world = -1;
 if ($_GET['w']) 
 { 
 	$world = tools_sanitize_data($_GET['w']); 
-	$_SESSION['worldid'] = $world;
+	$_SESSION['world'] = $world;
 }
-elseif($_SESSION['worldid']) { $world = $_SESSION['worldid']; }
+elseif($_SESSION['world']) { $world = $_SESSION['world']; }
 
 
 #$fac = -1;
