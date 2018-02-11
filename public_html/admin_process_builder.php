@@ -73,7 +73,7 @@ $handle = fopen($resourceFile, 'w');
 
 $data = "";
 
-for ($i = 0; $i < count($ids); $i++)
+for ($i = 0; $i < count($pcids); $i++)
 {
 	if ($i != 0) { $data .= "\n"; }
 	$data .= $pcids[$i].",".$pcpids[$i].",".$pcrids[$i].",".$pcamts[$i].",".$pctypes[$i];
