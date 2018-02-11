@@ -1,6 +1,6 @@
 <?php
 
-var_dump($_POST);
+#var_dump($_POST);
 
 if ($_POST['update_button'])
 {
