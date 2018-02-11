@@ -49,6 +49,19 @@
 }
 
 /* Styling */
+a
+{
+	color: $(red);
+	font-family: $(vt323);
+	font-size: 18px;
+	text-decoration: none;
+	text-shadow: 0 0 10px $(light-red)77;
+}
+a:hover
+{
+	color: $(lightest-red);
+	text-shadow: 0 0 40px $(light-red)EE;
+}
 
 .sidebar
 {
@@ -62,19 +75,6 @@
 	top: 60px;
 	right: 60px;
 	
-	a
-	{
-		color: $(red);
-		font-family: $(vt323);
-		font-size: 18px;
-		text-decoration: none;
-		text-shadow: 0 0 10px $(light-red)77;
-	}
-	a:hover
-	{
-		color: $(lightest-red);
-		text-shadow: 0 0 40px $(light-red)EE;
-	}
 }
 
 #topbar, #leftbar, #rightbar, #bottombar
