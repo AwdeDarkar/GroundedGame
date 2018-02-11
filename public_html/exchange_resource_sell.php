@@ -97,7 +97,7 @@ for ($i = 0; $i < count($ownedResourceNames); $i++)
 
 	// organize all bunkers with resources of this type, and all associated
 	// resource collections in each
-	$bunkers = array()
+	$bunkers = array();
 	for ($j = 0; $j < count($rc_ids); $j++)
 	{
 		if ($rc_names[$j] == $ownedResourceNames[$i])
