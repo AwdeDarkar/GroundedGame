@@ -168,7 +168,7 @@ create table Processes (
 );
 
 create table ProcessComponents (
-	ID int unsigned,
+	ID int unsigned primary key auto_increment,
 	PID int unsigned,
 	RID int unsigned,
 	Amount int unsigned,
