@@ -3,7 +3,7 @@ define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
 $world = getCurrentWorld();
-$worldname = getWorldName();
+$worldname = getWorldName($world);
 
 displayStart();
 ?>
