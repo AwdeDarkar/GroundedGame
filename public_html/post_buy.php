@@ -39,7 +39,7 @@ displayStart();
 echo("<h1>Buy $resourceName from $factionName</h1>");
 echo("<p>Amount in sell order: $amtRemaining</p>");
 echo("<p>Total cost: \$$cost</p>");
-echo("<p>Price per: \$costper</p>");
+echo("<p>Price per: \$$costper</p>");
 ?>
 
 
