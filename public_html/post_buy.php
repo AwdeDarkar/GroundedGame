@@ -44,7 +44,7 @@ $postdate = date("Y-m-d H:i:s");
 if ($stmt = $mysqli->prepare("INSERT INTO Transactions(RID, Amount, Cost, RequestBunkerID, Status, SellingFactionID, BuyingFactionID, DatePosted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))
 {
 	$status = 0;
-	$stmt->bind_param("ssssssss", $rid, $amount, $totalCost, $bunkerID, $status, $sellingFacID, $facID, $postdate )
+	$stmt->bind_param("ssssssss", $rid, $amount, $totalCost, $bunkerID, $status, $sellingFacID, $facID, $postdate);
 	$result = $stmt->execute();
 }
 else { throw_msg(300, $httpReferer, "register.php", 86); }
