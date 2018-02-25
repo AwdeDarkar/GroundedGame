@@ -3,7 +3,7 @@ define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
 $world = getCurrentWorld();
-$worldID = getWorldID();
+$worldID = getWorldID($world);
 
 $o_ids = array();
 $o_rNames = array();
