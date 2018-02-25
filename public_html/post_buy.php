@@ -6,6 +6,7 @@ $httpReferer = tools_get_referer("index.php");
 $world = getCurrentWorld();
 $facID = getFactionID(LOGGED_USER_ID, $world);
 
+var_dump($_POST);
 
 $orderID = tools_sanitize_data($_POST['buy_id']);
 $amount = tools_sanitize_data($_POST['buy_amt']);
