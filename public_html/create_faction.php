@@ -74,4 +74,4 @@ function checkFactionName()
 	<input type="submit" value="New Faction" name='button_nf'>
 </form>
 
-<?php displayEnd(); ?.
+<?php displayEnd(); ?>
