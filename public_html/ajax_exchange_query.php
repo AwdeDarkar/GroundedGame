@@ -83,6 +83,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 		<th>Seller</th>
 		<th>Comment</th>
 		<th>Posted</th>
+		<th></th>
 	</tr>
 
 <?php
@@ -97,6 +98,7 @@ for ($i = 0; $i < count($o_ids); $i++)
 			<td>".$o_fNames[$i]."</td>
 			<td>".$o_comments[$i]."</td>
 			<td>".$o_dates[$i]."</td>
+			<td><a href='buy.php?o=".$o_ids[$i]."'>Buy</a></td>
 		</tr>");
 }
 	
