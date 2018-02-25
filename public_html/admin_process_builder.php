@@ -2,9 +2,6 @@
 define(PERMISSION_LEVEL, 2);
 include("../includes/common.php");
 
-include("../includes/common.php");
-include("./template/header.php");
-include("./template/sidebar.php");
 
 $httpReferer = tools_get_referer("index.php");
 
@@ -109,14 +106,10 @@ function resourceById($id)
 	return ["name" => "", "type" => -1];
 }
 
+
+displayStart();
 ?>
 
-<body>
-<div id='topbar'></div>
-<div id='leftbar'></div>
-<div id='rightbar'></div>
-<div id='bottombar'></div>
-<div class="content">
 <h1>Process Builder</h1>
 
 <h3>Processes CSV Download</h3>
@@ -224,18 +217,7 @@ echo("<tr>
 
 
 ?>
-
-
-
-
 	</table>
-
-
-
-
-
 </form>
 
-
-</div>
-</body>
+<?php displayEnd(); ?>

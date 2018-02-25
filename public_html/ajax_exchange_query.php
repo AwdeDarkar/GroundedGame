@@ -2,28 +2,8 @@
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
-$world = -1;
-if ($_GET['w']) 
-{ 
-	$world = tools_sanitize_data($_GET['w']); 
-	$_SESSION['world'] = $world;
-}
-elseif($_SESSION['world']) { $world = $_SESSION['world']; }
-
-
-# get world id
-
-if ($stmt = $mysqli->prepare("SELECT Worlds.ID FROM Worlds WHERE Worlds.NameSafe = ?"))
-{
-	$stmt->bind_param('s', $world);
-	$stmt->execute();
-	$stmt->store_result();
-	$stmt->bind_result($worldID);
-	$stmt->fetch();
-}
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
-
-
+$world = getCurrentWorld();
+$worldID = getWorldID();
 
 $o_ids = array();
 $o_rNames = array();
@@ -83,6 +63,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 		<th>Seller</th>
 		<th>Comment</th>
 		<th>Posted</th>
+		<th></th>
 	</tr>
 
 <?php
@@ -97,6 +78,7 @@ for ($i = 0; $i < count($o_ids); $i++)
 			<td>".$o_fNames[$i]."</td>
 			<td>".$o_comments[$i]."</td>
 			<td>".$o_dates[$i]."</td>
+			<td><a href='buy.php?o=".$o_ids[$i]."'>Buy</a></td>
 		</tr>");
 }
 	

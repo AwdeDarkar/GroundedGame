@@ -1,8 +1,6 @@
 <?php
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
-include("./template/header.php");
-include("./template/sidebar.php");
 
 
 // assume world id passed in as get var
@@ -40,14 +38,9 @@ if ($stmt = $mysqli->prepare("SELECT Name FROM Worlds WHERE ID = ? LIMIT 1"))
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
-?>
 
-<body>
-<div id='topbar'></div>
-<div id='leftbar'></div>
-<div id='rightbar'></div>
-<div id='bottombar'></div>
-<div class="content">
+displayStart();
+?>
 
 <h1>Create new faction in <?php print("$worldname"); ?> </h1>
 
@@ -81,4 +74,4 @@ function checkFactionName()
 	<input type="submit" value="New Faction" name='button_nf'>
 </form>
 
-</div>
+<?php displayEnd(); ?.

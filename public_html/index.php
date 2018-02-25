@@ -1,17 +1,10 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
-include("./template/header.php");
-include("./template/sidebar.php");
+
+displayStart();
 ?>
 
-<body>
-
-<div id='topbar'></div>
-<div id='leftbar'></div>
-<div id='rightbar'></div>
-<div id='bottombar'></div>
-<div class="content">
 <h1>Hello world</h1>
 
 <?php
@@ -20,5 +13,4 @@ include("./template/sidebar.php");
 	else { echo("<p>Welcome " . LOGGED_USER_NAME . "! <a href='logout.php'>Logout</a><?p>"); }
 ?>
 
-</div>
-</body>
+<?php displayEnd(); ?>

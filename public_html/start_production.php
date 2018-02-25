@@ -1,27 +1,14 @@
 <?php
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
-include("./template/header.php");
-include("./template/sidebar.php");
 
-$world = tools_sanitize_data($_GET['w']);
+$world = getCurrentWorld();
 $bunkerID = tools_sanitize_data($_GET['b']);
 
 $httpReferer = tools_get_referer("index.php");
 
 # get faction id
-$userid = LOGGED_USER_ID;
-
-if ($stmt = $mysqli->prepare("SELECT Factions.ID FROM Users, Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Factions.UserID = Users.ID AND Worlds.NameSafe = ? AND Users.ID = ?"))
-{
-	$stmt->bind_param('ss', $world, $userid);
-	$stmt->execute();
-	$stmt->store_result();
-	$stmt->bind_result($facID);
-	$stmt->fetch();
-}
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
-
+$facID = getFactionID();
 
 # if this bunker doesn't belong to this user, reject
 # also get pertinent data here
@@ -144,14 +131,8 @@ $uniqueProcessIDs = array_unique($processIDs);
 $uniqueProcessNames = array_unique($processNames);
 
 
+displayStart();
 ?>
-
-<body>
-<div id='topbar'></div>
-<div id='leftbar'></div>
-<div id='rightbar'></div>
-<div id='bottombar'></div>
-<div class="content">
 
 
 
@@ -274,5 +255,4 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 
 ?>
 </table>
-</form>
-</div>
+<?php displayEnd(); ?>

@@ -1,17 +1,11 @@
 <?php
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
-include("./template/header.php");
-include("./template/sidebar.php");
 //throw_msg(1, "register.php", "thing", 5);	
-?>
-<body>
 
-<div id='topbar'></div>
-<div id='leftbar'></div>
-<div id='rightbar'></div>
-<div id='bottombar'></div>
-<div class="content">
+displayStart();
+?>
+
 <h1>Hello worlds page!</h1>
 
 <?php
@@ -68,5 +62,6 @@ include("./template/sidebar.php");
 	
 	//else { throw_msg(300, $errorHttpReferer, "register.php", 105); }
 ?>
-</div>
-</body>
+
+<?php displayEnd(); ?>
+

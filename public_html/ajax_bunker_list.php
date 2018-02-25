@@ -2,28 +2,8 @@
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
-$world = -1;
-if ($_GET['w']) 
-{ 
-	$world = tools_sanitize_data($_GET['w']); 
-	$_SESSION['world'] = $world;
-}
-elseif($_SESSION['world']) { $world = $_SESSION['world']; }
-
-
-$userid = LOGGED_USER_ID;
-
-if ($stmt = $mysqli->prepare("SELECT Factions.ID FROM Users, Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Factions.UserID = Users.ID AND Worlds.NameSafe = ? AND Users.ID = ?"))
-{
-	$stmt->bind_param('ss', $world, $userid);
-	$stmt->execute();
-	$stmt->store_result();
-	$stmt->bind_result($facID);
-	$stmt->fetch();
-}
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
-
-
+$world = getCurrentWorld();
+$facID = getFactionID(LOGGED_USER_ID, $world);
 
 echo("
 <table>
@@ -33,7 +13,8 @@ echo("
 		<th>Bunker Owner</th>
 		<th></th>
 	</tr>
-");
+	");
+
 
 if ($stmt = $mysqli->prepare("SELECT Bunkers.ID, Bunkers.WorldX, Bunkers.WorldY, Factions.Name, Factions.NameSafe, Factions.ID FROM ((Bunkers LEFT OUTER JOIN Factions ON Bunkers.FactionID = Factions.ID) INNER JOIN Worlds on Bunkers.WorldID = Worlds.ID) WHERE Worlds.NameSafe = ?"))
 {
@@ -58,5 +39,3 @@ if ($stmt = $mysqli->prepare("SELECT Bunkers.ID, Bunkers.WorldX, Bunkers.WorldY,
 	echo("</table>");
 }
 ?>
-
-

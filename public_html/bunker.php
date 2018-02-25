@@ -1,27 +1,11 @@
 <?php
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
-include("./template/header.php");
-include("./template/sidebar.php");
 
-$world = tools_sanitize_data($_GET['w']);
+$world = getCurrentWorld();
 $bunkerID = tools_sanitize_data($_GET['b']);
-
 $httpReferer = tools_get_referer("index.php");
-
-# get faction id
-$userid = LOGGED_USER_ID;
-
-if ($stmt = $mysqli->prepare("SELECT Factions.ID FROM Users, Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Factions.UserID = Users.ID AND Worlds.NameSafe = ? AND Users.ID = ?"))
-{
-	$stmt->bind_param('ss', $world, $userid);
-	$stmt->execute();
-	$stmt->store_result();
-	$stmt->bind_result($facID);
-	$stmt->fetch();
-}
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
-
+$facID = getFactionID(LOGGED_USER_ID, $world);
 
 # if this bunker doesn't belong to this user, reject
 # also get pertinent data here
@@ -36,12 +20,6 @@ if ($stmt = $mysqli->prepare("SELECT FactionID, WorldX, WorldY FROM Bunkers WHER
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 if ($bunkerFacID != $facID || $bunkerFacID == null) { throw_msg(200, "worlds.php?w=$world"); }
-
-
-
-
-
-
 
 
 # query all resource deposits
@@ -117,15 +95,9 @@ if ($stmt = $mysqli->prepare("SELECT ProductionJobs.LastYieldDate, ProductionJob
 }
 else { throw_msg(300, $httpReferer, "bunker.php", 39); }
 
+displayStart();
 ?>
-<body>
 
-<div id='topbar'></div>
-<div id='leftbar'></div>
-<div id='rightbar'></div>
-<div id='bottombar'></div>
-
-<div class="content">
 <h1>Bunker <?php echo("$bunkerID"); ?></h1>
 <p>World Coordinates: (<?php echo("$x,$y");?>)</p>
 
@@ -193,5 +165,5 @@ for ($i = 0; $i < count($pj_names); $i++)
 }
 ?>
 </table>
-</div>
-</body>
+
+<?php displayEnd(); ?>

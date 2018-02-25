@@ -4,3 +4,4 @@
 4,Iron,iron,0,100,A hard material component
 5,Smelter,smelter,2,0,Can turn ores into things
 6,Miner,smelter,2,0,Can mine ores
+7,Money,money,0,50,Currency for trading

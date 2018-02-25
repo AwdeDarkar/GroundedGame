@@ -193,6 +193,7 @@ create table Transactions (
 	Amount int unsigned,
 	Cost int unsigned,
 	Status tinyint,
+	RequestBunkerID int unsigned,
 	SellingFactionID int unsigned,
 	BuyingFactionID int unsigned
 );
