@@ -1,10 +1,17 @@
 <?php
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
-include("./template/header.php");
-include("./template/sidebar.php");
 
-$world = -1;
+
+//include("./template/header.php");
+//include("./template/sidebar.php");
+
+
+
+
+
+
+/*$world = -1;
 if ($_GET['w']) 
 { 
 	$world = tools_sanitize_data($_GET['w']); 
@@ -41,6 +48,7 @@ if ($stmt = $mysqli->prepare("SELECT Factions.ID FROM Users, Factions, Worlds WH
 	$stmt->bind_result($facID);
 	$stmt->fetch();
 }
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }*/
+
 
 ?>

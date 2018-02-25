@@ -1,10 +1,5 @@
 <?php
 
-/*function getWorldID($worldNameSafe)
-{
-	
-}*/
-
 function getCurrentWorld()
 {
 	$world = -1;
@@ -35,6 +30,25 @@ function getWorldName($worldNameSafe)
 	return $worldName;
 }
 
+function getWorldID($worldNameSafe)
+{
+	$httpReferer = tools_get_referer("index.php");
+
+	$worldID = -1
+
+	if ($stmt = $mysqli->prepare("SELECT Worlds.ID FROM Worlds WHERE Worlds.NameSafe = ?"))
+	{
+		$stmt->bind_param('s', $world);
+		$stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($worldID);
+		$stmt->fetch();
+	}
+	else { throw_msg(300, $httpReferer); }
+	
+	return $worldID;
+}
+
 function getFactionID($userID, $worldNameSafe)
 {
 	$httpReferer = tools_get_referer("index.php");
@@ -56,6 +70,8 @@ function getFactionID($userID, $worldNameSafe)
 
 function displayStart()
 {
+	include_once("template/header.php");
+	include_once("template/sidebar.php");
 	echo("
 <body>
 	<div id='topbar'></div>

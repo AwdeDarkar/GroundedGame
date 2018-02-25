@@ -1,12 +1,8 @@
 <?php
 define(PERMISSION_LEVEL, 2);
 include("../includes/common.php");
-include("./template/header.php");
-include("./template/sidebar.php");
 
 $httpReferer = tools_get_referer("index.php");
-
-
 
 // type: 1 = natural resource
 // 0 = none
@@ -64,15 +60,9 @@ fwrite($handle, $data);
 fclose($handle);
 
 
-
+displayStart();
 ?>
 
-<body>
-<div id='topbar'></div>
-<div id='leftbar'></div>
-<div id='rightbar'></div>
-<div id='bottombar'></div>
-<div class="content">
 <h1>Resource Builder</h1>
 
 <!--<h3>Resources CSV Upload</h3>
@@ -152,5 +142,4 @@ for ($i = 0; $i < count($ids); $i++)
 
 </form>
 
-</div>
-</body>
+<?php displayEnd(); ?>

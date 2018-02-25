@@ -2,28 +2,8 @@
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
-$world = -1;
-if ($_GET['w']) 
-{ 
-	$world = tools_sanitize_data($_GET['w']); 
-	$_SESSION['world'] = $world;
-}
-elseif($_SESSION['world']) { $world = $_SESSION['world']; }
-
-
-# get world id
-
-if ($stmt = $mysqli->prepare("SELECT Worlds.ID FROM Worlds WHERE Worlds.NameSafe = ?"))
-{
-	$stmt->bind_param('s', $world);
-	$stmt->execute();
-	$stmt->store_result();
-	$stmt->bind_result($worldID);
-	$stmt->fetch();
-}
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
-
-
+$world = getCurrentWorld();
+$worldID = getWorldID();
 
 $o_ids = array();
 $o_rNames = array();
