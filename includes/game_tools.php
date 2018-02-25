@@ -44,7 +44,7 @@ function getWorldID($worldNameSafe)
 
 	if ($stmt = $mysqli->prepare("SELECT Worlds.ID FROM Worlds WHERE Worlds.NameSafe = ?"))
 	{
-		$stmt->bind_param('s', $world);
+		$stmt->bind_param('s', $worldNameSafe);
 		$stmt->execute();
 		$stmt->store_result();
 		$stmt->bind_result($worldID);
