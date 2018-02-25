@@ -77,7 +77,7 @@ echo("<p>Price per: \$$costper</p>");
 <form id='form_postbuy' action='post_buy.php' method='post'>
 	Ship to: <select name='buy_dest'>
 		<?php for ($i = 0; $i < count($bunkerIDs); $i++) { echo("<option value='".$bunkerIDs[$i]."'>Bunker ".$bunkerIDs[$i]."</option>"); } ?>
-	</select>
+	</select></br>
 	<input id='buy_amt' type='range' min='0' max='<?php echo($amtRemaining); ?>' value='<?php echo($amtRemaining); ?>' oninput='onSliderChange();'>
 	<button type='submit' value='submit' name='post_submit'>Place Order</button> 
 </form>
