@@ -34,7 +34,7 @@ function getWorldID($worldNameSafe)
 {
 	$httpReferer = tools_get_referer("index.php");
 
-	$worldID = -1
+	$worldID = -1;
 
 	if ($stmt = $mysqli->prepare("SELECT Worlds.ID FROM Worlds WHERE Worlds.NameSafe = ?"))
 	{

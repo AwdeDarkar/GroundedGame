@@ -2,6 +2,14 @@
 define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
+$httpReferer = tools_get_referer("index.php");
+
+$world = getCurrentWorld();
+$worldname = getWorldName($world);
+$facID = getFactionID(LOGGED_USER_ID, $world);
+
+$orderID = tools_sanitize_data($_GET['o']);
+
 
 //include("./template/header.php");
 //include("./template/sidebar.php");
@@ -51,4 +59,9 @@ if ($stmt = $mysqli->prepare("SELECT Factions.ID FROM Users, Factions, Worlds WH
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }*/
 
 
+displayStart();
 ?>
+
+<h1><?php echo("$orderID"); ?></h1>
+
+<?php displayEnd(); ?>
