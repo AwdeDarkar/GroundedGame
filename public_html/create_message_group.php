@@ -22,32 +22,6 @@ $facName = getFactionName($facID);
 	<h1>Create New Group</h1>
 	<h2>Selected Members: <i id="selected_members"></i></h2>
 
-<?php
-	$MemberNames = "";
-	if ($stmt = $mysqli->prepare("SELECT Factions.Name FROM Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Worlds.NameSafe = ? AND NOT Factions.ID=?"))
-	{
-		$stmt->bind_param('ss', $world, $facID);
-		$stmt->execute();
-		$stmt->store_result();
-		$stmt->bind_result($Name);
-		$counter = 0;
-		
-		while($stmt->fetch())
-		{
-			echo("
-			<p>
-				<a id=\"M" . $counter . "\" title=\"Add this member to your group\"
-				href=\"#\" onclick=\"toggle_index(" . $counter . ");return false;\">" 
-					. $Name . 
-				"</a>
-			</p>");
-			$counter++;
-			$MemberNames .= $Name . ",";
-		}
-	}
-	$MemberNames = substr($MemberNames, 0, -1); //The last character will be an unneeded ','
-?>
-
 	<script>
 		var member_names = [ <?php echo $MemberNames; ?> ];
 		var selected_names = [];
@@ -83,7 +57,7 @@ $facName = getFactionName($facID);
 		
 		function submit_group()
 		{
-			selected_names.push( <?php echo $facName; ?> );
+			selected_names.push("<?php echo $facName; ?>");
 			$.post(
 				"ajax_create_message_group.php",
 				{ "names" : selected_names, "world" : <?php echo $world; ?> },
@@ -92,6 +66,32 @@ $facName = getFactionName($facID);
 		}
 		
 	</script>
+	
+<?php
+	$MemberNames = "";
+	if ($stmt = $mysqli->prepare("SELECT Factions.Name FROM Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Worlds.NameSafe = ? AND NOT Factions.ID=?"))
+	{
+		$stmt->bind_param('ss', $world, $facID);
+		$stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($Name);
+		$counter = 0;
+		
+		while($stmt->fetch())
+		{
+			echo("
+			<p>
+				<a id=\"M" . $counter . "\" title=\"Add this member to your group\"
+				href=\"#\" onclick=\"toggle_index(" . $counter . ");return false;\">" 
+					. $Name . 
+				"</a>
+			</p>");
+			$counter++;
+			$MemberNames .= $Name . ",";
+		}
+	}
+	$MemberNames = substr($MemberNames, 0, -1); //The last character will be an unneeded ','
+?>
 </div>
 
 </body>
