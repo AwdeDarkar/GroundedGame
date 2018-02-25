@@ -9,6 +9,8 @@ function getCurrentWorld()
 		$_SESSION['world'] = $world;
 	}
 	elseif($_SESSION['world']) { $world = $_SESSION['world']; }
+
+	return $world;
 }
 
 function getWorldName($worldNameSafe)
