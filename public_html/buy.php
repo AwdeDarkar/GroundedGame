@@ -43,7 +43,7 @@ echo("<p>Price per: \$$costper</p>");
 ?>
 
 <script> 
-	var resourceName = <?php echo($resourceName); ?>;
+	var resourceName = "<?php echo($resourceName); ?>";
 	var costPer = <?php echo($costper); ?>;
 	
 	function onSliderChange()
