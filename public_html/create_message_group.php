@@ -56,7 +56,7 @@ $facName = getFactionName($facID);
 			send_names.push("<?php echo $facName; ?>");
 			$.post(
 				"ajax_create_message_group.php",
-				{ "names" : send_names, "world" : "<?php echo $world; ?>" },
+				{ "names" : JSON.stringify(send_names), "world" : "<?php echo $world; ?>" },
 				function() { window.location.href = "messages.php?w=<?php echo $world; ?>"; }
 			);	
 		}
