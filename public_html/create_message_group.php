@@ -41,6 +41,7 @@ $facName = getFactionName($facID);
 			{
 				selected_indicies.splice(inselect, 1);
 				selected_names.splice(inselect, 1);
+				var member_element = document.getElementById("M" + ind);
 				member_element.style.innerHTML = member_names[i];
 				member_element.title = "Add this member to your group";
 				var selected_members_listing = "";
