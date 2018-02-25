@@ -51,12 +51,12 @@ $facName = getFactionName($facID);
 			}
 		}
 		
-		function submit_group()
+		function submit_group(send_names)
 		{
-			selected_names.push("<?php echo $facName; ?>");
+			send_names.push("<?php echo $facName; ?>");
 			$.post(
 				"ajax_create_message_group.php",
-				{ "names" : selected_names, "world" : "<?php echo $world; ?>" },
+				{ "names" : send_names, "world" : "<?php echo $world; ?>" },
 				function() { window.location.href = "messages.php?w=<?php echo $world; ?>"; }
 			);	
 		}
@@ -93,6 +93,7 @@ $facName = getFactionName($facID);
 		var selected_names = [];
 		var selected_indicies = [];
 	</script>
+	<h3><a href="#" title="Click to create this group" onclick="submit_group(selected_names);return false;">Create Group</a></h3>
 </div>
 
 </body>
