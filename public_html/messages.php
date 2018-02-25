@@ -134,7 +134,6 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			}
 		
 		}
-	*/
 		
 		echo '
 	<div id="msgCont">
