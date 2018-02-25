@@ -10,58 +10,37 @@ $facID = getFactionID(LOGGED_USER_ID, $world);
 
 $orderID = tools_sanitize_data($_GET['o']);
 
-
-//include("./template/header.php");
-//include("./template/sidebar.php");
-
-
-
-
-
-
-/*$world = -1;
-if ($_GET['w']) 
-{ 
-	$world = tools_sanitize_data($_GET['w']); 
-	$_SESSION['world'] = $world;
-}
-elseif($_SESSION['world']) { $world = $_SESSION['world']; }
-
-$httpReferer = tools_get_referer("index.php");
-
-// get some pertinent info
-
-// get world name
-$worldname = "";
-if ($stmt = $mysqli->prepare("SELECT Name FROM Worlds WHERE NameSafe = ? LIMIT 1"))
+# get info about order
+if ($stmt = $mysqli->prepare("
+	SELECT 
+		Factions.Name, 
+		Resources.Name, 
+		Orders.AmountRemaining, 
+		Orders.Cost, 
+		Orders.DatePosted
+	FROM Orders, Factions, Resources
+	WHERE
+		Factions.ID = Orders.SellingFactionID AND
+		Resources.ID = Orders.RID AND
+		Orders.ID = ?"))
 {
-	$stmt->bind_param('s', $world);
+	$stmt->bind_param('s', $orderID);
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($worldname);
+	$stmt->bind_result($factionName, $resourceName, $amtRemaining, $cost, $datePosted);
 	$stmt->fetch();
 }
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+else { throw_msg(300, $httpReferer); }
 
-
-
-# get faction id
-$userid = LOGGED_USER_ID;
-
-if ($stmt = $mysqli->prepare("SELECT Factions.ID FROM Users, Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Factions.UserID = Users.ID AND Worlds.NameSafe = ? AND Users.ID = ?"))
-{
-	$stmt->bind_param('ss', $world, $userid);
-	$stmt->execute();
-	$stmt->store_result();
-	$stmt->bind_result($facID);
-	$stmt->fetch();
-}
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }*/
-
+$costper = (float)$cost / (float)$amtRemaining;
 
 displayStart();
+
+echo("<h1>Buy $resourceName from $factionName</h1>");
+echo("<p>Amount in sell order: $amtRemaining</p>");
+echo("<p>Total cost: \$$cost</p>");
+echo("<p>Price per: \$costper</p>");
 ?>
 
-<h1><?php echo("$orderID"); ?></h1>
 
 <?php displayEnd(); ?>
