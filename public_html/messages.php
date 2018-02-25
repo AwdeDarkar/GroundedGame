@@ -98,6 +98,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 				$GroupListing .= "</a></li>";
 			
 		}
+	}
 	
 	echo '
 	<div id="msgGroups">
