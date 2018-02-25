@@ -75,6 +75,7 @@ echo("<p>Price per: \$$costper</p>");
 
 
 <form id='form_postbuy' action='post_buy.php' method='post'>
+	<input type='hidden' id='buy_id' value='<?php echo("$orderID"); ?>'>
 	Ship to: <select name='buy_dest'>
 		<?php for ($i = 0; $i < count($bunkerIDs); $i++) { echo("<option value='".$bunkerIDs[$i]."'>Bunker ".$bunkerIDs[$i]."</option>"); } ?>
 	</select></br>
