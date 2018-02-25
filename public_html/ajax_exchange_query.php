@@ -78,7 +78,7 @@ for ($i = 0; $i < count($o_ids); $i++)
 			<td>".$o_fNames[$i]."</td>
 			<td>".$o_comments[$i]."</td>
 			<td>".$o_dates[$i]."</td>
-			<td><a href='post_buy.php?o=".$o_ids[$i]."'>Buy</a></td>
+			<td><a href='buy.php?o=".$o_ids[$i]."'>Buy</a></td>
 		</tr>");
 }
 	

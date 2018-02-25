@@ -43,4 +43,9 @@ echo("<p>Price per: \$$costper</p>");
 ?>
 
 
+<form id='form_postbuy' action='post_buy.php' method='post'>
+<input id='buy_amt' type='range' min='0' max='<?php echo($amtRemaining); ?>' value='<?php echo($amtRemaining); ?>'>
+</form>
+
+
 <?php displayEnd(); ?>
