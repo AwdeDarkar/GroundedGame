@@ -79,7 +79,7 @@ echo("<p>Price per: \$$costper</p>");
 	Ship to: <select name='buy_dest'>
 		<?php for ($i = 0; $i < count($bunkerIDs); $i++) { echo("<option value='".$bunkerIDs[$i]."'>Bunker ".$bunkerIDs[$i]."</option>"); } ?>
 	</select></br>
-	<input name='buy_amt' type='range' min='0' max='<?php echo($amtRemaining); ?>' value='<?php echo($amtRemaining); ?>' oninput='onSliderChange();'>
+	<input name='buy_amt' id='buy_amt' type='range' min='0' max='<?php echo($amtRemaining); ?>' value='<?php echo($amtRemaining); ?>' oninput='onSliderChange();'>
 	<button type='submit' value='submit' name='post_submit'>Place Order</button> 
 </form>
 <p id='buy_string'><?php echo("$amtRemaining $resourceName, \$$cost"); ?></p>
