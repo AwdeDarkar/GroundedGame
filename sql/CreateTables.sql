@@ -190,6 +190,7 @@ create table Orders (
 create table Transactions (
 	ID int unsigned primary key auto_increment,
 	RID int unsigned,
+	OID int unsigned,
 	Amount int unsigned,
 	Cost int unsigned,
 	Status tinyint,
