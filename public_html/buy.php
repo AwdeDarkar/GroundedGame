@@ -42,10 +42,25 @@ echo("<p>Total cost: \$$cost</p>");
 echo("<p>Price per: \$$costper</p>");
 ?>
 
+<script> 
+	var resourceName = <?php echo($resourceName); ?>;
+	var costPer = <?php echo($costper); ?>;
+	
+	function onSliderChange()
+	{
+		var slider = document.getElementById("buy_amt");
+		var text = document.getElementById("buy_string");
+		var amt = slider.value * costPer;
+
+		text.innerHTML = slider.value.toString() + " " + resourceName + ", $" + amt.toString();
+	}
+</script>
+
 
 <form id='form_postbuy' action='post_buy.php' method='post'>
-<input id='buy_amt' type='range' min='0' max='<?php echo($amtRemaining); ?>' value='<?php echo($amtRemaining); ?>'>
+<input id='buy_amt' type='range' min='0' max='<?php echo($amtRemaining); ?>' value='<?php echo($amtRemaining); ?>' oninput='onSliderChange();'>
 </form>
+<p id='buy_string'><?php echo("$amtRemaining $resourceName, \$$cost"); ?></p>
 
 
 <?php displayEnd(); ?>
