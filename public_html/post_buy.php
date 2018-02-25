@@ -9,15 +9,42 @@ $facID = getFactionID(LOGGED_USER_ID, $world);
 
 $orderID = tools_sanitize_data($_POST['buy_id']);
 $amount = tools_sanitize_data($_POST['buy_amt']);
-$cost = tools_sanitize_data($_POST['cost']);
+$bunkerID = tools_sanitize_data($_POST['buy_dest']);
+
+// get order information
+# get info about order
+if ($stmt = $mysqli->prepare("
+	SELECT 
+		Orders.AmountRemaining, 
+		Orders.Cost, 
+		Orders.SellingFactionID,
+		Orders.Status,
+		Orders.RID
+	FROM Orders
+	WHERE Orders.ID = ?"))
+{
+	$stmt->bind_param('s', $orderID);
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($amtRemaining, $cost, $sellingFacID, $status, $rid);
+	$stmt->fetch();
+}
+else { throw_msg(300, $httpReferer); }
 
 
-// create the production job
-$startdate = date("Y-m-d H:i:s");
-if ($stmt = $mysqli->prepare("INSERT INTO Transactions(WID, SellingFactionID, RID, AmountRemaining, Cost, DatePosted, Status, Comment) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))
+// TODO: status checking (make sure sale is valid)
+
+
+
+$costper = (float)$cost / (float)$amtRemaining;
+$totalCost = $amt*$costper;
+
+// create the transaction
+$postdate = date("Y-m-d H:i:s");
+if ($stmt = $mysqli->prepare("INSERT INTO Transactions(RID, Amount, Cost, RequestBunkerID, Status, SellingFactionID, BuyingFactionID, DatePosted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))
 {
 	$status = 0;
-	$stmt->bind_param("ssssssss", $worldID, $facID, $resourceID, $amount, $cost, $startdate, $status, $comments);
+	$stmt->bind_param("ssssssss", $rid, $amount, $totalCost, $bunkerID, $status, $sellingFacID, $facID, $postdate )
 	$result = $stmt->execute();
 }
 else { throw_msg(300, $httpReferer, "register.php", 86); }
