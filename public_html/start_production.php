@@ -8,7 +8,7 @@ $bunkerID = tools_sanitize_data($_GET['b']);
 $httpReferer = tools_get_referer("index.php");
 
 # get faction id
-$facID = getFactionID();
+$facID = getFactionID(LOGGED_USER_ID, $world);
 
 # if this bunker doesn't belong to this user, reject
 # also get pertinent data here
