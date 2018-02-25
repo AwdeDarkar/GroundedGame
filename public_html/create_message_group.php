@@ -89,7 +89,7 @@ $facName = getFactionName($facID);
 
 
 	<script>
-		var member_names = "<?php echo $MemberNames; ?>".substring(0, -1).split(",");
+		var member_names = "<?php echo $MemberNames; ?>".substring(0, "<?php echo $MemberNames; ?>".length-1).split(",");
 		var selected_names = [];
 		var selected_indicies = [];
 	</script>
