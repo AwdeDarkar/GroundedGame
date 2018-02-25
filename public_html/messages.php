@@ -5,27 +5,12 @@ include("./template/header.php");
 include("./template/sidebar.php");
 
 $sel = -1;
-if (isset($_GET['s'])) { $sel = $_GET['s']; }
+if (isset($_GET['s'])) { $sel = $_GET['s']; } //Need some nice way of checking this or someone could spy on arbitrary MessageGroups
 
-$world = -1;
-if ($_GET['w']) 
-{ 
-	$world = tools_sanitize_data($_GET['w']); 
-	$_SESSION['world'] = $world;
-}
-elseif($_SESSION['world']) { $world = $_SESSION['world']; }
-
-$userid = LOGGED_USER_ID;
-$facID = -1;
-if ($stmt = $mysqli->prepare("SELECT Factions.ID FROM Users, Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Factions.UserID = Users.ID AND Worlds.NameSafe = ? AND Users.ID = ?"))
-{
-	$stmt->bind_param('ss', $world, $userid);
-	$stmt->execute();
-	$stmt->store_result();
-	$stmt->bind_result($facID);
-	$stmt->fetch();
-}
-else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+$world = getCurrentWorld();
+$bunkerID = tools_sanitize_data($_GET['b']);
+$httpReferer = tools_get_referer("index.php");
+$facID = getFactionID(LOGGED_USER_ID, $world);
 
 /* Bad, bad code...
 $fac = -1;
@@ -133,19 +118,19 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 	{
 		$SelectedGroupMessageHistory = "";
 		if ($stmt = $mysqli->prepare("
-			SELECT Messages.Content, Messages.SrcFactionID FROM Messages, MessageGroups, MessageGroupsParticipants
-			WHERE MessageGroups.WorldID = ? AND MessageGroupsParticipants.FactionID = ? 
-			AND MessageGroups.ID = Messages.MGID AND Messages.MGID = MessageGroupsParticipants.MGID
+			SELECT Messages.Content, Factions.Name FROM Factions, Messages
+			WHERE Messages.MGID = ? AND Factions.ID = Messages.SrcFactionID
+			ORDER BY Messages.DateSent DESC
 			"))
 		{
-			$stmt->bind_param('ss', $world, $fac);
+			$stmt->bind_param('s', $sel);
 			$tempResult = $stmt->execute();  
 			$stmt->store_result();
 			$stmt->bind_result($MessageContent, $MessageSource);
 			
 			while($stmt->fetch())
 			{
-				echo "From: " . $MessageSource . "<br>" . $MessageContent . "<br><br>";
+				$SelectedGroupMessageHistory .= "<p>" . $MessageSource . ") " . $MessageContent . "</p><br>";
 			}
 		
 		}
