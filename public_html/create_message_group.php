@@ -88,7 +88,7 @@ $facName = getFactionName($facID);
 
 
 	<script>
-		var member_names = [ <?php echo $MemberNames; ?> ];
+		var member_names = [ "<?php echo $MemberNames; ?> "];
 		var selected_names = [];
 		var selected_indicies = [];
 	</script>
