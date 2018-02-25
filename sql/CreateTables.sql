@@ -1,6 +1,6 @@
-# copyright 2017 AWDE
+# copyright 2018 AWDE
 # date created: 12/26/2017
-# date edited: 12/27/2017
+# date edited: 2/24/2018
 
 drop table if exists Users;
 drop table if exists Worlds;
@@ -189,13 +189,14 @@ create table Orders (
 
 create table Transactions (
 	ID int unsigned primary key auto_increment,
-	RCID int unsigned,
+	RID int unsigned,
 	Amount int unsigned,
 	Cost int unsigned,
 	Status tinyint,
 	RequestBunkerID int unsigned,
 	SellingFactionID int unsigned,
-	BuyingFactionID int unsigned
+	BuyingFactionID int unsigned,
+	DatePosted datetime
 );
 
 create table MessageGroups (
