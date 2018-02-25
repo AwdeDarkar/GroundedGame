@@ -34,7 +34,7 @@ $facName = getFactionName($facID);
 				member_element.title = "Remove this member from your group";
 				var selected_members_listing = "";
 				for(i = 0; i < selected_indicies.length; i++)
-					selected_members_listing += member_names[i] + " ";
+					selected_members_listing += member_names[selected_indicies[i]] + " ";
 				document.getElementById("selected_members").innerHTML = selected_members_listing;
 			}
 			else
@@ -46,7 +46,7 @@ $facName = getFactionName($facID);
 				member_element.title = "Add this member to your group";
 				var selected_members_listing = "";
 				for(i = 0; i < selected_indicies.length; i++)
-					selected_members_listing += member_names[i] + " ";
+					selected_members_listing += member_names[selected_indicies[i]] + " ";
 				document.getElementById("selected_members").innerHTML = selected_members_listing;
 			}
 		}
@@ -89,7 +89,7 @@ $facName = getFactionName($facID);
 
 
 	<script>
-		var member_names = [ "<?php echo $MemberNames; ?> "];
+		var member_names = "<?php echo $MemberNames; ?>".substring(0, -1).split(",");
 		var selected_names = [];
 		var selected_indicies = [];
 	</script>
