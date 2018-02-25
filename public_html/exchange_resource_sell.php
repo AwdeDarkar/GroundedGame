@@ -50,13 +50,6 @@ if ($stmt = $mysqli->prepare("SELECT Resources.ID, Resources.Name FROM Resources
 displayStart();
 ?>
 
-<body>
-<div id='topbar'></div>
-<div id='leftbar'></div>
-<div id='rightbar'></div>
-<div id='bottombar'></div>
-
-<div class="content">
 <h1>Post Resource Sell</h1>
 
 <form id='form_postsell' action='post_sell.php' method='post'>
