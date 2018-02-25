@@ -58,8 +58,8 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 	$MessageGroups = "";
 	$SelectedGroupName = "";
 	if($stmt = $mysqli->prepare("
-		SELECT MessageGroups.ID FROM MessageGroups, MessageGroupsParticipants
-		WHERE MessageGroups.ID = MessageGroupParticipants.MGID AND MessageGroups.WorldID = ? AND MessageGroupParticipants.FactionID = ?
+		SELECT MessageGroups.ID FROM MessageGroups, MessageGroupsParticipants, Worlds
+		WHERE MessageGroups.ID = MessageGroupParticipants.MGID AND MessageGroups.WorldID = Worlds.ID AND Worlds.NameSafe = ? AND MessageGroupParticipants.FactionID = ?
 		"))
 	{
 		$stmt->bind_param('ss', $world, $facID);
@@ -102,7 +102,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 	
 	echo '
 	<div id="msgGroups">
-		<a href="nowhere">New Group</a>
+		<a href="create_message_group.php?w=' . $world . '">New Group</a>
 		<ul>
 			' . $GroupListing . '
 		</ul>
@@ -112,7 +112,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 	{
 		echo
 		'<div id="msgCont">
-			<h3>Select a message group to view on the right or <a href="nowhere">Create a New One</a>.
+			<h3>Select a message group to view on the right or create a new one.
 		</div>';
 	}
 	else
