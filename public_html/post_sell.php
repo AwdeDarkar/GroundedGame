@@ -5,6 +5,7 @@ include("../includes/common.php");
 $httpReferer = tools_get_referer("index.php");
 $world = getCurrentWorld();
 $facID = getFactionID(LOGGED_USER_ID, $world);
+$worldID = getWorldID($world);
 
 
 $resourceID = tools_sanitize_data($_POST['resource']);
