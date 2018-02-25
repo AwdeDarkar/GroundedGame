@@ -6,6 +6,7 @@ $httpReferer = tools_get_referer("index.php");
 $world = getCurrentWorld();
 $facID = getFactionID(LOGGED_USER_ID, $world);
 
+var_dump($_POST);
 
 $orderID = tools_sanitize_data($_POST['buy_id']);
 $amount = tools_sanitize_data($_POST['buy_amt']);
@@ -31,6 +32,7 @@ if ($stmt = $mysqli->prepare("
 }
 else { throw_msg(300, $httpReferer); }
 
+echo("sfid:$sellingFacID");
 
 // TODO: status checking (make sure sale is valid)
 
@@ -41,12 +43,12 @@ $totalCost = $amt*$costper;
 
 // create the transaction
 $postdate = date("Y-m-d H:i:s");
-if ($stmt = $mysqli->prepare("INSERT INTO Transactions(RID, Amount, Cost, RequestBunkerID, Status, SellingFactionID, BuyingFactionID, DatePosted) VALUES (?, ?, ?, ?, ?, ?, ?, ?)"))
+if ($stmt = $mysqli->prepare("INSERT INTO Transactions(OID, RID, Amount, Cost, RequestBunkerID, Status, SellingFactionID, BuyingFactionID, DatePosted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"))
 {
 	$status = 0;
-	$stmt->bind_param("ssssssss", $rid, $amount, $totalCost, $bunkerID, $status, $sellingFacID, $facID, $postdate);
+	$stmt->bind_param("sssssssss", $orderID, $rid, $amount, $totalCost, $bunkerID, $status, $sellingFacID, $facID, $postdate);
 	$result = $stmt->execute();
 }
 else { throw_msg(300, $httpReferer, "register.php", 86); }
 
-throw_msg(100, "exchange.php");
+#throw_msg(100, "exchange.php");
