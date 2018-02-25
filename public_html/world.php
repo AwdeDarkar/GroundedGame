@@ -59,6 +59,6 @@ getFactionList();
 getBunkerList();
 </script>
 
-	<p><?php echo("$world"); ?>
+	<p><?php echo("YEAH: $world"); ?></p>
 
 <?php displayEnd(); ?>
