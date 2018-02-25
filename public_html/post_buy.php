@@ -6,8 +6,6 @@ $httpReferer = tools_get_referer("index.php");
 $world = getCurrentWorld();
 $facID = getFactionID(LOGGED_USER_ID, $world);
 
-var_dump($_POST);
-
 $orderID = tools_sanitize_data($_POST['buy_id']);
 $amount = tools_sanitize_data($_POST['buy_amt']);
 $bunkerID = tools_sanitize_data($_POST['buy_dest']);
@@ -32,7 +30,6 @@ if ($stmt = $mysqli->prepare("
 }
 else { throw_msg(300, $httpReferer); }
 
-echo("sfid:$sellingFacID");
 
 // TODO: status checking (make sure sale is valid)
 
@@ -51,4 +48,26 @@ if ($stmt = $mysqli->prepare("INSERT INTO Transactions(OID, RID, Amount, Cost, R
 }
 else { throw_msg(300, $httpReferer, "register.php", 86); }
 
-#throw_msg(100, "exchange.php");
+
+$newStatus = 0;
+if ($amtRemaining - $amount == 0)
+{
+	$newStatus = -1;
+}
+
+// update order
+if ($stmt = $mysqli->prepare("
+	UPDATE Orders
+	SET
+		AmountRemaining = AmountRemaining - ?,
+		Cost = Cost - ?,
+		Status = ?
+	WHERE ID = ?"))
+{
+	$stmt->bind_param("ssss", $amount, $totalCost, $newStatus, $orderID);
+	$result = $stmt->execute();
+}
+else { throw_msg(300, $httpReferer, "register.php", 86); }
+
+
+throw_msg(100, "exchange.php");
