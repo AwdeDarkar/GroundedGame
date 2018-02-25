@@ -17,7 +17,7 @@ if(isset($_POST["names"]) && isset($_POST["world"]))
 	$NamesList = json_decode($_POST["names"]);
 	foreach($NamesList as &$Name)
 	{
-		if ($stmt = $mysqli->prepare("INSERT INTO MessageGroupParticipants(MGID, FactionID) SELECT ?, Factions.ID FROM Factions WHERE Faction.Name = ?")
+		if ($stmt = $mysqli->prepare("INSERT INTO MessageGroupParticipants(MGID, FactionID) SELECT ?, Factions.ID FROM Factions WHERE Faction.Name = ?"))
 		{
 			$stmt->bind_param("ss", $groupID, $Name);
 			$result = $stmt->execute();
