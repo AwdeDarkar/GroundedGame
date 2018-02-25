@@ -32,6 +32,23 @@ if ($stmt = $mysqli->prepare("
 }
 else { throw_msg(300, $httpReferer); }
 
+# get all owned bunkers
+$bunkerIDs = array();
+if ($stmt = $mysqli->prepare("SELECT Bunkers.ID FROM Bunkers WHERE Bunkers.FactionID = ?"))
+{
+	$stmt->bind_param('s', $facID);
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($bid);
+	while ($stmt->fetch())
+	{
+		array_push($bunkerIDs, $bid);
+	}
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+
+
+
 $costper = (float)$cost / (float)$amtRemaining;
 
 displayStart();
@@ -58,7 +75,11 @@ echo("<p>Price per: \$$costper</p>");
 
 
 <form id='form_postbuy' action='post_buy.php' method='post'>
-<input id='buy_amt' type='range' min='0' max='<?php echo($amtRemaining); ?>' value='<?php echo($amtRemaining); ?>' oninput='onSliderChange();'>
+	Ship to: <select name='buy_dest'>
+		<?php for ($i = 0; $i < count($bunkerIDs); $i++) { echo("<option value='".$bunkerIDs[$i]."'>Bunker ".$bunkerIDs[$i]."</option>"); } ?>
+	</select>
+	<input id='buy_amt' type='range' min='0' max='<?php echo($amtRemaining); ?>' value='<?php echo($amtRemaining); ?>' oninput='onSliderChange();'>
+	<button type='submit' value='submit' name='post_submit'>Place Order</button> 
 </form>
 <p id='buy_string'><?php echo("$amtRemaining $resourceName, \$$cost"); ?></p>
 

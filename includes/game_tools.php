@@ -76,6 +76,27 @@ function getFactionID($userID, $worldNameSafe)
 	return $factionID;
 }
 
+function getFactionName($facID)
+{
+	global $mysqli;
+	
+	$httpReferer = tools_get_referer("index.php");
+
+	$factionName = "";
+
+	if ($stmt = $mysqli->prepare("SELECT Factions.Name FROM Factions WHERE Factions.ID = ?"))
+	{
+		$stmt->bind_param('s', $facID);
+		$stmt->execute();
+		$stmt->store_result();
+		$stmt->bind_result($factionName);
+		$stmt->fetch();
+	}
+	else { throw_msg(300, $httpReferer); }
+
+	return $factionName;
+}
+
 function displayStart()
 {
 	include_once("template/header.php");
