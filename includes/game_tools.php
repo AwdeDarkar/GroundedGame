@@ -9,10 +9,14 @@ function getCurrentWorld()
 		$_SESSION['world'] = $world;
 	}
 	elseif($_SESSION['world']) { $world = $_SESSION['world']; }
+
+	return $world;
 }
 
 function getWorldName($worldNameSafe)
 {
+	global $mysqli;
+	
 	$httpReferer = tools_get_referer("index.php");
 	
 	// get world name
@@ -32,6 +36,8 @@ function getWorldName($worldNameSafe)
 
 function getWorldID($worldNameSafe)
 {
+	global $mysqli;
+	
 	$httpReferer = tools_get_referer("index.php");
 
 	$worldID = -1;
@@ -51,6 +57,8 @@ function getWorldID($worldNameSafe)
 
 function getFactionID($userID, $worldNameSafe)
 {
+	global $mysqli;
+	
 	$httpReferer = tools_get_referer("index.php");
 
 	$factionID = -1;
