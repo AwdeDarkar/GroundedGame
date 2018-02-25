@@ -4,6 +4,7 @@ include("../includes/common.php");
 
 $world = getCurrentWorld();
 $worldID = getWorldID($world);
+$httpReferer = tools_get_referer("index.php");
 
 $o_ids = array();
 $o_rNames = array();
@@ -50,7 +51,6 @@ if ($stmt = $mysqli->prepare("
 	}
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
-
 
 ?>
 
