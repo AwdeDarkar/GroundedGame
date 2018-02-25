@@ -52,6 +52,7 @@ if ($stmt = $mysqli->prepare("
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
+echo("World: $world");
 
 ?>
 
