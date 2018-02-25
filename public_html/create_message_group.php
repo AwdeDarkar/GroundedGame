@@ -41,7 +41,7 @@ $facName = getFactionName($facID);
 			{
 				selected_indicies.splice(inselect, 1);
 				selected_names.splice(inselect, 1);
-				member_element.style.innerHTML.substring(0,-2);
+				member_element.style.innerHTML = member_names[i];
 				member_element.title = "Add this member to your group";
 				var selected_members_listing = "";
 				for(i = 0; i < selected_indicies.length; i++)
@@ -83,7 +83,7 @@ $facName = getFactionName($facID);
 			$MemberNames .= $Name . ",";
 		}
 	}
-	$MemberNames = substr($MemberNames, 0, -1); //The last character will be an unneeded ','
+	//$MemberNames = substr($MemberNames, 0, -1); //The last character will be an unneeded ','
 ?>
 
 
