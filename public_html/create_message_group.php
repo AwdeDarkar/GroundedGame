@@ -30,7 +30,7 @@ $facName = getFactionName($facID);
 				selected_indicies.push(ind);
 				selected_names.push(member_names[ind]);
 				var member_element = document.getElementById("M" + ind);
-				member_element.style.fontWeight="bold";
+				member_element.innerHTML += " *";
 				member_element.title = "Remove this member from your group";
 				var selected_members_listing = "";
 				for(i = 0; i < selected_indicies.length; i++)
@@ -41,7 +41,7 @@ $facName = getFactionName($facID);
 			{
 				selected_indicies.splice(inselect, 1);
 				selected_names.splice(inselect, 1);
-				member_element.style.fontWeight="bold";
+				member_element.style.innerHTML.substring(0,-2);
 				member_element.title = "Add this member to your group";
 				var selected_members_listing = "";
 				for(i = 0; i < selected_indicies.length; i++)
@@ -55,7 +55,7 @@ $facName = getFactionName($facID);
 			selected_names.push("<?php echo $facName; ?>");
 			$.post(
 				"ajax_create_message_group.php",
-				{ "names" : selected_names, "world" : <?php echo $world; ?> },
+				{ "names" : selected_names, "world" : "<?php echo $world; ?>" },
 				function() { window.location.href = "messages.php?w=<?php echo $world; ?>"; }
 			);	
 		}
