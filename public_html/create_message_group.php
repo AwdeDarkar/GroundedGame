@@ -21,12 +21,7 @@ $facName = getFactionName($facID);
 
 	<h1>Create New Group</h1>
 	<h2>Selected Members: <i id="selected_members"></i></h2>
-
 	<script>
-		var member_names = [ <?php echo $MemberNames; ?> ];
-		var selected_names = [];
-		var selected_indicies = [];
-		
 		function toggle_index(ind)
 		{
 			var inselect = selected_indicies.indexOf(ind);
@@ -64,9 +59,7 @@ $facName = getFactionName($facID);
 				function() { window.location.href = "messages.php?w=<?php echo $world; ?>"; }
 			);	
 		}
-		
 	</script>
-	
 <?php
 	$MemberNames = "";
 	if ($stmt = $mysqli->prepare("SELECT Factions.Name FROM Factions, Worlds WHERE Factions.WorldID = Worlds.ID AND Worlds.NameSafe = ? AND NOT Factions.ID=?"))
@@ -92,6 +85,13 @@ $facName = getFactionName($facID);
 	}
 	$MemberNames = substr($MemberNames, 0, -1); //The last character will be an unneeded ','
 ?>
+
+
+	<script>
+		var member_names = [ <?php echo $MemberNames; ?> ];
+		var selected_names = [];
+		var selected_indicies = [];
+	</script>
 </div>
 
 </body>
