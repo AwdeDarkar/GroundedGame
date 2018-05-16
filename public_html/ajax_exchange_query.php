@@ -15,6 +15,7 @@ $o_costpers = array();
 $o_dates = array();
 $o_statuses = array();
 $o_comments = array();
+
 // query all exchanges by default
 if ($stmt = $mysqli->prepare("
 	SELECT 
@@ -30,7 +31,8 @@ if ($stmt = $mysqli->prepare("
 	WHERE
 		Resources.ID = Orders.RID AND
 		Factions.ID = Orders.SellingFactionID AND
-		Orders.WID = ?"))
+		Orders.WID = ? AND
+		Orders.Status != -1"))
 {
 	$stmt->bind_param('s', $worldID);
 	$stmt->execute();
