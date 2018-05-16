@@ -76,7 +76,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			
 			if($stmt0 = $mysqli->prepare("
 				SELECT Factions.Name FROM Factions, MessageGroupParticipants
-				WHERE Factions.ID = MessageGroupParticipants.FactionID AND MessaheGroupParticipants.MGID = ?
+				WHERE Factions.ID = MessageGroupParticipants.FactionID AND MessageGroupsParticipants.MGID = ?
 				"))
 			{
 				$stmt0->bind_param('s', $MessageGroup);
