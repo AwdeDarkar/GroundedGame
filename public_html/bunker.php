@@ -111,7 +111,7 @@ if ($stmt = $mysqli->prepare("
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 # remove all deployed equipment from displayed resource collections
-for ($i = 0; $i < count($equip_ids); $i++)
+/*for ($i = 0; $i < count($equip_ids); $i++)
 {
 	$removeFrom = $equip_rcids[$i]; 
 	# find it in rc
@@ -119,7 +119,7 @@ for ($i = 0; $i < count($equip_ids); $i++)
 	{
 		if ($rc_ids[$j] == $removeFrom) { $rc_amts[$j]--; }
 	}
-}
+}*/
 
 
 # query all production jobs
