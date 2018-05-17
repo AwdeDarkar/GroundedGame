@@ -8,9 +8,22 @@ function getCurrentWorld()
 		$world = tools_sanitize_data($_GET['w']); 
 		$_SESSION['world'] = $world;
 	}
-	elseif($_SESSION['world']) { $world = $_SESSION['world']; }
+	elseif ($_SESSION['world']) { $world = $_SESSION['world']; }
 
 	return $world;
+}
+
+function getCurrentBunker()
+{
+	$bunkerID = -1;
+	if ($_get['b'])
+	{
+		$bunkerID = tools_sanitize_data($_GET['b']);
+		$_SESSION['bunker'] = $bunkerID;
+	}
+	elseif ($_SESSION['bunker']) { $bunkerID = $_SESSION['bunker']; }
+	
+	return $bunkerID;
 }
 
 function getWorldName($worldNameSafe)

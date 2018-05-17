@@ -3,7 +3,8 @@ define(PERMISSION_LEVEL, 1);
 include("../includes/common.php");
 
 $world = getCurrentWorld();
-$bunkerID = tools_sanitize_data($_GET['b']);
+#$bunkerID = tools_sanitize_data($_GET['b']);
+$bunkerID = getCurrentBunker();
 $httpReferer = tools_get_referer("index.php");
 $facID = getFactionID(LOGGED_USER_ID, $world);
 
