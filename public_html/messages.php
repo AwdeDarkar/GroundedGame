@@ -134,7 +134,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			
 			while($stmt->fetch())
 			{
-				$SelectedGroupMessageHistory .= "<p>" . $MessageSource . ") " . $MessageContent . "</p><br>";
+				$SelectedGroupMessageHistory .= "<p>" . $MessageSource . ") " . $MessageContent . "</p>";
 			}
 		
 		}
@@ -148,7 +148,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 		<form action="/send_message.php" id="msgComposer" method="post">
 			<textarea name="comment" form="msgComposer">Enter text here...</textarea>
 			<input type="hidden" name="mgid" value="' . $sel . '">
-			<input type="hidden" name="fac" value="' . $facID . '">
+			<input type="hidden" name="fac" value="' . $facID . '"><br><br><br><br>
 			<input type="submit">
 		</form>
 
