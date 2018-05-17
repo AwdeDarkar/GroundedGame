@@ -16,7 +16,7 @@ function getCurrentWorld()
 function getCurrentBunker()
 {
 	$bunkerID = -1;
-	if ($_get['b'])
+	if ($_GET['b'])
 	{
 		$bunkerID = tools_sanitize_data($_GET['b']);
 		$_SESSION['bunker'] = $bunkerID;

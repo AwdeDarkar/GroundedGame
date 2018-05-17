@@ -8,8 +8,8 @@ $bunkerID = getCurrentBunker();
 $httpReferer = tools_get_referer("index.php");
 $facID = getFactionID(LOGGED_USER_ID, $world);
 
-echo("<p>$bunkerID</p>");
-return;
+#echo("<p>$bunkerID</p>");
+#return;
 
 # if this bunker doesn't belong to this user, reject
 # also get pertinent data here
