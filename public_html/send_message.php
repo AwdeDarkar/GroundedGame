@@ -31,5 +31,5 @@ if( isset($_POST["comment"]) && isset($_POST["mgid"]) && isset($_POST["fac"]) )
 	
 }
 else { echo "oops"; }
-echo "<script> window.location.replace(" . $_SERVER['HTTP_REFERER'] . ");</script>";
+echo "<script> window.location.replace(\"" . $_SERVER['HTTP_REFERER'] . "\");</script>";
 ?>
