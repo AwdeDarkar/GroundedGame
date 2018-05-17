@@ -38,6 +38,10 @@ else { throw_msg(300, $httpReferer); }
 $costper = (float)$cost / (float)$amtRemaining;
 $totalCost = $amt*$costper;
 
+echo("<p>".$costper."</p>");
+echo("<p>".$totalCost."</p>");
+return;
+
 // create the transaction
 $postdate = date("Y-m-d H:i:s");
 if ($stmt = $mysqli->prepare("INSERT INTO Transactions(OID, RID, Amount, Cost, RequestBunkerID, Status, SellingFactionID, BuyingFactionID, DatePosted) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)"))
