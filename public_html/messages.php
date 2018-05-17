@@ -91,7 +91,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 						$SelectedGroupName .= $ParticipantFaction  . " ";
 				}
 			}
-			else { throw_msg(300, $httpReferer, "messages.php", 104); }
+			else { throw_msg(300, $httpReferer, "messages.php", 94); }
 			
 			if($MessageGroup == $sel)
 				$GroupListing .= "</li>";
@@ -100,7 +100,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			
 		}
 	}
-	else { throw_msg(300, $httpReferer, "messages.php", 104); }
+	else { throw_msg(300, $httpReferer, "messages.php", 103); }
 	
 	echo '
 	<div id="msgGroups">
@@ -144,8 +144,8 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 		' . $SelectedGroupMessageHistory . '
 		
 		<textarea name="comment" form="msgComposer">Enter text here...</textarea>
-		<form action="/send_message.php" id="msgComposer">
-			Name: <input type="text" name="usrname">
+		<form action="/send_message.php" id="msgComposer" method="post">
+			Name: <input type="text" name="usrname"><br>
 			<input type="submit">
 		</form>
 
