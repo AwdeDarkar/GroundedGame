@@ -57,6 +57,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 	$GroupListing = "";
 	$MessageGroups = "";
 	$SelectedGroupName = "";
+	$SelectedMGID = -1;
 	if($stmt = $mysqli->prepare("
 		SELECT MessageGroups.ID FROM MessageGroups, MessageGroupParticipants, Worlds
 		WHERE MessageGroups.ID = MessageGroupParticipants.MGID AND MessageGroups.WorldID = Worlds.ID AND Worlds.NameSafe = ? AND MessageGroupParticipants.FactionID = ?
@@ -143,9 +144,11 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 		<h3>' . $SelectedGroupName . '</h3>
 		' . $SelectedGroupMessageHistory . '
 		
-		<textarea name="comment" form="msgComposer">Enter text here...</textarea>
+		
 		<form action="/send_message.php" id="msgComposer" method="post">
-			Name: <input type="text" name="usrname"><br>
+			<textarea name="comment" form="msgComposer">Enter text here...</textarea>
+			<input type="hidden" name="mgid" value="' . $sel . '">
+			<input type="hidden" name="fac" value="' . $facID . '">
 			<input type="submit">
 		</form>
 
