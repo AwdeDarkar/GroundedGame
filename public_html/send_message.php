@@ -4,11 +4,11 @@ include("../includes/common.php");
 
 echo var_dump($_POST);
 
-if(isset($_POST["comment"]) && isset($_POST["mgid"]) && isset($_POST["fac"]))
+if( isset($_POST["comment"]) && isset($_POST["mgid"]) && isset($_POST["fac"]) )
 {
 	$text = $_POST["comment"];
 	$mgid = $_POST["mgid"];
-	$fac = $_POST["fac"]
+	$fac = $_POST["fac"];
 	
 	//$worldID = getWorldID($_POST["world"]);
 	if ($stmt = $mysqli->prepare("INSERT INTO Messages(SrcFactionID, MGID, DateSent, Content) VALUES (?, ?, ?, ?)"))
