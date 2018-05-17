@@ -76,7 +76,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			
 			if($stmt0 = $mysqli->prepare("
 				SELECT Factions.Name FROM Factions, MessageGroupParticipants
-				WHERE Factions.ID = MessageGroupParticipants.FactionID AND MessageGroupsParticipants.MGID = ?
+				WHERE Factions.ID = MessageGroupParticipants.FactionID AND MessageGroupParticipants.MGID = ?
 				"))
 			{
 				$stmt0->bind_param('s', $MessageGroup);
@@ -91,6 +91,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 						$SelectedGroupName .= $ParticipantFaction  . " ";
 				}
 			}
+			else { throw_msg(300, $httpReferer, "messages.php", 104); }
 			
 			if($MessageGroup == $sel)
 				$GroupListing .= "</li>";
