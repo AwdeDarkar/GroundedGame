@@ -38,9 +38,8 @@ else { throw_msg(300, $httpReferer); }
 $costper = (float)$cost / (float)$amtRemaining;
 $totalCost = $amount*$costper;
 
-echo("<p>".$costper."</p>");
-echo("<p>".$totalCost."</p>");
-return;
+#echo("<p>".$costper."</p>");
+#echo("<p>".$totalCost."</p>");
 
 // create the transaction
 $postdate = date("Y-m-d H:i:s");
