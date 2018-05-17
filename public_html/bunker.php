@@ -185,7 +185,7 @@ for ($i = 0; $i < count($rc_ids); $i++)
 		if ($rc_types[$i] == 2) 
 		{ 
 			echo("<td>(Equipment)</td>"); 
-			echo("<td><a href='#'>Deploy</a></td>");
+			echo("<td><a href='deploy.php?rcid=".$rc_ids[$i]."'>Deploy</a></td>");
 		}
 		else { echo("<td></td>"); }
 		echo("</tr>");
