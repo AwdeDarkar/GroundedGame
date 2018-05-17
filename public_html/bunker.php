@@ -82,7 +82,7 @@ if ($stmt = $mysqli->prepare("
 		Equipment.ID,
 		Equipment.RCID,
 		Equipment.ResourceID,
-		Resources.Name,
+		Resources.Name
 	FROM
 		Resources,
 		ResourceCollections,
