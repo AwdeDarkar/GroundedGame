@@ -36,7 +36,7 @@ else { throw_msg(300, $httpReferer); }
 
 
 $costper = (float)$cost / (float)$amtRemaining;
-$totalCost = $amt*$costper;
+$totalCost = $amount*$costper;
 
 echo("<p>".$costper."</p>");
 echo("<p>".$totalCost."</p>");
