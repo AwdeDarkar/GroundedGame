@@ -6,9 +6,9 @@ echo var_dump($_POST);
 
 if( isset($_POST["comment"]) && isset($_POST["mgid"]) && isset($_POST["fac"]) )
 {
-	$text = $_POST["comment"];
-	$mgid = $_POST["mgid"];
-	$fac = $_POST["fac"];
+	$text = tools_sanitize_data($_POST["comment"]);
+	$mgid = tools_sanitize_data($_POST["mgid"]);
+	$fac = tools_sanitize_data($_POST["fac"]);
 	
 	//$worldID = getWorldID($_POST["world"]);
 	if ($stmt = $mysqli->prepare("INSERT INTO Messages(SrcFactionID, MGID, DateSent, Content) VALUES (?, ?, ?, ?)"))
@@ -31,4 +31,5 @@ if( isset($_POST["comment"]) && isset($_POST["mgid"]) && isset($_POST["fac"]) )
 	
 }
 else { echo "oops"; }
+echo "<script> window.location.replace(" . $_SERVER['HTTP_REFERER'] . ");</script>";
 ?>
