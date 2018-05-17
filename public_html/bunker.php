@@ -205,7 +205,7 @@ for ($i = 0; $i < count($rc_ids); $i++)
 		<th>Type</th>
 	</tr>
 <?php
-for($i; $i < count($equip_ids); $i++)
+for($i = 0; $i < count($equip_ids); $i++)
 {
 	echo("
 		<tr>
