@@ -51,14 +51,14 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			echo "From: " . $MessageSource . "<br>" . $MessageContent . "<br><br>";
 		}
 		
-	}
+		}?[M
 	*/
 	
 	$GroupListing = "";
 	$MessageGroups = "";
 	$SelectedGroupName = "";
 	if($stmt = $mysqli->prepare("
-		SELECT MessageGroups.ID FROM MessageGroups, MessageGroupsParticipants, Worlds
+		SELECT MessageGroups.ID FROM MessageGroups, MessageGroupParticipants, Worlds
 		WHERE MessageGroups.ID = MessageGroupParticipants.MGID AND MessageGroups.WorldID = Worlds.ID AND Worlds.NameSafe = ? AND MessageGroupParticipants.FactionID = ?
 		"))
 	{
@@ -99,6 +99,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			
 		}
 	}
+	else { throw_msg(300, $httpReferer, "messages.php", 104); }
 	
 	echo '
 	<div id="msgGroups">
