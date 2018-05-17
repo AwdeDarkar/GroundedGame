@@ -70,7 +70,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 		while($stmt->fetch())
 		{
 			if($MessageGroup == $sel)
-				$GroupListing .= "<li> >";
+				$GroupListing .= "<li>";
 			else
 				$GroupListing .= "<li><a href=messages.php?w=" . $world . "&s=" . $MessageGroup . ">";
 			
