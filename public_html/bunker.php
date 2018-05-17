@@ -73,6 +73,49 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
 
 # query all equipment
+$equip_ids = array();
+$equip_rcids = array();
+$equip_rids = array();
+$equip_names = array();
+if ($stmt = $mysqli->prepare("
+	SELECT 
+		Equipment.ID,
+		Equipment.RCID,
+		Equipment.ResourceID,
+		Resources.Name,
+	FROM
+		Resources,
+		ResourceCollections,
+		Equipment
+	WHERE
+		Resources.ID = ResourceCollections.ResourceID AND
+		ResourceCollections.BunkerID = ? AND
+		ResourceCollections.ID = Equipment.RCID"))
+{
+	$stmt->bind_param('s', $bunkerID);
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($id, $rcid, $rid, $name);
+	while ($stmt->fetch())
+	{
+		array_push($equip_ids, $id);
+		array_push($equip_rcids, $rcid);
+		array_push($equip_rids, $rid);
+		array_push($equip_names, $name);
+	}
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+
+# remove all deployed equipment from displayed resource collections
+for ($i = 0; $i < count($equip_ids); $i++)
+{
+	$removeFrom = $equip_rcids[$i]; 
+	# find it in rc
+	for ($j = 0; $j < count($rc_ids); $j++)
+	{
+		if ($rc_ids[$j] == $removeFrom) { $rc_amts[$j]--; }
+	}
+}
 
 
 # query all production jobs
@@ -132,16 +175,43 @@ for ($i = 0; $i < count($rd_ids); $i++)
 <?php
 for ($i = 0; $i < count($rc_ids); $i++)
 {
-	echo("
-		<tr>
-			<td>".$rc_names[$i]."</td>
-			<td>".$rc_amts[$i]."</td>");
-	if ($rc_types[$i] == 2) { echo("<td>(Equipment)</td>"); }
-	else { echo("<td></td>"); }
-	echo("</tr>");
+	# only display if not deployed/active
+	if ($rc_amts[$i] > 0)
+	{
+		echo("
+			<tr>
+				<td>".$rc_names[$i]."</td>
+				<td>".$rc_amts[$i]."</td>");
+		if ($rc_types[$i] == 2) 
+		{ 
+			echo("<td>(Equipment)</td>"); 
+			echo("<td><a href='#'>Deploy</a></td>")
+		}
+		else { echo("<td></td>"); }
+		echo("</tr>");
+	}
 }
 ?>
 </table>
+
+
+<h3>Equipment</h3>
+<table>
+	<tr>
+		<th>Type</th>
+	</tr>
+<?php
+for($i; $i < count($equip_ids); $i++)
+{
+	echo("
+		<tr>
+			<td>".$equip_names[$i]."</td>
+			<td><a href='#'>Pack</td>
+		</tr>");
+}
+?>
+</table>
+
 
 <p><a href='start_production.php?w=<?php echo("$world"); ?>&b=<?php echo("$bunkerID"); ?>'>Start Production Job</a></p>
 

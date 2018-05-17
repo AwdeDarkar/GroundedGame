@@ -168,6 +168,8 @@ for ($i = 0; $i < count($ids); $i++)
 			else { echo("<option value='1'>Output</option>"); }
 			if ($pctypes[$j] == 2) { echo("<option value='2' selected>Equipment</option>"); }
 			else { echo("<option value='2'>Equipment</option>"); }
+			if ($pctypes[$j] == 3) { echo("<option value='3' selected>Actor</option>"); }
+			else { echo("<option value='3'>Actor</option>"); }
 
 
 			echo("

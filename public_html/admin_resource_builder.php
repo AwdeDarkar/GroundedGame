@@ -4,9 +4,11 @@ include("../includes/common.php");
 
 $httpReferer = tools_get_referer("index.php");
 
-// type: 1 = natural resource
+// type: 
 // 0 = none
+// 1 = natural resource
 // 2 = equipment
+// 3 = actor
 
 // query all resource collections
 $ids = array();
@@ -106,6 +108,8 @@ for ($i = 0; $i < count($ids); $i++)
 	else { echo("<option value='1'>Natural</option>"); }
 	if ($types[$i] == 2) { echo("<option value='2' selected>Equipment</option>"); }
 	else { echo("<option value='2'>Equipment</option>"); }
+	if ($types[$i] == 3) { echo("<option value='3' selected>Actor</option>"); }
+	else { echo("<option value='3'>Actor</option>"); }
 
 
 	echo("
@@ -129,6 +133,7 @@ for ($i = 0; $i < count($ids); $i++)
 				<option value='0' selected>Regular</option>
 				<option value='1'>Natural</option>
 				<option value='2'>Equipment</option>
+				<option value='3'>Actor</option>
 			</select>
 		</td>
 
