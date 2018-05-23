@@ -158,6 +158,36 @@ table, th, td
 	}
 }
 
+.button
+{
+	background-color: $(black-char);
+	border-style: solid;
+	border-width: 2px;
+	border-color: $(green);
+	
+	color: $(green);
+	text-shadow: 0 0 10px $(light-green)77;
+	box-shadow:  0 0 10px $(light-green)77;
+	font-family: $(nova);
+	
+	cursor: pointer;
+}
+
+.button:hover
+{
+	background-color: $(black-char);
+	border-style: solid;
+	border-width: 2px;
+	border-color: $(light-green);
+	
+	color: $(light-green);
+	text-shadow: 0 0 10px $(lighter-green)77;
+	box-shadow:  0 0 10px $(lighter-green)77;
+	font-family: $(nova);
+	
+	cursor: pointer;
+}
+
 /* specific to one page */
 
 	/* messages.php */
