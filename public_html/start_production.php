@@ -309,14 +309,14 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 				if ($processComponentIDs[$k] == $pcIDs[$j]) 
 				{ 
 					$foundRes = true;
-					echo("type: ".$pcTypes[$j]);
+					//echo("type: ".$pcTypes[$j]);
 					
 					# equipment component
 					if ($pcTypes[$j] == 2)
 					{
-						echo("|".$processResourceIDs[$k]."|");
+						//echo("|".$processResourceIDs[$k]."|");
 						$equipments = $equipment[(string)($processResourceIDs[$k])];
-						var_dump($equipments);
+						//var_dump($equipments);
 						for($m = 0; $m < count($equipments); $m++)
 						{
 							$ownedString .= "<button id='btn".$pcProcessIDs[$j]."_".$processResourceIDs[$k]."_".$equipments[$m]."' type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",1,".$pcIDs[$j].",".$equipments[$m].");'>1</button>";
