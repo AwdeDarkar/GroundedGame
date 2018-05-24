@@ -175,7 +175,7 @@ table, th, td
 	cursor: pointer;
 }
 
-.button:hover
+input
 {
 	background-color: $(black-char);
 	border-color: $(light-green);
@@ -186,7 +186,7 @@ table, th, td
 	box-shadow:  inset 0 0 10px $(lighter-green)77;
 }
 
-.burron:focus
+input:focus
 {
 	outline: 0;
 }

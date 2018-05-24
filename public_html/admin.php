@@ -23,7 +23,7 @@ function checkCreateWorldForm()
 
 <form id='form_createworld' action='admin_action.php' onsubmit='return checkCreateWorldForm();' method='post'>
 	<input type='text' placeholder='World Name' name='cw_worldname' id='cw_worldname' /></br></br>
-	<input type='submit' value='Create' name='button_createworld'>
+	<input type='submit' class="button" value='Create' name='button_createworld'>
 </form>
 
 <p><a href='admin_resource_builder.php'>Resource Builder</a></p>
