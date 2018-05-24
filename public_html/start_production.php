@@ -183,9 +183,9 @@ for($i = 0; $i < count($eqIDs); $i++)
 	array_push($equipment[(string)($eqRCIDs[$i])], $eqIDs[$i]);
 }
 
-var_dump($eqIDs);
+/*var_dump($eqIDs);
 var_dump($eqRCIDs);
-var_dump($equipment);
+var_dump($equipment);*/
 
 
 # get list of all 
