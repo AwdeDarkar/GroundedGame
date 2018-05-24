@@ -48,6 +48,18 @@
                                   not supported by any browser */
 }
 
+::selection {
+  background: $(green);
+  color: $(black-char);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: $(green);
+  color: $(black-char);
+  text-shadow: none;
+}
+
 /* Styling */
 a
 {
@@ -158,7 +170,7 @@ table, th, td
 	}
 }
 
-.button
+input, button, select
 {
 	background-color: $(black-char);
 	border-style: solid;
@@ -171,11 +183,9 @@ table, th, td
 	box-shadow:  0 0 10px $(light-green)77;
 	box-shadow:  inset 0 0 10px $(light-green)77;
 	font-family: $(nova);
-	
-	cursor: pointer;
 }
 
-.button:hover
+input[type="submit"]:hover, button:hover
 {
 	background-color: $(black-char);
 	border-color: $(light-green);
@@ -184,6 +194,42 @@ table, th, td
 	text-shadow: 0 0 10px $(lighter-green)77;
 	box-shadow:  0 0 10px $(lighter-green)77;
 	box-shadow:  inset 0 0 10px $(lighter-green)77;
+	
+	cursor: pointer;
+}
+
+td input[type="text"], select
+{
+	border-style: none;
+	box-shadow: none;
+}
+
+input:focus
+{
+	outline: 0;
+}
+
+textarea
+{
+	background-color: $(black-char);
+	border-style: solid;
+	border-width: 2px;
+	border-color: $(green);
+	border-radius: 2px;
+	
+	color: $(green);
+	text-shadow: 0 0 10px $(light-green)77;
+	box-shadow:  0 0 10px $(light-green)77;
+	box-shadow:  inset 0 0 10px $(light-green)77;
+	font-family: $(vt323);
+	font-size: 20px;
+	
+	cursor: text;
+}
+
+textarea:focus
+{
+	outline:0;
 }
 
 /* specific to one page */
@@ -200,4 +246,10 @@ table, th, td
 		{
 			float: right;
 			width: 30%;
+		}
+		
+		#msgListing
+		{
+			height: 45%;
+			overflow-y: scroll;
 		}
