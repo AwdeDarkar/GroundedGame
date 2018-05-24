@@ -158,7 +158,7 @@ table, th, td
 	}
 }
 
-.button
+input button
 {
 	background-color: $(black-char);
 	border-style: solid;
@@ -175,7 +175,7 @@ table, th, td
 	cursor: pointer;
 }
 
-input
+input:hover button:hover
 {
 	background-color: $(black-char);
 	border-color: $(light-green);
