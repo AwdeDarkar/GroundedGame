@@ -210,7 +210,6 @@ for($i = 0; $i < count($equip_ids); $i++)
 	echo("
 		<tr>
 			<td>".$equip_names[$i]."</td>
-			<td><a href='#'>Pack</td>
 		</tr>");
 }
 ?>
