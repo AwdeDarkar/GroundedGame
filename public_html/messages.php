@@ -146,9 +146,9 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 		
 		
 		<form action="/send_message.php" id="msgComposer" method="post">
-			<textarea name="comment" form="msgComposer">Enter text here...</textarea>
+			<textarea name="comment" form="msgComposer" placeholder="Enter text here..." cols=64 rows=3></textarea>
 			<input type="hidden" name="mgid" value="' . $sel . '">
-			<input type="hidden" name="fac" value="' . $facID . '">
+			<input type="hidden" name="fac" value="' . $facID . '"><br>
 			<input type="submit" class="button"><br><br><br><br>
 		</form>
 

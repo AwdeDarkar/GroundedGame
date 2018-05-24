@@ -199,6 +199,7 @@ textarea
 	box-shadow:  0 0 10px $(light-green)77;
 	box-shadow:  inset 0 0 10px $(light-green)77;
 	font-family: $(vt323);
+	font-size: 20px;
 	
 	cursor: text;
 }
