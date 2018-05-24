@@ -149,7 +149,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			<textarea name="comment" form="msgComposer">Enter text here...</textarea>
 			<input type="hidden" name="mgid" value="' . $sel . '">
 			<input type="hidden" name="fac" value="' . $facID . '">
-			<input type="submit"><br><br><br><br>
+			<input type="submit" class="button"><br><br><br><br>
 		</form>
 
 	</div>
