@@ -47,6 +47,7 @@ function getBunkerList()
 	xhttp2.onreadystatechange = function() {
 		if (this.readyState == 4 && this.status == 200) {
 			args = this.responseText.split("???");
+			console.log(args);
 			document.getElementById("bunkerlist").innerHTML = args[0];
 			
 			world_map = eval(args[1]);
