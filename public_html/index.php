@@ -5,7 +5,7 @@ include("../includes/common.php");
 displayStart();
 ?>
 
-<h1>Hello world!</h1>
+<h1>Hello world</h1>
 
 <?php
 
