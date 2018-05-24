@@ -177,6 +177,10 @@ for($i = 0; $i < count($eqIDs); $i++)
 	array_push($equipment[$eqRCIDs[$i]], $eqIDs[$i]);
 }
 
+var_dump($eqIDs);
+var_dump($equipment);
+
+
 # get list of all 
 
 
