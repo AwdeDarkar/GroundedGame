@@ -48,6 +48,18 @@
                                   not supported by any browser */
 }
 
+::selection {
+  background: $(green);
+  color: $(black-char);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: $(green);
+  color: $(black-char);
+  text-shadow: none;
+}
+
 /* Styling */
 a
 {
