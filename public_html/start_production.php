@@ -87,7 +87,7 @@ $typesString = "";
 for ($i = 0; $i < count($processIDs); $i++) { $typesString .= "s"; }
 
 $preparedStatementRCIDs[] = &$typesString;
-for ($i = 0; $i < count($processIDs); $i++) { $preparedStatementIDs[] = &$processResourceIDs[$i]; }
+for ($i = 0; $i < count($processIDs); $i++) { $preparedStatementRCIDs[] = &$processResourceIDs[$i]; }
 
 
 
