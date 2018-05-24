@@ -83,6 +83,12 @@ $preparedStatementIDs[] = &$typesString;
 for ($i = 0; $i < count($processIDs); $i++) { $preparedStatementIDs[] = &$processIDs[$i]; }
 
 
+$typesString = "";
+for ($i = 0; $i < count($processIDs); $i++) { $typesString .= "s"; }
+
+$preparedStatementRCIDs[] = &$typesString;
+for ($i = 0; $i < count($processIDs); $i++) { $preparedStatementIDs[] = &$processResourceIDs[$i]; }
+
 
 
 
@@ -130,7 +136,7 @@ if ($stmt = $mysqli->prepare($query_pc))
 	#$stmt->bind_param('s', $bunkerID);
 
 	#call_user_func_array(array($stmt, 'bind_param'), $processIDs);
-	call_user_func_array(array($stmt, 'bind_param'), $preparedStatementIDs);
+	call_user_func_array(array($stmt, 'bind_param'), $preparedStatementRCIDs);
 	
 	$stmt->execute();
 	$stmt->store_result();
