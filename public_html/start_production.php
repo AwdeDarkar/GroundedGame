@@ -309,6 +309,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 					{
 						echo("|".$processResourceIDs[$k]."|");
 						$equipments = $equipment[processResourceIDs[$k]];
+						var_dump($equipments);
 						for($m = 0; $m < count($equipments); $m++)
 						{
 							$ownedString .= "<button id='btn".$pcProcessIDs[$j]."_".$processResourceIDs[$k]."_".$equipments[$m]."' type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",1,".$pcIDs[$j].",".$equipments[$m].");'>1</button>";
