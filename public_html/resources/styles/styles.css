@@ -186,6 +186,11 @@ table, th, td
 	box-shadow:  inset 0 0 10px $(lighter-green)77;
 }
 
+.burron:focus
+{
+	outline: 0;
+}
+
 textarea
 {
 	background-color: $(black-char);
@@ -202,6 +207,11 @@ textarea
 	font-size: 20px;
 	
 	cursor: text;
+}
+
+textarea:focus
+{
+	outline:0;
 }
 
 /* specific to one page */
