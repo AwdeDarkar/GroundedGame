@@ -178,6 +178,7 @@ for($i = 0; $i < count($eqIDs); $i++)
 }
 
 var_dump($eqIDs);
+var_dump($eqRCIDs);
 var_dump($equipment);
 
 
