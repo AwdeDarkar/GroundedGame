@@ -287,8 +287,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 		# check for process components of this process id
 		if ($pcProcessIDs[$j] == $uniqueProcessIDs[$i] && $pcTypes[$j] != 1)
 		{
-			echo("<tr><input type='hidden' id='p".$uniqueProcessIDs[$i]."_pc".$pcIDs[$j]."' name='p".$uniqueProcessIDs[$i]."_pc".$pcIDs[$j]."' value=''><td/><td>".$pcNames[$j]."</td><td>".$pcReq[$j]."</td><td>");
-			echo("<tr><input type='hidden' id='p".$uniqueProcessIDs[$i]."_pc".$pcIDs[$j]."_eq' name='p".$uniqueProcessIDs[$i]."_eq".$pcIDs[$j]."_eq' value=''><td/><td>".$pcNames[$j]."</td><td>".$pcReq[$j]."</td><td>");
+			echo("<tr><input type='hidden' id='p".$uniqueProcessIDs[$i]."_pc".$pcIDs[$j]."_eq' name='p".$uniqueProcessIDs[$i]."_eq".$pcIDs[$j]."_eq' value=''><input type='hidden' id='p".$uniqueProcessIDs[$i]."_pc".$pcIDs[$j]."' name='p".$uniqueProcessIDs[$i]."_pc".$pcIDs[$j]."' value=''><td/><td>".$pcNames[$j]."</td><td>".$pcReq[$j]."</td><td>");
 
 				
 			$foundRes = false;
