@@ -302,6 +302,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 				if ($processComponentIDs[$k] == $pcIDs[$j]) 
 				{ 
 					$foundRes = true;
+					echo("type: ".$pcTypes[$j]);
 					
 					# equipment component
 					if ($pcTypes[$j] == 2)
