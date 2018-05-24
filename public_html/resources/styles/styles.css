@@ -158,7 +158,7 @@ table, th, td
 	}
 }
 
-input, button
+input, button, select
 {
 	background-color: $(black-char);
 	border-style: solid;
