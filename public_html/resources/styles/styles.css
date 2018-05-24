@@ -171,8 +171,6 @@ input, button, select
 	box-shadow:  0 0 10px $(light-green)77;
 	box-shadow:  inset 0 0 10px $(light-green)77;
 	font-family: $(nova);
-	
-	cursor: pointer;
 }
 
 input[type="submit"]:hover, button:hover
@@ -184,9 +182,11 @@ input[type="submit"]:hover, button:hover
 	text-shadow: 0 0 10px $(lighter-green)77;
 	box-shadow:  0 0 10px $(lighter-green)77;
 	box-shadow:  inset 0 0 10px $(lighter-green)77;
+	
+	cursor: pointer;
 }
 
-td input[type="text"]
+td input[type="text"], select
 {
 	border-style: none;
 	box-shadow: none;
