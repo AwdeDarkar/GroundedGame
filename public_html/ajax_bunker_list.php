@@ -5,7 +5,7 @@ include("../includes/common.php");
 $world = getCurrentWorld();
 $facID = getFactionID(LOGGED_USER_ID, $world);
 
-$listString = "[ ";
+$listString = "";
 
 echo("
 <table>
@@ -47,6 +47,6 @@ if ($stmt = $mysqli->prepare("SELECT Bunkers.ID, Bunkers.WorldX, Bunkers.WorldY,
 		echo("</tr>");
 	}
 
-	echo("</table>???$listString ]");
+	echo("</table>???[" . substr($listString, 1) . "]");
 }
 ?>
