@@ -143,7 +143,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 	<div id="msgCont">
 		<h3>' . $SelectedGroupName . '</h3>
 		<div id="msgListing">
-		' . $SelectedGroupMessageHistory . '
+		' . tools_fix_escaped_content_normal($SelectedGroupMessageHistory) . '
 		</div>
 		
 		

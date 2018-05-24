@@ -247,3 +247,9 @@ textarea:focus
 			float: right;
 			width: 30%;
 		}
+		
+		#msgListing
+		{
+			height: 45%;
+			overflow-y: scroll;
+		}
