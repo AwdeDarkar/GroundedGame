@@ -134,7 +134,7 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 			
 			while($stmt->fetch())
 			{
-				$SelectedGroupMessageHistory .= "<p>" . $MessageSource . ") " . $MessageContent . "</p>";
+				$SelectedGroupMessageHistory = "<p>" . $MessageSource . ") " . $MessageContent . "</p>" . $SelectedGroupMessageHistory;
 			}
 		
 		}
@@ -142,7 +142,9 @@ if (isset($_GET['gid'])) { $gid = $_GET['gid']; }
 		echo '
 	<div id="msgCont">
 		<h3>' . $SelectedGroupName . '</h3>
+		<div id="msgListing">
 		' . $SelectedGroupMessageHistory . '
+		</div>
 		
 		
 		<form action="/send_message.php" id="msgComposer" method="post">
