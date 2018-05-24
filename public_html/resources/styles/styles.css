@@ -189,6 +189,7 @@ input[type="submit"]:hover, button:hover
 td input[type="text"]
 {
 	border-style: none;
+	box-shadow: none;
 }
 
 input:focus
