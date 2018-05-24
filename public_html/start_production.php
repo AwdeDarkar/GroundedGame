@@ -311,6 +311,10 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 						{
 							$ownedString .= "<button id='btn".$pcProcessIDs[$j]."_".$processResourceIDs[$k]."_".$equipments[$m]."' type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",1,".$pcIDs[$j].",".$equipments[$m].");'>1</button>";
 						}
+						if ($processAmts[$k] > 0)
+						{
+							$ownedString .= " (".$processAmts[$k]." undeployed)";
+						}
 					}
 					else
 					{
