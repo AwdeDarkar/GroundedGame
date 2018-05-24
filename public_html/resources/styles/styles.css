@@ -164,10 +164,12 @@ table, th, td
 	border-style: solid;
 	border-width: 2px;
 	border-color: $(green);
+	border-radius: 2px;
 	
 	color: $(green);
 	text-shadow: 0 0 10px $(light-green)77;
 	box-shadow:  0 0 10px $(light-green)77;
+	box-shadow:  inset 0 0 10px $(light-green)77;
 	font-family: $(nova);
 	
 	cursor: pointer;
@@ -176,16 +178,12 @@ table, th, td
 .button:hover
 {
 	background-color: $(black-char);
-	border-style: solid;
-	border-width: 2px;
 	border-color: $(light-green);
 	
 	color: $(light-green);
 	text-shadow: 0 0 10px $(lighter-green)77;
 	box-shadow:  0 0 10px $(lighter-green)77;
-	font-family: $(nova);
-	
-	cursor: pointer;
+	box-shadow:  inset 0 0 10px $(lighter-green)77;
 }
 
 /* specific to one page */
