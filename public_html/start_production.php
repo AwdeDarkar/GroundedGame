@@ -173,8 +173,8 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 $equipment = array();
 for($i = 0; $i < count($eqIDs); $i++)
 {
-	if (!array_key_exists((string)$eqRCIDs[$i], $equipment)) { $equipment[(string)$eqRCIDs[$i]] = array(); }
-	array_push($equipment[(string)$eqRCIDs[$i]], $eqIDs[$i]);
+	if (!array_key_exists($eqRCIDs[$i], $equipment)) { $equipment[$eqRCIDs[$i]] = array(); }
+	array_push($equipment[$eqRCIDs[$i]], $eqIDs[$i]);
 }
 
 var_dump($eqIDs);
@@ -308,8 +308,7 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 					if ($pcTypes[$j] == 2)
 					{
 						echo("|".$processResourceIDs[$k]."|");
-						$equipments = $equipment[(string)processResourceIDs[$k]];
-						var_dump($equipments);
+						$equipments = $equipment[$processResourceIDs[$k]];
 						for($m = 0; $m < count($equipments); $m++)
 						{
 							$ownedString .= "<button id='btn".$pcProcessIDs[$j]."_".$processResourceIDs[$k]."_".$equipments[$m]."' type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",1,".$pcIDs[$j].",".$equipments[$m].");'>1</button>";
