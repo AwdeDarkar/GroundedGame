@@ -176,7 +176,8 @@ create table ProcessComponents (
 	PID int unsigned,
 	RID int unsigned,
 	Amount int unsigned,
-	Type int unsigned
+	Type int unsigned,
+	JID int unsigned
 );
 
 create table Orders (
