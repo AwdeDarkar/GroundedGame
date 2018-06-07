@@ -8,7 +8,7 @@ $RID = "";
 $Name = "";
 $Job = "";
 
-if ($stmt = $mysqli->prepare("SELECT ID FROM Resources WHERE Name='People'"))
+if ($stmt = $mysqli->prepare("SELECT ID FROM Resources WHERE Name='Workers'"))
 {
 	$stmt->execute();
 	$stmt->store_result();
