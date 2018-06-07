@@ -35,7 +35,7 @@ if ($stmt = $mysqli->prepare("SELECT firstname FROM Names ORDER BY RAND() LIMIT 
 }
 else { throw_msg(36, $httpReferer, "bunker.php", 36); }
 
-if ($stmt = $mysqli->prepare("INSERT INTO Actors(Name, ResourceID, RCID, Hitpoints, JobID) VALUES (?, ?, 10, 0)"))
+if ($stmt = $mysqli->prepare("INSERT INTO Actors(Name, ResourceID, RCID, Hitpoints, JobID) VALUES (?, ?, ?, 10, 0)"))
 {
 	$stmt->bind_param("sss", $Name, $RID, $RCID);
 	$result = $stmt->execute();
