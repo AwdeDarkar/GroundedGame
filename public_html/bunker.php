@@ -239,4 +239,15 @@ for ($i = 0; $i < count($pj_names); $i++)
 ?>
 </table>
 
+<h3>Workers</h3>
+<table>
+	<tr>
+		<th>Name</th>
+		<th>Job</th>
+	</tr>
+<?php
+include("ajax_actor_list.php");
+?>
+</table>
+
 <?php displayEnd(); ?>
