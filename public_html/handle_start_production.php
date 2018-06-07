@@ -200,7 +200,7 @@ foreach ($processComponents as $key => $value)
 }
 
 echo("<p>finished loop through check</p>");
-
+return;
 
 // TODO TODO TODO TODO TODO - deplete initial resource collections upon inserting this
 
