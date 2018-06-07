@@ -58,7 +58,7 @@ foreach ($_POST as $key => $value)
 		echo("<p>MATCH! $key</p>");
 
 		//preg_match('/(\d)*$/', $key, $matches);
-		preg_match('/(\d)*$/', $key, $matches);
+		preg_match('/(?:(\d)*$)|(?:(\d)*_eq$)/', $key, $matches);
 		var_dump($matches);
 		$pcid = $matches[0];
 		if ($matches[1] != null) { $pcid = $matches[1]; }
