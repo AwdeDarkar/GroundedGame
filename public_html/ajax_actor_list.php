@@ -6,6 +6,7 @@ $BunkerID = getCurrentBunker();
 $RCID = "";
 $RID = "";
 $Name = "";
+$Job = "";
 
 if ($stmt = $mysqli->prepare("SELECT ID FROM Resources WHERE Name='People'"))
 {
