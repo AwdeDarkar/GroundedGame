@@ -73,7 +73,6 @@ foreach ($_POST as $key => $value)
 }
 
 var_dump($processComponents);
-return;
 
 // get details on process components
 $pcIDs = array();
@@ -191,7 +190,7 @@ foreach ($processComponents as $key => $value)
 	{
 		// find in rcids
 		$rcIndex = tools_find($rcIDs, $value[$i]);
-		if ($rcResourceIDs[$rcIndex] != $resID) { return; throw_msg(203, $httpReferer); }
+		if ($rcResourceIDs[$rcIndex] != $resID) { throw_msg(203, $httpReferer); }
 		$totalAmt += $rcAmts[$rcIndex];
 		
 	}
@@ -201,7 +200,6 @@ foreach ($processComponents as $key => $value)
 }
 
 echo("<p>finished loop through check</p>");
-return;
 
 
 // TODO TODO TODO TODO TODO - deplete initial resource collections upon inserting this
