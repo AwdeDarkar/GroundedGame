@@ -72,6 +72,7 @@ foreach ($_POST as $key => $value)
 }
 
 var_dump($processComponents);
+return;
 
 // get details on process components
 $pcIDs = array();
