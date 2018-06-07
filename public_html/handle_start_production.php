@@ -165,6 +165,7 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 var_dump($rcResourceIDs);
 var_dump($processComponents);
 echo("<p>About to loop through check</p>");
+return;
 
 foreach ($processComponents as $key => $value)
 {
