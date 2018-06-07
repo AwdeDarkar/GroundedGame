@@ -80,6 +80,7 @@ function startingResourceCollections($worldid, $httpReferer, $bunkerids)
 		//miner and smelter
 		$minerid = 6;
 		$smelterid = 5;
+		$workerid = 8;
 		$facid = 0;
 		$amount = 1;
 
@@ -94,6 +95,13 @@ function startingResourceCollections($worldid, $httpReferer, $bunkerids)
 		{
 			//set variables
 			$stmt2->bind_param("ssss", $smelterid, $bunkerid, $facid, $amount);
+			$stmt2->execute();
+		}
+		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, 0)"))
+		{
+			//set variables
+			$stmt2->bind_param("ssss", $workerid, $bunkerid, $facid);
 			$stmt2->execute();
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
