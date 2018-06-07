@@ -162,7 +162,9 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 // are for that associated process component
 
 
+echo("<p>rcResourceIDs</p>");
 var_dump($rcResourceIDs);
+echo("<p>processComponents</p>");
 var_dump($processComponents);
 echo("<p>About to loop through check</p>");
 return;
