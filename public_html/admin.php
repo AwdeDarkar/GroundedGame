@@ -28,5 +28,7 @@ function checkCreateWorldForm()
 
 <p><a href='admin_resource_builder.php'>Resource Builder</a></p>
 <p><a href='admin_process_builder.php'>Process Builder</a></p>
+<p><a href='admin_job_builder.php'>Job Builder</a></p>
+<p><a href='admin_skill_builder.php'>Skill Builder</a></p>
 
 <?php displayEnd(); ?>
