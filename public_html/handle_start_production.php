@@ -167,7 +167,6 @@ var_dump($rcResourceIDs);
 echo("<p>processComponents</p>");
 var_dump($processComponents);
 echo("<p>About to loop through check</p>");
-return;
 
 foreach ($processComponents as $key => $value)
 {
@@ -183,7 +182,7 @@ foreach ($processComponents as $key => $value)
 	{
 		// find in rcids
 		$rcIndex = tools_find($rcIDs, $value[$i]);
-		if ($rcResourceIDs[$rcIndex] != $resID) { throw_msg(203, $httpReferer); }
+		if ($rcResourceIDs[$rcIndex] != $resID) { return; throw_msg(203, $httpReferer); }
 		$totalAmt += $rcAmts[$rcIndex];
 		
 	}
