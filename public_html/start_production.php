@@ -212,17 +212,14 @@ function useResource(pid, rid, amt, pcid, eid)
 	console.log(rids);
 	console.log(eids);
 
-	if (eid == 0)
+	if (rids.indexOf(rid.toString()) != -1)
 	{
-		if (rids.indexOf(rid.toString()) != -1)
-		{
-			console.log("Already there!");
-			subtract = true;
-			var index = rids.indexOf(rid.toString());
-			rids.splice(index, 1);
-		}
+		console.log("Already there!");
+		subtract = true;
+		var index = rids.indexOf(rid.toString());
+		rids.splice(index, 1);
 	}
-	else
+	if (eid != 0)
 	{
 		if (eids.indexOf(eid.toString()) != -1)
 		{
@@ -236,16 +233,16 @@ function useResource(pid, rid, amt, pcid, eid)
 	if (subtract) 
 	{ 
 		btn.style = '';
-		if (eid == 0) { hiddenElemPc.value = rids.join(','); }
-		else { hiddenElemEq.value = eids.join(','); }
+		hiddenElemPc.value = rids.join(',');
+		if (eid != 0) { hiddenElemEq.value = eids.join(','); }
 	}
 	else
 	{
 		btn.style = 'color: red;';
 		if (hiddenElemPc.value != "" && eid == 0) { hiddenElemPc.value += ","; }
 		else if (hiddenElemEq.value != "" && eid != 0) { hiddenElemEq.value += ","; }
-		if (eid == 0) { hiddenElemPc.value += rid; }
-		else { hiddenElemEq.value += eid; }
+		hiddenElemPc.value += rid;
+		if (eid != 0) { hiddenElemEq.value += eid; }
 	}
 
 	var display = document.getElementById("disp" + pid + "_" + pcid);
