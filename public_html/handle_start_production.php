@@ -171,9 +171,11 @@ return;
 
 foreach ($processComponents as $key => $value)
 {
+	echo("<p>Inside loop</p>");
 	// find resource id of that process component 
 	$pcIndex = tools_find($pcIDs, (int)$key);
 	$resID = $pcRIDs[$pcIndex];
+	echo("<p>Resource id: $resID</p>");
 	
 	// check each resource collection resource id
 	$totalAmt = 0;
