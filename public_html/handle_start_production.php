@@ -171,8 +171,10 @@ echo("<p>About to loop through check</p>");
 foreach ($processComponents as $key => $value)
 {
 	echo("<p>Inside loop</p>");
+	echo("<p>key: $key</p>");
 	// find resource id of that process component 
 	$pcIndex = tools_find($pcIDs, (int)$key);
+	echo("<p>pc index: $pcIndex</p>");
 	$resID = $pcRIDs[$pcIndex];
 	echo("<p>Resource id: $resID</p>");
 	
