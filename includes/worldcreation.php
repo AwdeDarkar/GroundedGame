@@ -98,10 +98,10 @@ function startingResourceCollections($worldid, $httpReferer, $bunkerids)
 			$stmt2->execute();
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
-		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, 0)"))
+		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (8, ?, ?, 0)"))
 		{
 			//set variables
-			$stmt2->bind_param("ssss", $workerid, $bunkerid, $facid);
+			$stmt2->bind_param("ss", $bunkerid, $facid);
 			$stmt2->execute();
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
