@@ -103,7 +103,7 @@ create table Actors (
 	ResourceID int unsigned,
 	RCID int unsigned,
 	Hitpoints int unsigned,
-	JobID int unsigned
+	JID int unsigned
 );
 
 create table Equipment (
