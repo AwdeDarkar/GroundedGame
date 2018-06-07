@@ -67,7 +67,6 @@ foreach ($_POST as $key => $value)
 }
 
 var_dump($processComponents);
-return;
 
 // get details on process components
 $pcIDs = array();
@@ -162,6 +161,9 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 // check to make sure all purported resource collections are what they say they
 // are for that associated process component
 
+
+echo("<p>About to loop through check</p>");
+
 foreach ($processComponents as $key => $value)
 {
 	// find resource id of that process component 
@@ -183,6 +185,7 @@ foreach ($processComponents as $key => $value)
 	if ($totalAmt < $pcAmts[$pcIndex]) { throw_msg(204, $httpReferer); }
 }
 
+echo("<p>finished loop through check</p>");
 
 
 // TODO TODO TODO TODO TODO - deplete initial resource collections upon inserting this
