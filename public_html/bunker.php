@@ -239,7 +239,7 @@ for ($i = 0; $i < count($pj_names); $i++)
 ?>
 </table>
 
-<h3>Workers</h3>
+<h3>Workers (<a href="ajax_create_actor.php">Spawn New</a>)</h3>
 <table>
 	<tr>
 		<th>Name</th>
