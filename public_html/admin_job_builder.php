@@ -88,7 +88,7 @@ for ($i = 0; $i < count($ids); $i++)
 {
 	echo("<tr>
 			<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
-			<td><input type='text' name='description_".$ids[$i]."' value='".$descriptions[$i]."' size='100'></td>
+			<td><input type='text' name='description_".$ids[$i]."' value=\"".tools_fix_escaped_content_normal($descriptions[$i])."\" size='100'></td>
 			<td><button type='submit' value='".$ids[$i]."' name='update_job_button'>Update</button></td>
 			<td><button type='submit' value='".$ids[$i]."' name='delete_job_button'>DELETE</button></td>
 		</tr>");
