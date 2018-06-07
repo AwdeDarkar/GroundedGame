@@ -57,8 +57,10 @@ foreach ($_POST as $key => $value)
 	{
 		echo("<p>MATCH! $key</p>");
 
+		//preg_match('/(\d)*$/', $key, $matches);
 		preg_match('/(\d)*$/', $key, $matches);
 		$pcid = $matches[0];
+		if ($matches[1]) { $pcid = $matches[1]; }
 		$values = explode(',', $value);
 		$processComponents[$pcid] = $values;
 
@@ -66,7 +68,7 @@ foreach ($_POST as $key => $value)
 	}
 }
 
-//var_dump($processComponents);
+var_dump($processComponents);
 
 // get details on process components
 $pcIDs = array();
@@ -161,11 +163,22 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 // check to make sure all purported resource collections are what they say they
 // are for that associated process component
 
+
+echo("<p>rcResourceIDs</p>");
+var_dump($rcResourceIDs);
+echo("<p>processComponents</p>");
+var_dump($processComponents);
+echo("<p>About to loop through check</p>");
+
 foreach ($processComponents as $key => $value)
 {
+	echo("<p>Inside loop</p>");
+	echo("<p>key: $key</p>");
 	// find resource id of that process component 
 	$pcIndex = tools_find($pcIDs, (int)$key);
+	echo("<p>pc index: $pcIndex</p>");
 	$resID = $pcRIDs[$pcIndex];
+	echo("<p>Resource id: $resID</p>");
 	
 	// check each resource collection resource id
 	$totalAmt = 0;
@@ -173,7 +186,7 @@ foreach ($processComponents as $key => $value)
 	{
 		// find in rcids
 		$rcIndex = tools_find($rcIDs, $value[$i]);
-		if ($rcResourceIDs[$rcIndex] != $resID) { throw_msg(203, $httpReferer); }
+		if ($rcResourceIDs[$rcIndex] != $resID) { return; throw_msg(203, $httpReferer); }
 		$totalAmt += $rcAmts[$rcIndex];
 		
 	}
@@ -182,6 +195,8 @@ foreach ($processComponents as $key => $value)
 	if ($totalAmt < $pcAmts[$pcIndex]) { throw_msg(204, $httpReferer); }
 }
 
+echo("<p>finished loop through check</p>");
+return;
 
 
 // TODO TODO TODO TODO TODO - deplete initial resource collections upon inserting this

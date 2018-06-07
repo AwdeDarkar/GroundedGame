@@ -1,6 +1,6 @@
 # copyright 2018 AWDE
 # date created: 12/26/2017
-# date edited: 2/24/2018
+# date edited: 6/6/2018
 
 drop table if exists Users;
 drop table if exists Worlds;
@@ -24,6 +24,9 @@ drop table if exists MessageGroupParticipants;
 drop table if exists Messages;
 drop table if exists Processes;
 drop table if exists ProcessComponents;
+drop table if exists ActorSkills;
+drop table if exists Skills;
+drop table if exists Jobs;
 
 
 create table Users (
@@ -96,11 +99,12 @@ create table ResourceDeposits (
 
 create table Actors (
 	ID int unsigned primary key auto_increment,
+	Name char(30),
 	ResourceID int unsigned,
 	RCID int unsigned,
 	Hitpoints int unsigned,
 	Experience int unsigned,
-	Type int unsigned
+	JobID int unsigned
 );
 
 create table Equipment (
@@ -172,7 +176,8 @@ create table ProcessComponents (
 	PID int unsigned,
 	RID int unsigned,
 	Amount int unsigned,
-	Type int unsigned
+	Type int unsigned,
+	JID int unsigned
 );
 
 create table Orders (
@@ -217,4 +222,24 @@ create table Messages (
 	DateSent datetime,
 	Content text,
 	primary key(SrcFactionID, MGID, DateSent)
+);
+
+# NOTE: leaving experience signed, just in case we want to add in sabotage! (training someone with false information and giving them to someone else)
+create table ActorSkills (
+	AID int unsigned,
+	SID int unsigned,
+	Experience int signed,
+	primary key(AID, SID)
+);
+
+create table Skills (
+	ID int unsigned primary key auto_increment,
+	Name char(30),
+	Description text
+);
+
+create table Jobs (
+	ID int unsigned primary key auto_increment,
+	Name char(30),
+	Description text
 );
