@@ -64,7 +64,7 @@ foreach ($_POST as $key => $value)
 		if ($matches[2] != "") { $pcid = $matches[2]; }
 		echo("<p>Associated pcid: $pcid</p>");
 		$values = explode(',', $value);
-		$processComponents[$pcid] = $values;
+		//$processComponents[$pcid] = $values;
 		$processComponents = array_merge($processComponents[$pcid], $values);
 
 		for ($i = 0; $i < count($values); $i++) { array_push($allRCIDs, $values[$i]); }
