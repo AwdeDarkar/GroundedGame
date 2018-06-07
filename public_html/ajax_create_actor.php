@@ -2,7 +2,7 @@
 define(PERMISSION_LEVEL, -1);
 include("../includes/common.php");
 
-$BunkerID = getCurrentBunker();
+$BunkerID = tools_sanitize_data($_GET['b']);
 $RCID = "";
 $RID = "";
 $Name = "";
