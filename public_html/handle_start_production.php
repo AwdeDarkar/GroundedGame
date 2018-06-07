@@ -57,8 +57,10 @@ foreach ($_POST as $key => $value)
 	{
 		echo("<p>MATCH! $key</p>");
 
+		//preg_match('/(\d)*$/', $key, $matches);
 		preg_match('/(\d)*$/', $key, $matches);
 		$pcid = $matches[0];
+		if ($matches[1]) { $pcid = $matches[1]; }
 		$values = explode(',', $value);
 		$processComponents[$pcid] = $values;
 
