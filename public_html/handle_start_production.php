@@ -59,6 +59,7 @@ foreach ($_POST as $key => $value)
 
 		//preg_match('/(\d)*$/', $key, $matches);
 		preg_match('/(\d)*$/', $key, $matches);
+		var_dump($matches);
 		$pcid = $matches[0];
 		if ($matches[1] != null) { $pcid = $matches[1]; }
 		echo("<p>Associated pcid: $pcid</p>");
