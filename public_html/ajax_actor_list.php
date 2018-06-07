@@ -14,7 +14,7 @@ if ($stmt = $mysqli->prepare("SELECT ID FROM Resources WHERE Name='People'"))
 	$stmt->bind_result($RID);
 	$stmt->fetch();
 }
-else { throw_msg(300, $httpReferer, "ajax_create_actor.php", 17); }
+else { echo("Problem line: 17"); }
 
 if ($stmt = $mysqli->prepare("SELECT ID FROM ResourceCollections WHERE BunkerID=? and ResourceID=?"))
 {
@@ -24,7 +24,7 @@ if ($stmt = $mysqli->prepare("SELECT ID FROM ResourceCollections WHERE BunkerID=
 	$stmt->bind_result($RCID);
 	$stmt->fetch();
 }
-else { throw_msg(300, $httpReferer, "ajax_create_actor.php", 27); }
+else { echo("Problem line: 27"); }
 
 if ($stmt = $mysqli->prepare("SELECT Actors.Name, Jobs.Name FROM Actors, Jobs WHERE Actors.RCID = ? AND Actors.JID=Jobs.ID"))
 {
@@ -38,6 +38,7 @@ if ($stmt = $mysqli->prepare("SELECT Actors.Name, Jobs.Name FROM Actors, Jobs WH
 		echo("<tr><td>$Name</td><td>$Job</td></tr>");
 	}
 }
+else { echo("Problem line: 41"); }
 ?>
 
 
