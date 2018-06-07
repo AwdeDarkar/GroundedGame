@@ -103,7 +103,6 @@ create table Actors (
 	ResourceID int unsigned,
 	RCID int unsigned,
 	Hitpoints int unsigned,
-	Experience int unsigned,
 	JobID int unsigned
 );
 

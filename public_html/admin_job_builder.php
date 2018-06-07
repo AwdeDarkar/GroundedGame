@@ -70,7 +70,7 @@ displayStart();
 
 <h3>Jobs CSV Download</h3>
 
-<p><a href='bak/resources.csv'>resources.csv</a></p>
+<p><a href='bak/jobs.csv'>jobs.csv</a></p>
 
 <h3>Jobs</h3>
 
@@ -89,8 +89,8 @@ for ($i = 0; $i < count($ids); $i++)
 	echo("<tr>
 			<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 			<td><input type='text' name='description_".$ids[$i]."' value='".$descriptions[$i]."' size='100'></td>
-			<td><button type='submit' value='".$ids[$i]."' name='update_button'>Update</button></td>
-			<td><button type='submit' value='".$ids[$i]."' name='delete_button'>DELETE</button></td>
+			<td><button type='submit' value='".$ids[$i]."' name='update_job_button'>Update</button></td>
+			<td><button type='submit' value='".$ids[$i]."' name='delete_job_button'>DELETE</button></td>
 		</tr>");
 }
 
@@ -98,7 +98,7 @@ for ($i = 0; $i < count($ids); $i++)
 	<tr>
 		<td><input type='text' name='name_new'></td>
 		<td><input type='text' name='description_new' size='100'></td>
-		<td><button type='submit' value='new' name='new_button'>Insert</button></td>
+		<td><button type='submit' value='new' name='new_job_button'>Insert</button></td>
 	</tr>
 
 </table>

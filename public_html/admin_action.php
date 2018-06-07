@@ -6,4 +6,5 @@ include("../includes/worldcreation.php");
 include("../includes/resource_csv_upload.php");
 include("../includes/resources_change.php");
 include("../includes/process_change.php");
+include("../includes/jobs_change.php");
 ?>
