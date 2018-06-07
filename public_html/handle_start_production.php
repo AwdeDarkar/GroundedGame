@@ -61,7 +61,7 @@ foreach ($_POST as $key => $value)
 		preg_match('/(?:(\d)*$)|(?:(\d)*_eq$)/', $key, $matches);
 		var_dump($matches);
 		$pcid = $matches[1];
-		if ($matches[2] != "") { $pcid = $matches[2]; }
+		if ($matches[2] != "") { continue; /*$pcid = $matches[2];*/ }
 		echo("<p>Associated pcid: $pcid</p>");
 		$values = explode(',', $value);
 		//$processComponents[$pcid] = $values;
