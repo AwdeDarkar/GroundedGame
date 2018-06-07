@@ -42,7 +42,8 @@ if ($stmt = $mysqli->prepare("INSERT INTO Actors(Name, ResourceID, RCID, Hitpoin
 	$result = $stmt->execute();
 }
 else { throw_msg(43, $httpReferer, "bunker.php", 43); }
-
+echo($RID);
+echo($RCID);
 if ($stmt = $mysqli->prepare("UPDATE ResourceCollections SET Amount = Amount + 1 WHERE ID=?"))
 {
 	$stmt->bind_param("s", $RCID);
