@@ -27,6 +27,7 @@ drop table if exists ProcessComponents;
 drop table if exists ActorSkills;
 drop table if exists Skills;
 drop table if exists Jobs;
+drop table if exists JobSkills;
 
 
 create table Users (
@@ -227,7 +228,7 @@ create table Messages (
 create table ActorSkills (
 	AID int unsigned,
 	SID int unsigned,
-	Experience int signed,
+	level int signed,
 	primary key(AID, SID)
 );
 
@@ -241,4 +242,10 @@ create table Jobs (
 	ID int unsigned primary key auto_increment,
 	Name char(30),
 	Description text
+);
+
+create table JobSkills (
+	JID int unsigned,
+	SID int unsigned,
+	primary key(JID, SID)
 );
