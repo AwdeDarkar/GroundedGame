@@ -58,15 +58,17 @@ elseif ($_POST['update_pc_button'])
 	$rid = tools_sanitize_data($_POST['resource_'.$id]); 
 	$type = tools_sanitize_data($_POST['type_'.$id]); 
 	$amt = tools_sanitize_data($_POST['amt_'.$id]); 
+	$jid = tools_sanitize_data($_POST['job_'.$id]); 
 	
 	if ($stmt = $mysqli->prepare("UPDATE ProcessComponents 
 		SET 
 			RID = ?, 
 			Amount = ?, 
-			Type = ?
+			Type = ?,
+			JID = ?
 		WHERE ID = ?"))
 	{
-		$stmt->bind_param('ssss', $rid, $amt, $type, $id);
+		$stmt->bind_param('sssss', $rid, $amt, $type, $jid, $id);
 		$stmt->execute();
 	}
 	else { throw_msg(300, "admin_process_builder.php"); }
@@ -90,10 +92,11 @@ elseif ($_POST['new_pc_button'])
 	$rid = tools_sanitize_data($_POST['resource_new_'.$id]); 
 	$type = tools_sanitize_data($_POST['type_new_'.$id]); 
 	$amt = tools_sanitize_data($_POST['amt_new_'.$id]); 
+	$jid = tools_sanitize_data($_POST['job_new_'.$id]); 
 	
-	if ($stmt = $mysqli->prepare("INSERT INTO ProcessComponents (PID, RID, Amount, Type) VALUES (?,?,?,?)"))
+	if ($stmt = $mysqli->prepare("INSERT INTO ProcessComponents (PID, RID, Amount, JID, Type) VALUES (?,?,?,?,?)"))
 	{
-		$stmt->bind_param('ssss', $id, $rid, $amt, $type);
+		$stmt->bind_param('sssss', $id, $rid, $amt, $jid, $type);
 		$stmt->execute();
 	}
 	else { throw_msg(300, "admin_process_builder.php"); }
