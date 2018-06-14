@@ -133,7 +133,7 @@ for ($i = 0; $i < count($ids); $i++)
 		$stmt->bind_result($skillName, $sid);
 		while ($stmt->fetch())
 		{
-			array_push($jobSkillNames, $jobSkillName);
+			array_push($jobSkillNames, $skillName);
 			array_push($sids, $sid);
 		}
 	}
