@@ -94,7 +94,6 @@ for($i = 0; $i < count($skillNames); $i++) { echo("<p>".$skillNames[$i]."</p>");
 ?>
 </div>
 
-</div>
 
 <form id='form_resources' action='admin_action.php' method='post'>
 
