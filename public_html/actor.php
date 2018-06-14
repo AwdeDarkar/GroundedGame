@@ -38,5 +38,45 @@ else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 displayStart();
 
 echo("<h1>$actorName, $actorJobName ($actorJobDesc)</h1>");
-
 ?>
+<h3>Skills</h3>
+<table>
+	<tr>
+		<th>Skill</th>
+		<th>Description</th>
+		<th>Experience</th>
+	</tr>
+<?php
+if ($stmt = $mysqli->prepare("SELECT Skills.Name, Skills.Description, ActorsSkills.Level FROM Skills, ActorsSkills WHERE ActorsSkills.AID = ? AND ActorsSkills.SID=Skills.ID"))
+{
+	$stmt->bind_param('s', $actorID);
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($Name, $Desc, $Level);
+	
+	while($stmt->fetch())
+	{
+		echo("<tr><td>$Name</td><td>$Desc</td><td>$Level</td></tr>");
+	}
+}
+else { echo("Problem line: 41"); }
+?>
+</table>
+<h3>Set Job:<select>
+<?php
+if ($stmt = $mysqli->prepare("SELECT Jobs.ID, Jobs.Name FROM Jobs"))
+{
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($jobID, $jobName);
+	
+	while($stmt->fetch())
+	{
+		echo("<option value='$jobID'>$jobName</option>");
+	}
+}
+else { echo("Problem line: 41"); }
+?>
+</select></h3>
+
+<?php displayEnd(); ?>
