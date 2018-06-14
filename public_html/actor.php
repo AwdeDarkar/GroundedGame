@@ -47,7 +47,7 @@ echo("<h1>$actorName, $actorJobName ($actorJobDesc)</h1>");
 		<th>Experience</th>
 	</tr>
 <?php
-if ($stmt = $mysqli->prepare("SELECT Skills.Name, Skills.Description, ActorsSkills.Level FROM Skills, ActorsSkills WHERE ActorsSkills.AID = ? AND ActorsSkills.SID=Skills.ID"))
+if ($stmt = $mysqli->prepare("SELECT Skills.Name, Skills.Description, ActorSkills.Level FROM Skills, ActorSkills WHERE ActorSkills.AID = ? AND ActorSkills.SID=Skills.ID"))
 {
 	$stmt->bind_param('s', $actorID);
 	$stmt->execute();
@@ -59,10 +59,10 @@ if ($stmt = $mysqli->prepare("SELECT Skills.Name, Skills.Description, ActorsSkil
 		echo("<tr><td>$Name</td><td>$Desc</td><td>$Level</td></tr>");
 	}
 }
-else { echo("Problem line: 41"); }
+else { echo("Problem line: 62"); }
 ?>
 </table>
-<h3>Set Job:<select>
+<h3>Set Job:<select id="jobSel">
 <?php
 if ($stmt = $mysqli->prepare("SELECT Jobs.ID, Jobs.Name FROM Jobs"))
 {
@@ -75,8 +75,13 @@ if ($stmt = $mysqli->prepare("SELECT Jobs.ID, Jobs.Name FROM Jobs"))
 		echo("<option value='$jobID'>$jobName</option>");
 	}
 }
-else { echo("Problem line: 41"); }
+else { echo("Problem line: 78"); }
+echo("</select></h3><script>function changeJobClick() { 
+var jobID = $('#jobSel').val();
+$.get( 'change_job.php?a=$actorID&j=' + jobID ); }</script>
+");
 ?>
-</select></h3>
+<!-- Hey, dummy, this is a reminder that you were too lazy to verify the sender of a job selection request. Please fix it. --> 
+<button onclick="changeJobClick();">Change Job</button>
 
 <?php displayEnd(); ?>
