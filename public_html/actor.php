@@ -78,7 +78,7 @@ if ($stmt = $mysqli->prepare("SELECT Jobs.ID, Jobs.Name FROM Jobs"))
 else { echo("Problem line: 78"); }
 echo("</select></h3><script>function changeJobClick() { 
 var jobID = $('#jobSel').val();
-$.get( 'changeJob.php?a=2&j=' + jobID ); }</script>
+$.get( 'changeJob.php?a=$actorID&j=' + jobID ); }</script>
 ");
 ?>
 <!-- Hey, dummy, this is a reminder that you were too lazy to verify the sender of a job selection request. Please fix it. --> 
