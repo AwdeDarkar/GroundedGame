@@ -153,6 +153,7 @@ for ($i = 0; $i < count($ids); $i++)
 	<tr>
 		<td><input type='text' name='name_new'></td>
 		<td><input type='text' name='description_new' size='100'></td>
+		<td><input type='text' name='skills_new' value=''></td>
 		<td><button type='submit' value='new' name='new_job_button'>Insert</button></td>
 	</tr>
 

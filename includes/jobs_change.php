@@ -61,6 +61,8 @@ elseif ($_POST['new_job_button'])
 {
 	$name = tools_sanitize_data($_POST["name_new"]);
 	$description = tools_sanitize_data($_POST["description_new"]);
+	$skills = tools_sanitize_data($_POST["skills_new"]);
+	$skills_array = explode(',', $skills);
 	
 	if ($stmt = $mysqli->prepare("INSERT INTO Jobs (Name, Description) VALUES (?,?)"))
 	{
