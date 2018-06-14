@@ -53,6 +53,7 @@ if ($_POST['update_job_button'])
 		echo("<p>sid: ".$sid."</p>");
 		
 			
+		return;
 		// insert new job skill
 		if ($stmt = $mysqli->prepare("INSERT INTO JobSkils (JID, SID) VALUES (?,?)"))
 		{
