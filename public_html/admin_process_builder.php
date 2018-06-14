@@ -48,11 +48,12 @@ $pcpids = array();
 $pcrids = array();
 $pcamts = array();
 $pctypes = array();
-if ($stmt = $mysqli->prepare("SELECT ID, PID, RID, Amount, Type FROM ProcessComponents"))
+$pcjids = array();
+if ($stmt = $mysqli->prepare("SELECT ID, PID, RID, Amount, Type, JID FROM ProcessComponents"))
 {
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($id, $pid, $rid, $amt, $type);
+	$stmt->bind_result($id, $pid, $rid, $amt, $type, $jid);
 	while ($stmt->fetch())
 	{
 		array_push($pcids, $id);
@@ -60,6 +61,24 @@ if ($stmt = $mysqli->prepare("SELECT ID, PID, RID, Amount, Type FROM ProcessComp
 		array_push($pcrids, $rid);
 		array_push($pcamts, $amt);
 		array_push($pctypes, $type);
+		array_push($pcjids, $jid);
+	}
+}
+else { throw_msg(301, $httpReferer, "create_faction.php", 39); }
+
+
+// get job names
+$jnames = array();
+$jids = array();
+if ($stmt = $mysqli->prepare("SELECT Name, ID from Jobs"))
+{
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($name, $id);
+	while ($stmt->fetch()) 
+	{
+		array_push($jids, $jid);
+		array_push($jnames, $name);
 	}
 }
 else { throw_msg(301, $httpReferer, "create_faction.php", 39); }
@@ -130,6 +149,7 @@ displayStart();
 			<th>Resource</th> <!-- sub -->
 			<th>Type</th> <!-- sub -->
 			<th>Amount</th> <!-- sub -->
+			<th>Job</th> <!-- sub -->
 		</tr>
 
 <?php
@@ -175,9 +195,20 @@ for ($i = 0; $i < count($ids); $i++)
 			echo("
 					</select>
 				</td>
-				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."' size='2'></td>
+				<td><input type='text' name='amt_".$pcids[$j]."' value='".$pcamts[$j]."' size='2'></td>");
 
-				<td><button type='submit' value='".$pcids[$j]."' name='update_pc_button'>Update</button></td>
+			echo("<td><select name='job_".$pcids[$j]."'>");
+
+			for($k = 0; $k < count($jids); $k++)
+			{
+				echo("<option value='".$jids[$k]."' ");
+				if ($jids[$k] == $pcjids[$j]) { echo("selected"); }
+				echo(">".$jnames[$k]."</option>");
+			}
+
+			echo("</select></td>");
+
+			echo("<td><button type='submit' value='".$pcids[$j]."' name='update_pc_button'>Update</button></td>
 				<td><button type='submit' value='".$pcids[$j]."' name='delete_pc_button'>DELETE</button></td>
 			</tr>");
 		}
@@ -197,6 +228,7 @@ for ($i = 0; $i < count($ids); $i++)
 	echo("<option value='0'>Input</option>");
 	echo("<option value='1'>Output</option>");
 	echo("<option value='2'>Equipment</option>");
+	echo("<option value='3'>Actor</option>");
 
 
 	echo("
