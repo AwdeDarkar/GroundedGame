@@ -76,13 +76,12 @@ if ($stmt = $mysqli->prepare("SELECT Jobs.ID, Jobs.Name FROM Jobs"))
 	}
 }
 else { echo("Problem line: 78"); }
-echo("<script>function changeJobClick() { 
+echo("</select></h3><script>function changeJobClick() { 
 var xhr = new XMLHttpRequest();
 var jobID = $('#jobSel').val();
 xhr.open('GET', 'changeJob.php?a=$actorID&j=' + jobID, true); }
 ");
 ?>
-</select></h3>
 <!-- Hey, dummy, this is a reminder that you were too lazy to verify the sender of a job selection request. Please fix it. --> 
 <button onclick="changeJobClick();">Change Job</button>
 
