@@ -99,6 +99,7 @@ $query_pc = "
 		ProcessComponents.ID,
 		ProcessComponents.Amount,
 		ProcessComponents.Type,
+		ProcessComponents.JID,
 		Resources.Name
 	FROM Processes, ProcessComponents, Resources
 	WHERE 
@@ -122,7 +123,17 @@ $query_eq = "
 		ResourceCollections.ID = Equipment.RCID AND
 		Equipment.RCID in (".$questionString.")";
 
-
+# get all resource collection associated equipment
+$query_ac = "
+	SELECT
+		Actors.ID,
+		Actors.RCID,
+		Actors.Name,
+		Actors.JID
+	FROM Actors, ResourceCollections
+	WHERE
+		ResourceCollections.ID = Actors.RCID AND
+		Actors.RCID in (".$questionString.")";
 
 
 $pcProcessIDs = array();
@@ -130,6 +141,7 @@ $pcIDs = array();
 $pcNames = array();
 $pcTypes = array();
 $pcReq = array(); # required amount of the stuff
+$pcJID = array();
 # get list of all process components user can do
 if ($stmt = $mysqli->prepare($query_pc))
 {
@@ -140,7 +152,7 @@ if ($stmt = $mysqli->prepare($query_pc))
 	
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($pid,$id,$amt,$type,$name);
+	$stmt->bind_result($pid,$id,$amt,$type,$jid, $name);
 	while ($stmt->fetch())
 	{
 		array_push($pcProcessIDs, $pid);
@@ -148,6 +160,7 @@ if ($stmt = $mysqli->prepare($query_pc))
 		array_push($pcNames, $name);
 		array_push($pcTypes, $type);
 		array_push($pcReq, $amt);
+		array_push($pcJID, $jid);
 	}
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
@@ -175,12 +188,43 @@ if ($stmt = $mysqli->prepare($query_eq))
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
+$acIDs = array();
+$acRCIDs = array();
+$acNames = array();
+$acJIDs = array();
+if ($stmt = $mysqli->prepare($query_eq))
+{
+	#call_user_func_array(array($stmt, 'bind_param'), $processIDs);
+	call_user_func_array(array($stmt, 'bind_param'), $preparedStatementRCIDs);
+	
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($id,$rcid, $name, $jid);
+	while ($stmt->fetch())
+	{
+		array_push($acIDs, $id);
+		array_push($acRCIDs, $rcid);
+		array_push($acNames, $name);
+		array_push($acJIDs, $jid);
+	}
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+
 # organize equipment into dictionary by RCID
 $equipment = array();
 for($i = 0; $i < count($eqIDs); $i++)
 {
 	if (!array_key_exists((string)($eqRCIDs[$i]), $equipment)) { $equipment[(string)($eqRCIDs[$i])] = array(); }
 	array_push($equipment[(string)($eqRCIDs[$i])], $eqIDs[$i]);
+}
+
+// organize actors into dictionary by RCID
+$actors = array();
+for($i = 0; $i < count($acIDs); $i++)
+{
+	// TODO: 
+	if (!array_key_exists((string)($acRCIDs[$i]), $equipment)) { $equipment[(string)($acRCIDs[$i])] = array(); }
+	array_push($equipment[(string)($acRCIDs[$i])], array($acIDs[$i], $acJIDs[$i], $acNames[$i]);
 }
 
 /*var_dump($eqIDs);
@@ -199,6 +243,7 @@ displayStart();
 
 <script type="text/javascript">
 
+// TODO: gotta add in actor ids
 function useResource(pid, rid, amt, pcid, eid)
 {
 	var hiddenElemPc = document.getElementById("p" + pid + "_pc" + pcid);
@@ -321,6 +366,19 @@ for ($i = 0; $i < count($uniqueProcessNames); $i++)
 						if ($processAmts[$k] > 0)
 						{
 							$ownedString .= " (".$processAmts[$k]." undeployed)";
+						}
+					}
+					# actor type
+					else if ($pcTypes[$j] == 3) 
+					{
+						$these_actors = $actors[(string)($processResourceIDs[$k])];
+						for($m = 0; $m < count($these_actors); $m++)
+						{
+							$actor = $these_actors[$m];
+							if ($actor[1] == $pcJID[$j])
+							{
+								$ownedString .= "<button id='btn".pcProcessIDs[$j]."_".$processResourceIDs[$k]."_".$acNames[$m]."' type='button' onclick='useResource(".$pcProcessIDs[$j].",".$processResourceIDs[$k].",1,".$pcIDs[$j].",".$equipments[$m].");'>1</button>"; // TODO: gotta add in actors
+							}
 						}
 					}
 					else
