@@ -35,6 +35,8 @@ if ($stmt = $mysqli->prepare("SELECT Actors.Name, Actors.Hitpoints, Jobs.Name, J
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
+displayStart();
+
 echo("<h1>$actorName, $actorJobName ($actorJobDesc)</h1>");
 
 ?>
