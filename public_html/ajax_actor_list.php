@@ -36,7 +36,7 @@ if ($stmt = $mysqli->prepare("SELECT Actors.ID, Actors.Name, Jobs.Name FROM Acto
 	
 	while($stmt->fetch())
 	{
-		echo("<tr><td><a href='bunker.php?a=$ID'>$Name</a></td><td>$Job</td></tr>");
+		echo("<tr><td><a href='actor.php?a=$ID'>$Name</a></td><td>$Job</td></tr>");
 	}
 }
 else { echo("Problem line: 41"); }
