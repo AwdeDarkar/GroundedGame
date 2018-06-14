@@ -92,7 +92,7 @@ $data = "";
 for ($i = 0; $i < count($pcids); $i++)
 {
 	if ($i != 0) { $data .= "\n"; }
-	$data .= $pcids[$i].",".$pcpids[$i].",".$pcrids[$i].",".$pcamts[$i].",".$pctypes[$i];
+	$data .= $pcids[$i].",".$pcpids[$i].",".$pcrids[$i].",".$pcamts[$i].",".$pctypes[$i].",".$pcjids[$i];
 }
 fwrite($handle, $data);
 fclose($handle);
