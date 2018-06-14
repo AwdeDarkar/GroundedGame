@@ -232,6 +232,14 @@ textarea:focus
 	outline:0;
 }
 
+.float_bottom_left
+{
+	position: static;
+	width: 150px;
+	left: 10px;
+	bottom: 10px;
+}
+
 /* specific to one page */
 
 	/* messages.php */
