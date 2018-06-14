@@ -213,7 +213,7 @@ for ($i = 0; $i < count($ids); $i++)
 		}
 	}
 	echo("<tr>
-		<td></td><td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td>
 		<td><select name='resource_new_".$ids[$i]."'>");
 
 	echo("<option value='' selected></option>");
