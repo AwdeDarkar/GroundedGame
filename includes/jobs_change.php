@@ -10,7 +10,6 @@ if ($_POST['update_job_button'])
 
 	var_dump($skills);
 	var_dump($skills_array);
-	return;
 	
 	// update jobs table
 	if ($stmt = $mysqli->prepare("UPDATE Jobs 
