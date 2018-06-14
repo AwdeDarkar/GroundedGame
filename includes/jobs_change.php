@@ -42,7 +42,7 @@ if ($_POST['update_job_button'])
 			$stmt->execute();
 			$stmt->store_result();
 			$stmt->bind_result($sid);
-			$stmt->fetch()
+			$stmt->fetch();
 		}
 		else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 		
