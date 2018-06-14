@@ -143,7 +143,7 @@ for ($i = 0; $i < count($ids); $i++)
 	$skillString = implode(',', $jobSkillNames);
 		
 	echo("
-			<td><input type='text' name='skills_'".$ids[$i]."' value='".$skillString."'></td>
+			<td><input type='text' name='skills_".$ids[$i]."' value='".$skillString."'></td>
 			<td><button type='submit' value='".$ids[$i]."' name='update_job_button'>Update</button></td>
 			<td><button type='submit' value='".$ids[$i]."' name='delete_job_button'>DELETE</button></td>
 		</tr>");
