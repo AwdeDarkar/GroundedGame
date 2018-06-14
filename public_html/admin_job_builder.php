@@ -48,7 +48,7 @@ if ($stmt = $mysqli->prepare("SELECT JID, SID FROM JobSkills"))
 {
 	$stmt->execute();
 	$stmt->store_result();
-	$stmt->bind_result($id, $sid);
+	$stmt->bind_result($jid, $sid);
 	while ($stmt->fetch())
 	{
 		array_push($jids, $jid);
