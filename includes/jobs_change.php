@@ -61,6 +61,7 @@ if ($_POST['update_job_button'])
 		}
 		else { throw_msg(304, "admin_job_builder.php"); }
 	}
+	return;
 	throw_msg(100, 'admin_job_builder.php');
 }
 elseif ($_POST['new_job_button'])
