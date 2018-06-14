@@ -47,7 +47,7 @@ echo("<h1>$actorName, $actorJobName ($actorJobDesc)</h1>");
 		<th>Experience</th>
 	</tr>
 <?php
-if ($stmt = $mysqli->prepare("SELECT Skills.Name, Skills.Description, ActorsSkills.Level FROM Skills, ActorsSkills WHERE ActorsSkills.AID = ? AND ActorsSkills.SID=Skills.ID"))
+if ($stmt = $mysqli->prepare("SELECT Skills.Name, Skills.Description, ActorSkills.Level FROM Skills, ActorSkills WHERE ActorSkills.AID = ? AND ActorSkills.SID=Skills.ID"))
 {
 	$stmt->bind_param('s', $actorID);
 	$stmt->execute();
