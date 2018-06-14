@@ -8,6 +8,9 @@ if ($_POST['update_job_button'])
 	$skills = tools_sanitize_data($_POST["skills_$id"]);
 	$skills_array = explode(',', $skills);
 
+	var_dump($skills);
+	var_dump($skills_array);
+	return;
 	
 	// update jobs table
 	if ($stmt = $mysqli->prepare("UPDATE Jobs 
