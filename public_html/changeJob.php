@@ -7,7 +7,7 @@ $jobID = tools_sanitize_data($_GET['j']);
 
 if ($stmt = $mysqli->prepare("UPDATE Actors SET JID = ?  WHERE ID = ?"))
 {
-	$stmt->bind_param("ss", $jobID, actorID);
+	$stmt->bind_param("ss", $jobID, $actorID);
 	$result = $stmt->execute();
 }
 
