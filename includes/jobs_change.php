@@ -36,6 +36,7 @@ if ($_POST['update_job_button'])
 	// insert new elems from jobskills table
 	for($i = 0; $i < count($skills_array); $i++)
 	{
+		echo("<p>In a thing</p>");
 		//$skills_array[$i];
 		
 		// obtain skill id
@@ -49,6 +50,7 @@ if ($_POST['update_job_button'])
 			$stmt->fetch();
 		}
 		else { throw_msg(303, $httpReferer, "create_faction.php", 39); }
+		echo("<p>sid: ".$sid."</p>");
 		
 			
 		// insert new job skill
