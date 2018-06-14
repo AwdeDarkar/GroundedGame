@@ -79,7 +79,7 @@ else { echo("Problem line: 78"); }
 echo("</select></h3><script>function changeJobClick() { 
 var xhr = new XMLHttpRequest();
 var jobID = $('#jobSel').val();
-xhr.open('GET', 'changeJob.php?a=$actorID&j=' + jobID, true); }
+xhr.open('GET', 'changeJob.php?a=$actorID&j=' + jobID, true); }</script>
 ");
 ?>
 <!-- Hey, dummy, this is a reminder that you were too lazy to verify the sender of a job selection request. Please fix it. --> 
