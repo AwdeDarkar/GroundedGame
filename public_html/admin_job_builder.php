@@ -42,6 +42,21 @@ if ($stmt = $mysqli->prepare("SELECT Name FROM Skills"))
 }
 else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
 
+$jids = array();
+$sids = array();
+if ($stmt = $mysqli->prepare("SELECT JID, SID FROM JobSkills"))
+{
+	$stmt->execute();
+	$stmt->store_result();
+	$stmt->bind_result($jid, $sid);
+	while ($stmt->fetch())
+	{
+		array_push($jids, $jid);
+		array_push($sids, $sid);
+	}
+}
+else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+
 // prepare a csv backup file for download
 // thanks to: https://stackoverflow.com/questions/356578/how-to-output-mysql-query-results-in-csv-format 
 // 
@@ -70,6 +85,19 @@ fwrite($handle, $data);
 fclose($handle);
 
 
+$jobFile = "bak/jobskills.csv";
+$handle = fopen($jobFile, 'w');
+
+$data = "";
+
+for ($i = 0; $i < count($jids); $i++)
+{
+	if ($i != 0) { $data .= "\n"; }
+	$data .= $jids[$i].",".$sids[$i];
+}
+fwrite($handle, $data);
+fclose($handle);
+
 displayStart();
 ?>
 
@@ -85,6 +113,7 @@ displayStart();
 <h3>Jobs CSV Download</h3>
 
 <p><a href='bak/jobs.csv'>jobs.csv</a></p>
+<p><a href='bak/jobskills.csv'>jobskills.csv</a></p>
 
 <h3>Jobs</h3>
 
@@ -133,7 +162,7 @@ for ($i = 0; $i < count($ids); $i++)
 		$stmt->bind_result($skillName, $sid);
 		while ($stmt->fetch())
 		{
-			array_push($jobSkillNames, $jobSkillName);
+			array_push($jobSkillNames, $skillName);
 			array_push($sids, $sid);
 		}
 	}
@@ -143,7 +172,7 @@ for ($i = 0; $i < count($ids); $i++)
 	$skillString = implode(',', $jobSkillNames);
 		
 	echo("
-			<td><input type='text' name='skills_'".$ids[$i]."' value='".$skillString."'></td>
+			<td><input type='text' name='skills_".$ids[$i]."' value='".$skillString."'></td>
 			<td><button type='submit' value='".$ids[$i]."' name='update_job_button'>Update</button></td>
 			<td><button type='submit' value='".$ids[$i]."' name='delete_job_button'>DELETE</button></td>
 		</tr>");

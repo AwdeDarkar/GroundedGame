@@ -10,7 +10,6 @@ if ($_POST['update_job_button'])
 
 	var_dump($skills);
 	var_dump($skills_array);
-	return;
 	
 	// update jobs table
 	if ($stmt = $mysqli->prepare("UPDATE Jobs 
@@ -33,9 +32,11 @@ if ($_POST['update_job_button'])
 	}
 	else { throw_msg(302, "admin_job_builder.php"); }
 
+	echo("<p>About to do things: ".count($skills_array)."</p>");
 	// insert new elems from jobskills table
 	for($i = 0; $i < count($skills_array); $i++)
 	{
+		echo("<p>In a thing</p>");
 		//$skills_array[$i];
 		
 		// obtain skill id
@@ -49,10 +50,11 @@ if ($_POST['update_job_button'])
 			$stmt->fetch();
 		}
 		else { throw_msg(303, $httpReferer, "create_faction.php", 39); }
+		echo("<p>sid: ".$sid."</p>");
 		
 			
 		// insert new job skill
-		if ($stmt = $mysqli->prepare("INSERT INTO JobSkils (JID, SID) VALUES (?,?)"))
+		if ($stmt = $mysqli->prepare("INSERT INTO JobSkills (JID, SID) VALUES (?,?)"))
 		{
 			$stmt->bind_param('ss', $id, $sid);
 			$stmt->execute();
