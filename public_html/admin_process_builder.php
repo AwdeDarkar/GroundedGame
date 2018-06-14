@@ -201,7 +201,7 @@ for ($i = 0; $i < count($ids); $i++)
 			for($k = 0; $k < count($jids); $k++)
 			{
 				echo("<option value='".$jids[$k]."' ");
-				if ($jids[$k] == $pcjids[$j]) { echo("selected"); }
+				if ($jids[$k] === $pcjids[$j]) { echo("selected"); }
 				echo(">".$jnames[$k]."</option>");
 			}
 
