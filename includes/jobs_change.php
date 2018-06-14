@@ -69,6 +69,7 @@ elseif ($_POST['new_job_button'])
 		$stmt->bind_param('ss', $name, $description);
 		$stmt->execute();
 	}
+	else { throw_msg(300, "admin_job_builder.php"); }
 	
 	// insert new elems from jobskills table
 	for($i = 0; $i < count($skills_array); $i++)
@@ -96,7 +97,6 @@ elseif ($_POST['new_job_button'])
 		}
 		else { throw_msg(300, "admin_job_builder.php"); }
 	}
-	else { throw_msg(300, "admin_job_builder.php"); }
 	throw_msg(100, 'admin_job_builder.php');
 }
 elseif ($_POST['delete_job_button'])
