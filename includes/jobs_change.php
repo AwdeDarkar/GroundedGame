@@ -36,7 +36,7 @@ if ($_POST['update_job_button'])
 		
 		// obtain skill id
 		$sid = 0;
-		if ($stmt = $mysqli->prepare("SELECT Skills.ID FROM Skills, WHERE Skills.Name = ?"))
+		if ($stmt = $mysqli->prepare("SELECT Skills.ID FROM Skills WHERE Skills.Name = ?"))
 		{
 			$stmt->bind_param('s', $skills_array[$i]);
 			$stmt->execute();
