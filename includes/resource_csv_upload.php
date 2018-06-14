@@ -1,5 +1,5 @@
 <?php
-echo("<p>Hello?</p>");
+//echo("<p>Hello?</p>");
 
 if (isset($_POST['button_uploadresource']) && is_uploaded_file($_FILES['rc_csv']['tmp_name']))
 {
