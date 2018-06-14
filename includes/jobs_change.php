@@ -18,7 +18,7 @@ if ($_POST['update_job_button'])
 		$stmt->bind_param('sss', $name, $description, $id);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_job_builder.php"); }
+	else { throw_msg(301, "admin_job_builder.php"); }
 
 	// drop old elems from jobskills table
 	if ($stmt = $mysqli->prepare("DELETE FROM JobSkills 
@@ -27,7 +27,7 @@ if ($_POST['update_job_button'])
 		$stmt->bind_param('s', $id);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_job_builder.php"); }
+	else { throw_msg(302, "admin_job_builder.php"); }
 
 	// insert new elems from jobskills table
 	for($i = 0; $i < count($skills_array); $i++)
@@ -44,7 +44,7 @@ if ($_POST['update_job_button'])
 			$stmt->bind_result($sid);
 			$stmt->fetch();
 		}
-		else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+		else { throw_msg(303, $httpReferer, "create_faction.php", 39); }
 		
 			
 		// insert new job skill
@@ -53,7 +53,7 @@ if ($_POST['update_job_button'])
 			$stmt->bind_param('ss', $id, $sid);
 			$stmt->execute();
 		}
-		else { throw_msg(300, "admin_job_builder.php"); }
+		else { throw_msg(304, "admin_job_builder.php"); }
 	}
 	throw_msg(100, 'admin_job_builder.php');
 }
@@ -69,7 +69,7 @@ elseif ($_POST['new_job_button'])
 		$stmt->bind_param('ss', $name, $description);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_job_builder.php"); }
+	else { throw_msg(305, "admin_job_builder.php"); }
 	
 	// insert new elems from jobskills table
 	for($i = 0; $i < count($skills_array); $i++)
@@ -86,7 +86,7 @@ elseif ($_POST['new_job_button'])
 			$stmt->bind_result($sid);
 			$stmt->fetch();
 		}
-		else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+		else { throw_msg(306, $httpReferer, "create_faction.php", 39); }
 		
 			
 		// insert new job skill
@@ -95,7 +95,7 @@ elseif ($_POST['new_job_button'])
 			$stmt->bind_param('ss', $id, $sid);
 			$stmt->execute();
 		}
-		else { throw_msg(300, "admin_job_builder.php"); }
+		else { throw_msg(307, "admin_job_builder.php"); }
 	}
 	throw_msg(100, 'admin_job_builder.php');
 }
@@ -107,7 +107,7 @@ elseif ($_POST['delete_job_button'])
 		$stmt->bind_param('s', $id);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_job_builder.php"); }
+	else { throw_msg(308, "admin_job_builder.php"); }
 	
 	// drop old elems from jobskills table
 	if ($stmt = $mysqli->prepare("DELETE FROM JobSkills 
@@ -116,7 +116,7 @@ elseif ($_POST['delete_job_button'])
 		$stmt->bind_param('s', $id);
 		$stmt->execute();
 	}
-	else { throw_msg(300, "admin_job_builder.php"); }
+	else { throw_msg(309, "admin_job_builder.php"); }
 	
 	throw_msg(100, 'admin_job_builder.php');
 }
