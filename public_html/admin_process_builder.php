@@ -77,7 +77,7 @@ if ($stmt = $mysqli->prepare("SELECT Name, ID from Jobs"))
 	$stmt->bind_result($name, $id);
 	while ($stmt->fetch()) 
 	{
-		array_push($jids, $jid);
+		array_push($jids, $id);
 		array_push($jnames, $name);
 	}
 }
