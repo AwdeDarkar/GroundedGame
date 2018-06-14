@@ -67,6 +67,33 @@ elseif ($_POST['new_job_button'])
 		$stmt->bind_param('ss', $name, $description);
 		$stmt->execute();
 	}
+	
+	// insert new elems from jobskills table
+	for($i = 0; $i < count($skills_array); $i++)
+	{
+		//$skills_array[$i];
+		
+		// obtain skill id
+		$sid = 0;
+		if ($stmt = $mysqli->prepare("SELECT Skills.ID FROM Skills, WHERE Skills.Name = ?"))
+		{
+			$stmt->bind_param('s', $skills_array[$i]);
+			$stmt->execute();
+			$stmt->store_result();
+			$stmt->bind_result($sid);
+			$stmt->fetch()
+		}
+		else { throw_msg(300, $httpReferer, "create_faction.php", 39); }
+		
+			
+		// insert new job skill
+		if ($stmt = $mysqli->prepare("INSERT INTO JobSkils (JID, SID) VALUES (?,?)"))
+		{
+			$stmt->bind_param('ss', $id, $sid);
+			$stmt->execute();
+		}
+		else { throw_msg(300, "admin_job_builder.php"); }
+	}
 	else { throw_msg(300, "admin_job_builder.php"); }
 	throw_msg(100, 'admin_job_builder.php');
 }
@@ -79,6 +106,16 @@ elseif ($_POST['delete_job_button'])
 		$stmt->execute();
 	}
 	else { throw_msg(300, "admin_job_builder.php"); }
+	
+	// drop old elems from jobskills table
+	if ($stmt = $mysqli->prepare("DELETE FROM JobSkills 
+		WHERE JID = ?"))
+	{
+		$stmt->bind_param('s', $id);
+		$stmt->execute();
+	}
+	else { throw_msg(300, "admin_job_builder.php"); }
+	
 	throw_msg(100, 'admin_job_builder.php');
 }
 
