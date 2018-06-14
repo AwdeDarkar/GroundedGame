@@ -98,7 +98,6 @@ fwrite($handle, $data);
 fclose($handle);
 
 
-
 $rids = array();
 $rnames = array();
 $rtypes = array();
@@ -160,7 +159,7 @@ for ($i = 0; $i < count($ids); $i++)
 		<td><a name='p".$ids[$i]."'></a></td>
 		<td><input type='text' name='name_".$ids[$i]."' value='".$names[$i]."'></td>
 		<td><input type='text' name='namesafe_".$ids[$i]."' value='".$namesafes[$i]."'></td>
-		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."' size='2'></td><td></td><td></td><td></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
+		<td><input type='text' name='basetime_".$ids[$i]."' value='".$basetimes[$i]."' size='2'></td><td></td><td></td><td></td><td></td><td><button type='submit' value='".$ids[$i]."' name='update_process_button'>Update</td><td><button type='submit' value='".$ids[$i]."' name='delete_process_button'>DELETE</td></tr>");
 
 	for ($j = 0; $j < count($pcids); $j++)
 	{
@@ -214,7 +213,7 @@ for ($i = 0; $i < count($ids); $i++)
 		}
 	}
 	echo("<tr>
-		<td></td><td></td><td></td><td></td>
+		<td></td><td></td><td></td><td></td><td></td>
 		<td><select name='resource_new_".$ids[$i]."'>");
 
 	echo("<option value='' selected></option>");
@@ -234,9 +233,12 @@ for ($i = 0; $i < count($ids); $i++)
 	echo("
 			</select>
 		</td>
-		<td><input type='text' name='amt_new_".$ids[$i]."' value='' size='2'></td>
+		<td><input type='text' name='amt_new_".$ids[$i]."' value='' size='2'></td>");
+	echo("<td><select name='job_new_".$ids[$i]."'>");
+	for($k = 0; $k < count($jids); $k++) { echo("<option value='".$jids[$k]."'>".$jnames[$k]."</option>"); }
+	echo("</select></td>");
 
-		<td><button type='submit' value='".$ids[$i]."' name='new_pc_button'>Insert</button></td>
+	echo("<td><button type='submit' value='".$ids[$i]."' name='new_pc_button'>Insert</button></td>
 	</tr>");
 
 	// spacing
