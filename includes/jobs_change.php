@@ -53,16 +53,14 @@ if ($_POST['update_job_button'])
 		echo("<p>sid: ".$sid."</p>");
 		
 			
-		return;
 		// insert new job skill
-		if ($stmt = $mysqli->prepare("INSERT INTO JobSkils (JID, SID) VALUES (?,?)"))
+		if ($stmt = $mysqli->prepare("INSERT INTO JobSkills (JID, SID) VALUES (?,?)"))
 		{
 			$stmt->bind_param('ss', $id, $sid);
 			$stmt->execute();
 		}
 		else { throw_msg(304, "admin_job_builder.php"); }
 	}
-	return;
 	throw_msg(100, 'admin_job_builder.php');
 }
 elseif ($_POST['new_job_button'])
