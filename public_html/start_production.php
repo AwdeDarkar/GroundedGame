@@ -224,7 +224,7 @@ for($i = 0; $i < count($acIDs); $i++)
 {
 	// TODO: 
 	if (!array_key_exists((string)($acRCIDs[$i]), $equipment)) { $equipment[(string)($acRCIDs[$i])] = array(); }
-	array_push($equipment[(string)($acRCIDs[$i])], array($acIDs[$i], $acJIDs[$i], $acNames[$i]);
+	array_push($equipment[(string)($acRCIDs[$i])], array($acIDs[$i], $acJIDs[$i], $acNames[$i]));
 }
 
 /*var_dump($eqIDs);
