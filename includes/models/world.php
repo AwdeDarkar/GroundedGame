@@ -8,7 +8,7 @@ class World
 	private $created;
 
 	private $factions;
-	private $factions_loaded;
+	private $factions_loaded = false;
 
 	public function __construct($fetch)
 	{
@@ -17,11 +17,9 @@ class World
 		$this->$nameSafe = $fetch->$NameSafe;
 		$this->$status = $fetch->$Status;
 		$this->$created = $fetch->$Created;
-
-		$factions = array();
-		$factions_loaded = false;
 	}
 
+	public function getID() { return $this->$id; }
 	public function getName() { return $this->$name; }
 	public function getNameSafe() { return $this->$nameSafe; }
 	public function getStatus() { return $this->$status; }
@@ -29,7 +27,7 @@ class World
 
 	public function getFactions()
 	{
-		if (!$this->$factions_loaded())
+		if (!$this->$factions_loaded)
 		{
 			$this->$factions = Faction.getAllForWorld($this);
 			$this->$factions_loaded = true;
@@ -39,13 +37,18 @@ class World
 
 
 
-	public static getAll()
+	public static function getAll()
 	{
-		$object = new QueryManager('World');
-		$world_fetches = $object.getAll();
+		$qm = new QueryManager('Worlds');
+		$world_fetches = $qm.getAll();
 		$worlds = array();
 		for($i = 0; $i < count($world_fetches); $i++) { array_push($worlds, new World($world_fetches[$i])); }
 		return $worlds;
+	}
+	public static function getByID($id)
+	{
+		$qm = new QueryManager('Worlds');
+		return new World($qm->getByID($id));
 	}
 }
 

@@ -27,6 +27,13 @@ class QueryManager extends Connection
 	{
 		return parent::query('select * from ' . $this->table . ' where id = ' . $id)->fetch_object();
 	}
+	public function getWhere($where)
+	{
+		$result_array = array();
+		$result = parent::query('select * from ' . $this->table . ' where ' . $where);
+		while ($record = $result->fetch_object()) { array_push($result_array, $record); }
+		return $record;
+	}
 }
 
 ?>
