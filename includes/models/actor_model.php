@@ -1,43 +1,72 @@
 <?php
 class Actor 
 {
-	private $name = "unnamed";
-	private $id = -1;
-	private $hp = 0;
-	private $birthday = 0;
-	private $skills = {};
-	private $job = NULL;
+	private $name;
+	private $id;
+	private $hp;
+	private $birthday;
+	private $skills;
+	private $skills_loaded;
+	private $job;
 	
-	function getName() { return $name; }
-	function setName($in_name) { $name = $in_name; }
+	public function __construct($fetch)
+	{
+		$this->$name = $fetch->$name;
+		$this->hp = $fetch->$id
+		$this->$birthday = $fetch->$birthday;
+		$this->$id = $fetch->$id;
+		
+		$skills = array();
+		$skills_loaded = false;
+	}
 	
-	function $getID() { return $id; }
-	function $setID($in_id) { $id = $in_id; }
+	public function getName() { return $name; }
+	public function setName($in_name) { $name = $in_name; }
 	
-	function $getHP() { return $hp; }
-	function $setHP($in_hp) { $hp = $in_hp }
-	function $alive() { return ($hp > 0); }
+	public function getID() { return $id; }
+	public function setID($in_id) { $id = $in_id; }
 	
-	function $getBirthday() { return $birthday; }
-	function $getAge($current_day) { return $current_day - $birthday; }
+	public function getHP() { return $hp; }
+	public function setHP($in_hp) { $hp = $in_hp }
+	public function alive() { return ($hp > 0); }
 	
-	function $getSkillLevel($skill)
+	public function getBirthday() { return $birthday; }
+	public function getAge($current_day) { return $current_day - $birthday; }
+	
+	public function getSkillLevel($skill)
 	{
 		if (array_key_exists($skill, $skills) { return $skills[$skill]; }
 		else { return 0; }
 	}
-	function $setSkillLevel($skill, $level) { $skills[$skill] = $level; }
+	public function setSkillLevel($skill, $level) { $skills[$skill] = $level; }
 	
-	function $getJob() { return $job; }
-	function $setJob($in_job) { $job = $in_job; }
+	public function getJob() { return $job; }
+	public function setJob($in_job) { $job = $in_job; }
 	
-	function __construct($in_name, $last_id, $current_day)
+	private function load_skills()
 	{
-		$name = $in_name;
-		$hp = 10;
-		$birthday = $current_day;
-		$id = $last_id + 1;
+		if (!$this->$skills_loaded())
+		{
+			
+			if ($stmt = $mysqli->prepare("SELECT Skills.Name, ActorSkills.Level FROM Skills, ActorSkills WHERE ActorSkills.AID = ? AND ActorSkills.SID = Skills.ID"))
+			{
+				$stmt->bind_param('s', $id);
+				$stmt->execute();
+				$stmt->store_result();
+				$stmt->bind_result($Name, $Level);
+				
+				while($stmt->fetch())
+				{
+					$this->$skills[$Name] = $Level;
+				}
+			}
+			else { echo("Problem!"); }
+			
+			$this->$skills_loaded = true;
+		}
+		return $this->$skills;
 	}
 	
 }
 ?>
+
