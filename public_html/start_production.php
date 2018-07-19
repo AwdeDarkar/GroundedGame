@@ -31,7 +31,7 @@ $processNames = array();
 $processComponentAmts = array();
 $processComponentIDs = array();
 $processResources = array();
-$processResourceIDs = array();
+$processResourceIDs = array(); # NOTE: these are resource collection ids 
 $processAmts = array();
 
 # get list of all processes user can do
