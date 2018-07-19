@@ -1,6 +1,6 @@
 <?php
 
-class Object extends Connection
+class QueryManager extends Connection
 {
 	private $table;
 	private $connection;
@@ -22,6 +22,10 @@ class Object extends Connection
 		$result = parent::query('select * from ' . $this->table);
 		while ($record = $result->fetch_object()) { array_push($result_array, $record); }
 		return $record;
+	}
+	public function getByID($id)
+	{
+		return parent::query('select * from ' . $this->table . ' where id = ' . $id)->fetch_object();
 	}
 }
 

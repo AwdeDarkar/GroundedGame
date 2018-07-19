@@ -12,36 +12,36 @@ class World
 
 	public function __construct($fetch)
 	{
-		$self->$id = $fetch->$id;
-		$self->$name = $fetch->$name;
-		$self->$nameSafe = $fetch->$nameSafe;
-		$self->$status = $fetch->$status;
-		$self->$created = $fetch->$created;
+		$this->$id = $fetch->$ID;
+		$this->$name = $fetch->$Name;
+		$this->$nameSafe = $fetch->$NameSafe;
+		$this->$status = $fetch->$Status;
+		$this->$created = $fetch->$Created;
 
 		$factions = array();
 		$factions_loaded = false;
 	}
 
-	public function getName() { return $self->$name; }
-	public function getNameSafe() { return $self->$nameSafe; }
-	public function getStatus() { return $self->$status; }
-	public function getCreated() { return $self->$created; }
+	public function getName() { return $this->$name; }
+	public function getNameSafe() { return $this->$nameSafe; }
+	public function getStatus() { return $this->$status; }
+	public function getCreated() { return $this->$created; }
 
 	public function getFactions()
 	{
-		if (!$self->$factions_loaded())
+		if (!$this->$factions_loaded())
 		{
-			$self->$factions = Faction.getAllForWorld($self);
-			$self->$factions_loaded = true;
+			$this->$factions = Faction.getAllForWorld($this);
+			$this->$factions_loaded = true;
 		}
-		return $self->$factions;
+		return $this->$factions;
 	}
 
 
 
 	public static getAll()
 	{
-		$object = new Object('World');
+		$object = new QueryManager('World');
 		$world_fetches = $object.getAll();
 		$worlds = array();
 		for($i = 0; $i < count($world_fetches); $i++) { array_push($worlds, new World($world_fetches[$i])); }
