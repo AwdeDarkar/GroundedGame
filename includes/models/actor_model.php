@@ -83,7 +83,19 @@ class Actor
 		}
 		else { return false; }
 		
-		$sql = "
+		foreach ($skills as $skill => $level)
+		{
+			$sql = "UPDATE ActorSkills SET ActorSkills.Level = ? WHERE Skills.Name = ? AND ActorSkills.AID = ? AND Skills.ID = ActorSkills.SID";
+			if($stmt = $conn->prepare($sql))
+			{
+				$stmt->bing_param('sss', $level, $skill, $id);
+				$stmt->execute();
+			}
+			else { return false; }
+		}
+		
+		return true;
+	}
 		
 	
 	

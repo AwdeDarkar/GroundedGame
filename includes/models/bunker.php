@@ -22,8 +22,8 @@ class Bunker
 		$this->$worldX = $fetch->$worldX;
 		$this->$factionID = $fetch->$factionID;
 		
-		$this->$world = new World($query_manager->getByID($worldID));
-		$this->$faction = new Faction($query_manager->getByID($factionID));
+		$this->$world = new World(World->getByID($worldID));
+		$this->$faction = new Faction(Faction->getByID($factionID));
 	}
 	
 	public function getID() { return $id; }
@@ -33,7 +33,7 @@ class Bunker
 	public function getFaction() { return $faction; }
 	public function setFaction($in_faction)
 	{
-		$faction = new Faction($query_manager->getByID($in_faction->getID());
+		$faction = new Faction(Faction->($in_faction->getID());
 		$factionID = $in_faction->getID();
 	}
 	
@@ -52,6 +52,14 @@ class Bunker
 			return true;
 		}
 		else { return false; }
+	}
+	
+	public static function getByID($id)
+	{
+		$qm = new QueryManager('Bunkers');
+		$fetch = $qm->getByID();
+		$bunker = new Bunker($fetch);
+		return $bunker
 	}
 }
 
