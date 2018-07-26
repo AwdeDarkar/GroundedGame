@@ -1,4 +1,6 @@
 <?php
+include 'query_manager.php';
+
 class Actor 
 {
 	private $name;
@@ -9,10 +11,13 @@ class Actor
 	private $skills_loaded;
 	private $job;
 	
+	private $query_manager;
+	
 	public function __construct($fetch)
 	{
+		$this->$query_manager = new QueryManager('generic');
 		$this->$name = $fetch->$name;
-		$this->hp = $fetch->$id
+		$this->$hp = $fetch->$id
 		$this->$birthday = $fetch->$birthday;
 		$this->$id = $fetch->$id;
 		
@@ -47,8 +52,8 @@ class Actor
 	{
 		if (!$this->$skills_loaded())
 		{
-			
-			if ($stmt = $mysqli->prepare("SELECT Skills.Name, ActorSkills.Level FROM Skills, ActorSkills WHERE ActorSkills.AID = ? AND ActorSkills.SID = Skills.ID"))
+			//TODO: this may be horrible and inefficient, research!
+			if ($stmt = $query_manager->getConnection()->prepare("SELECT Skills.Name, ActorSkills.Level FROM Skills, ActorSkills WHERE ActorSkills.AID = ? AND ActorSkills.SID = Skills.ID"))
 			{
 				$stmt->bind_param('s', $id);
 				$stmt->execute();
@@ -66,6 +71,7 @@ class Actor
 		}
 		return $this->$skills;
 	}
+	
 	
 }
 ?>
