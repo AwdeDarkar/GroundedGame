@@ -32,7 +32,6 @@ class Faction
 	}
 
 	public function getID() { return $this->id; }
-	public function setID($id) { $this->id = id; }
 
 	public function getUserID() { return $this->userID; }
 	
@@ -45,7 +44,7 @@ class Faction
 	
 	public function getWorld()
 	{
-		if (!$this->world_loaded) { $this->setWorld(World.getByID($this->WorldID)); }
+		if (!$this->world_loaded) { $this->setWorld(World.getByID($this->worldID)); }
 		return $this->world;
 	}
 	public function setWorld($world)
@@ -78,7 +77,7 @@ class Faction
 	public static function getByID($id)
 	{
 		$qm = new QueryManager('Factions');
-		$faction_fetch = $qm.getByID($id);
+		$faction_fetch = $qm->getByID($id);
 		$faction = new Faction($faction_fetch);
 		return $faction;
 	}
