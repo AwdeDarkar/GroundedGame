@@ -7,6 +7,7 @@ class Resource
     private $description;
     private $type;
 
+	public function 
 }
 
 ?>
