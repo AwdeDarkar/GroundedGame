@@ -71,7 +71,7 @@ class Actor
 		return $this->$skills;
 	}
 	
-	private function save()
+	public function save()
 	{
 		$conn = $query_manager->getConnection();
 		$sql = "UPDATE Actor SET name = ?, hp = ? WHERE Actor.ID = ?";
@@ -96,7 +96,14 @@ class Actor
 		
 		return true;
 	}
-		
+	
+	public static function getByID($id)
+	{
+		$qm = new QueryManager("Actors");
+		$fetch = $qm->getByID($id);
+		$actor = new Actor($fetch);
+		return $actor;
+	}
 	
 	
 }
