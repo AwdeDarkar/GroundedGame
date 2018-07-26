@@ -43,9 +43,8 @@ class Bunker
 	public function save()
 	{
 		$conn = $query_manager->getConnection();
-		$sql = "
-		UPDATE Bunker SET Bunker.factionID = ? WHERE Bunker.ID = ?
-		";
+		$sql = "UPDATE Bunker SET Bunker.factionID = ? WHERE Bunker.ID = ?";
+		
 		if($stmt = $conn->prepare($sql))
 		{
 			$stmt->bind_param('ss', $factionID, $id);

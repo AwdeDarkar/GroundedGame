@@ -52,7 +52,6 @@ class Actor
 	{
 		if (!$this->$skills_loaded())
 		{
-			//TODO: this may be horrible and inefficient, research!
 			if ($stmt = $query_manager->getConnection()->prepare("SELECT Skills.Name, ActorSkills.Level FROM Skills, ActorSkills WHERE ActorSkills.AID = ? AND ActorSkills.SID = Skills.ID"))
 			{
 				$stmt->bind_param('s', $id);
@@ -71,6 +70,21 @@ class Actor
 		}
 		return $this->$skills;
 	}
+	
+	private function save()
+	{
+		$conn = $query_manager->getConnection();
+		$sql = "UPDATE Actor SET name = ?, hp = ? WHERE Actor.ID = ?";
+		
+		if($stmt = $conn->prepare($sql))
+		{
+			$stmt->bind_param('sss', $name, $hp, $id);
+			$stmt->execute();
+		}
+		else { return false; }
+		
+		$sql = "
+		
 	
 	
 }
