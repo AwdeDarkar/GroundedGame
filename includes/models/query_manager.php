@@ -34,6 +34,17 @@ class QueryManager extends Connection
 		while ($record = $result->fetch_object()) { array_push($result_array, $record); }
 		return $record;
 	}
+
+	public function update($setterList, $where)
+	{
+		$setterString = "";
+		for ($i = 0; $i < count($setterList); $i++)
+		{
+			$setterString .= $setterList[$i][0] . " = " . $setterList[$i][1];
+			if ($i <= count($setterList) - 1) { $setterString .= ", "; }
+		}
+		parent::query('update ' . $this->table . ' set ' . $setterString . ' where ' . $where);
+	}
 }
 
 ?>
