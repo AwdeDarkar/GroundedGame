@@ -52,7 +52,6 @@ class Actor
 	{
 		if (!$this->$skills_loaded())
 		{
-			//TODO: this may be horrible and inefficient, research!
 			if ($stmt = $query_manager->getConnection()->prepare("SELECT Skills.Name, ActorSkills.Level FROM Skills, ActorSkills WHERE ActorSkills.AID = ? AND ActorSkills.SID = Skills.ID"))
 			{
 				$stmt->bind_param('s', $id);
@@ -70,6 +69,40 @@ class Actor
 			$this->$skills_loaded = true;
 		}
 		return $this->$skills;
+	}
+	
+	public function save()
+	{
+		$conn = $query_manager->getConnection();
+		$sql = "UPDATE Actor SET name = ?, hp = ? WHERE Actor.ID = ?";
+		
+		if($stmt = $conn->prepare($sql))
+		{
+			$stmt->bind_param('sss', $name, $hp, $id);
+			$stmt->execute();
+		}
+		else { return false; }
+		
+		foreach ($skills as $skill => $level)
+		{
+			$sql = "UPDATE ActorSkills SET ActorSkills.Level = ? WHERE Skills.Name = ? AND ActorSkills.AID = ? AND Skills.ID = ActorSkills.SID";
+			if($stmt = $conn->prepare($sql))
+			{
+				$stmt->bing_param('sss', $level, $skill, $id);
+				$stmt->execute();
+			}
+			else { return false; }
+		}
+		
+		return true;
+	}
+	
+	public static function getByID($id)
+	{
+		$qm = new QueryManager("Actors");
+		$fetch = $qm->getByID($id);
+		$actor = new Actor($fetch);
+		return $actor;
 	}
 	
 	
