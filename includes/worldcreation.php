@@ -13,6 +13,7 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 
 
 	//check database to make sure this world name doesn't already exist
+  /*
 	if ($stmt = $mysqli->prepare("SELECT COUNT(*) FROM Worlds WHERE Name = ? LIMIT 1"))
 	{
 		$stmt->bind_param('s', $worldname);
@@ -22,12 +23,17 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 		$stmt->fetch();
 
 		if ($count > 0) { throw_msg(402, $errorHttpReferer); }
+    
 	}
 	else { throw_msg(300, $httpReferer, "admin.php", 23); }
+*/
+  if(World->getByName($worldname)) { throw_msg(402, $errorHttpReferer); }
+  
 
 	$webName = tools_iterative_web_safe($worldname, "Worlds", $httpReferer);
 		
 	// insert world into db
+  /*
 	if ($stmt = $mysqli->prepare("INSERT INTO Worlds(Name, Status, Created, NameSafe) VALUES (?, ?, ?, ?)"))
 	{
 		//set variables
@@ -37,16 +43,20 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 		$errorMSG = $stmt->error;
 	}
 	else { throw_msg(300, $httpReferer, "worldcreation.php", 86); }
+  */
+  $world = new World($worldname, $status, $date, $webName);
+  $world->create(); //?
 
 	// world creation stuff
 	
-	$worldid = $mysqli->insert_id;
+	//$worldid = $mysqli->insert_id;
 	$userid = 0;
 	$name = "Raiders";
 	$webName = "raiders";
 	$regDate = date("Y-m-d");
 	
 	// create raider faction
+  /*
 	if ($stmt = $mysqli->prepare("INSERT INTO Factions(UserID, WorldID, Name, NameSafe, Joined) VALUES (?, ?, ?, ?, ?)"))
 	{
 		//set variables
@@ -56,15 +66,13 @@ if (isset($_POST['button_createworld'], $_POST['cw_worldname']))
 		$errorMSG = $stmt->error;
 	}
 	else { throw_msg(300, $errorHttpReferer, "register.php", 86); }
-
-
+  */
+	$raider = new Faction(0, $world->getID(), "Raiders", "raiders", date("Y-m-d"));
+	
 	$bunkerids = createBunkers($worldid, $numBunkers, $httpReferer);
 	generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer, $bunkerids);
 
 	startingResourceCollections($worldid, $httpReferer, $bunkerids);
-
-	
-	 
 
 	throw_msg(100, "worlds.php");
 }
@@ -84,6 +92,7 @@ function startingResourceCollections($worldid, $httpReferer, $bunkerids)
 		$facid = 0;
 		$amount = 1;
 
+    /*
 		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
 		{
 			//set variables
@@ -91,6 +100,7 @@ function startingResourceCollections($worldid, $httpReferer, $bunkerids)
 			$stmt2->execute();
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+    
 		if ($stmt2 = $mysqli->prepare("INSERT INTO ResourceCollections (ResourceID,BunkerID,FactionID,Amount) VALUES (?, ?, ?, ?)"))
 		{
 			//set variables
@@ -105,6 +115,11 @@ function startingResourceCollections($worldid, $httpReferer, $bunkerids)
 			$stmt2->execute();
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+    */
+    
+    $miners = new ResourceCollection($minerid, $bunkerid. $facid, $amount);
+    $smelters = new ResourceCollection($smelterid, $bunkerid, $facid, $amount);
+    $workers = new ResourceCollection($workerid, $bunkerid, $facid, 0);
 			
 	}
 
@@ -161,6 +176,7 @@ function createBunkers($worldid, $count, $httpReferer)
 		$factionid = 0;
 
 		// insert into database
+    /*
 		if ($stmt = $mysqli->prepare("INSERT INTO Bunkers(WorldID, FactionID, WorldX, WorldY) VALUES (?, ?, ?, ?)"))
 		{
 			//set variables
@@ -170,6 +186,8 @@ function createBunkers($worldid, $count, $httpReferer)
 			$errorMSG = $stmt->error;
 		}
 		else { throw_msg(300, $httpReferer, "admin.php", 86); }
+    */
+    $bunker = new Bunker($worldid, $factionid, $x, $y);
 
 		array_push($bunkerids, $mysqli->insert_id);
 	}	
@@ -184,10 +202,10 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer, $bu
 	$depositType;
 	$depositFreq;
 
-	
+	/*
 	if ($stmt = $mysqli->prepare("
 	SELECT Resources.ID, Resources.Frequency FROM Resources
-	WHERE Resources.Type = 1 " /* 1 means depositable */ . "
+	WHERE Resources.Type = 1 " /* 1 means depositable  . "
 	"))
 	{
 		$tempResult = $stmt->execute();
@@ -202,7 +220,8 @@ function generateDeposits($worldid, $numDeposits, $numBunkers, $httpReferer, $bu
 			}
 		}
 	}
-
+  */
+	
 	$min = 1;
 	$max = 1000;
 	

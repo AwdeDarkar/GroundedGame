@@ -20,6 +20,7 @@ class Bunker
 		$this->$id = $fetch->$id;
 		$this->$worldID = $fetch->$worldID;
 		$this->$worldX = $fetch->$worldX;
+		$this->$worldY = $fetch->$worldY;
 		$this->$factionID = $fetch->$factionID;
 		
 		$this->$world = new World(World->getByID($worldID));
