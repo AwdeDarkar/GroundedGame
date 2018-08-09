@@ -3,28 +3,28 @@
 
 class ResourceDeposit
 {
-	private $id;
-	private $bunkerID;
-	private $resourceID;
-	private $amount;
-	private $replenishRate;
-	private $maximum;
+	private $ID;
+	private $BunkerID;
+	private $ResourceID;
+	private $Amount;
+	private $ReplenishRate;
+	private $Maximum;
 
 
-	private $bunker;
-	private $bunker_loaded = false;
-	private $resource;
-	private $resource_loaded = false;
+	protected $bunker;
+	protected $bunker_loaded = false;
+	protected $resource;
+	protected $resource_loaded = false;
 
 	
 	public function __construct($fetch)
 	{
-		$this->$id = $fetch->ID;
-		$this->$bunkerID = $fetch->BunkerID;
-		$this->$resourceID = $fetch->ResourceID;
-		$this->$amount = $fetch->Amount;
-		$this->$replenishRate = $fetch->ReplenishRate;
-		$this->$maximum = $fetch->Maximum;
+		$this->$ID = $fetch->ID;
+		$this->$BunkerID = $fetch->BunkerID;
+		$this->$ResourceID = $fetch->ResourceID;
+		$this->$Amount = $fetch->Amount;
+		$this->$ReplenishRate = $fetch->ReplenishRate;
+		$this->$Maximum = $fetch->Maximum;
 	}
 	
 	public function getID() { return $this->id; }

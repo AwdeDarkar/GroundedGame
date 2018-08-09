@@ -1,29 +1,38 @@
 <?php
 class World
 {
-	private $id;
-	private $name;
-	private $nameSafe;
-	private $status;
-	private $created;
+	private $ID;
+	private $Name;
+	private $NameSafe;
+	private $Status;
+	private $Created;
 
-	private $factions;
-	private $factions_loaded = false;
+	protected $factions;
+	protected $factions_loaded = false;
 
 	public function __construct($fetch)
 	{
-		$this->$id = $fetch->$ID;
-		$this->$name = $fetch->$Name;
-		$this->$nameSafe = $fetch->$NameSafe;
-		$this->$status = $fetch->$Status;
-		$this->$created = $fetch->$Created;
+		$this->$ID = $fetch->$ID;
+		$this->$Name = $fetch->$Name;
+		$this->$NameSafe = $fetch->$NameSafe;
+		$this->$Status = $fetch->$Status;
+		$this->$Created = $fetch->$Created;
 	}
-
-	public function getID() { return $this->$id; }
-	public function getName() { return $this->$name; }
-	public function getNameSafe() { return $this->$nameSafe; }
-	public function getStatus() { return $this->$status; }
-	public function getCreated() { return $this->$created; }
+	public function __construct($name, $nameSafe, $status, $created)
+	{
+		$this->$Name = $name;
+		$this->$NameSafe = $nameSafe;
+		$this->$Status = $status;
+		$this->$Created = $created;
+		$this->$ID = new QueryManager('Worlds')->insert($this);
+	}
+	public function save() { new QueryManager('Worlds')->update($this); }
+	
+	public function getID() { return $this->$ID; }
+	public function getName() { return $this->$Name; }
+	public function getNameSafe() { return $this->$NameSafe; }
+	public function getStatus() { return $this->$Status; }
+	public function getCreated() { return $this->$Created; }
 
 	public function getFactions()
 	{
@@ -45,6 +54,7 @@ class World
 		for($i = 0; $i < count($world_fetches); $i++) { array_push($worlds, new World($world_fetches[$i])); }
 		return $worlds;
 	}
+	# TODO: what happens if ID doesn't exist?
 	public static function getByID($id)
 	{
 		$qm = new QueryManager('Worlds');
